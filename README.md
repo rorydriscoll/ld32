@@ -1,2 +1,2 @@
 # ld32
-Game for Ludum Dare 32
+This is our entry for Ludum Dare 32
