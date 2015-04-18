@@ -27,8 +27,7 @@ public class EnemyBehavior : MonoBehaviour {
 	}
 	void FixedUpdate()
 	{
-		Vector3 toPlayerVec = spawner_.playerGO.transform.position - transform.position;
-		float dist = toPlayerVec.magnitude;
+        float dist = transform.position.z;
 		float decay = speedDecay.Evaluate(dist);
 		//Debug.Log("Dist " + dist + " decay = " + decay);
 		GetComponent<Rigidbody> ().velocity = -transform.forward * initialSpeed * decay; // Random.Range(speedMin, speedMax);

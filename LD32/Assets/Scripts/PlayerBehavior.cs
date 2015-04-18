@@ -35,10 +35,11 @@ public class PlayerBehavior : MonoBehaviour
         else
             charge = 0;
 
-        float frequency = 50;
-        float amplitude = charge * 20;
+        //float frequency = 50;
+        //float amplitude = charge * 20;
 
-        transform.rotation = Quaternion.AngleAxis(Mathf.Sin(charge * frequency) * amplitude, new Vector3(0, 0, 1));
+        // Change this to screen shake
+        // transform.rotation = Quaternion.AngleAxis(Mathf.Sin(charge * frequency) * amplitude, new Vector3(0, 0, 1));
     }
 
     void FireShot()
@@ -68,6 +69,6 @@ public class PlayerBehavior : MonoBehaviour
         if (Input.GetButtonUp("Blue"))
             color.b = 0.0f;
 
-        GetComponent<Renderer>().material.color = color;
+        //GetComponent<Renderer>().material.color = color;
     }
 }
