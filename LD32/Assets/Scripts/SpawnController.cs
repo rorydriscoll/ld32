@@ -8,6 +8,8 @@ public class SpawnController : MonoBehaviour {
 	public AnimationCurve spawnSpeedCurve;
 	public AnimationCurve moveSpeedCurve;
 	public AnimationCurve typeCountCurve;
+	public AnimationCurve groupCountCurve;
+	public AnimationCurve groupSpawnSpeed;
 	public GameObject hazard;
 	public GameObject playerGO;
 	public Color[] colors = new Color[8];
@@ -22,6 +24,8 @@ public class SpawnController : MonoBehaviour {
 	private int maxTypes = 6;
 	private float speed;
 	private float spawnSpeed_;
+	private int groupCount;
+	private float groupSpawnWait;
 
 	// Use this for initialization
 	void Start () 
@@ -48,13 +52,13 @@ public class SpawnController : MonoBehaviour {
 			//colors[7] = new Color(255,255,255);
 		}
 	}
-	Color PickType()
+	Identifier PickType()
 	{
 		/*
 		 * 	XXX - Temporary WIP
 	 	 */
-		int colorIndex = Random.Range(0,numHazardTypes);
-		return colors[colorIndex];
+		int typeID = Random.Range(0,numHazardTypes);
+		return new Identifier(typeID); 
 	}
 	GameObject Player() { return playerGO; }
 	void SpawnHazard(GameObject obj)
@@ -81,6 +85,7 @@ public class SpawnController : MonoBehaviour {
 		numHazardTypes = numTypes;
 		speed = moveSpeed;
 		spawnSpeed_ = spawnSpeed;
+	
 		StartCoroutine (SpawnMain ());
 	}
 	public void KickWave(int waveID)
@@ -90,7 +95,9 @@ public class SpawnController : MonoBehaviour {
 		int numTypes = (int)typeCountCurve.Evaluate(waveID);
 		float speed = moveSpeedCurve.Evaluate(waveID);
 		float spawnSpeed = spawnSpeedCurve.Evaluate(waveID);
-		Debug.Log ("Kick Wave #" + waveID + " Enemies= " + numHazards + " numTypes=" + numTypes + " speed = " + speed + " spawnSpeed = " + spawnSpeed);
+		groupCount = (int)groupCountCurve.Evaluate(waveID);
+		groupSpawnWait = groupSpawnSpeed.Evaluate(waveID);
+		Debug.Log ("Kick Wave #" + waveID + " Enemies= " + numHazards + " typePerGroup=" + numTypes + " speed = " + speed + " spawnSpeed = " + spawnSpeed + "groupCount=" + groupCount + "GroupDelay=" + groupSpawnWait);
 
 		KickWave(numHazards,numTypes, speed, spawnSpeed);
 	}
@@ -108,8 +115,12 @@ public class SpawnController : MonoBehaviour {
 		Debug.Log ("Spawne started");
 		while (!gameController.IsGameOver() && remainToSpawn > 0) 
 		{
-			SpawnHazard(hazard);
-			yield return new WaitForSeconds (spawnSpeed_);
+			for (int i=0;i<groupCount;i++)
+			{
+				SpawnHazard(hazard);
+				yield return new WaitForSeconds (spawnSpeed_);
+			}
+			yield return new WaitForSeconds(groupSpawnWait);
 		}
 		Debug.Log ("Spawner done");
 	}

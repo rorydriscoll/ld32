@@ -4,17 +4,19 @@ using System.Collections;
 public class EnemyBehavior : MonoBehaviour {
 
 	public AnimationCurve speedDecay;
-	public Color identity;
+	public MeshFilter meshA, meshB, meshC;
+	public Identifier identity;
 	private SpawnController spawner_;
 	private float initialSpeed;
 	~EnemyBehavior()
 	{
 		--spawner_.hazardCount;
 	}
-	public void SetTypeSpeedAndController(Color color, float speed, SpawnController spawner)
+	public void SetTypeSpeedAndController(Identifier ID, float speed, SpawnController spawner)
 	{
-		identity = color;
-		GetComponent<Renderer>().material.color = color;
+		identity = ID;
+		GetComponent<Renderer>().material.color = ID.GetColor();
+		//GetComponent<MeshFilter>()
 		//Debug.Log ("Speed = " + speed);
 		GetComponent<Rigidbody> ().velocity = -transform.forward * speed; // Random.Range(speedMin, speedMax);
 		initialSpeed = speed;
@@ -33,5 +35,8 @@ public class EnemyBehavior : MonoBehaviour {
 		GetComponent<Rigidbody> ().velocity = -transform.forward * initialSpeed * decay; // Random.Range(speedMin, speedMax);
 		//if (spawner_.IsPlayerDead())
 		//	DestroyObject(gameObject);
+		if (transform.position.z < -20.0f)
+			DestroyObject(gameObject);
+
 	}
 }

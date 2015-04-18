@@ -3776,6 +3776,10 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 11469282, guid: 9f2748c9970246447a6f9858cb324dd9, type: 2}
+      propertyPath: groupSpawnSpeed.m_Curve.Array.size
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 489432, guid: 9f2748c9970246447a6f9858cb324dd9, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -3806,7 +3810,31 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 489432, guid: 9f2748c9970246447a6f9858cb324dd9, type: 2}
       propertyPath: m_RootOrder
-      value: 6
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 11469282, guid: 9f2748c9970246447a6f9858cb324dd9, type: 2}
+      propertyPath: groupSpawnSpeed.m_Curve.Array.data[1].time
+      value: 19.7350006
+      objectReference: {fileID: 0}
+    - target: {fileID: 11469282, guid: 9f2748c9970246447a6f9858cb324dd9, type: 2}
+      propertyPath: groupSpawnSpeed.m_Curve.Array.data[1].value
+      value: 2.07214808
+      objectReference: {fileID: 0}
+    - target: {fileID: 11469282, guid: 9f2748c9970246447a6f9858cb324dd9, type: 2}
+      propertyPath: groupSpawnSpeed.m_Curve.Array.data[1].inSlope
+      value: .0578417666
+      objectReference: {fileID: 0}
+    - target: {fileID: 11469282, guid: 9f2748c9970246447a6f9858cb324dd9, type: 2}
+      propertyPath: groupSpawnSpeed.m_Curve.Array.data[1].outSlope
+      value: .0578417666
+      objectReference: {fileID: 0}
+    - target: {fileID: 11469282, guid: 9f2748c9970246447a6f9858cb324dd9, type: 2}
+      propertyPath: groupSpawnSpeed.m_Curve.Array.data[0].value
+      value: 6.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 11469282, guid: 9f2748c9970246447a6f9858cb324dd9, type: 2}
+      propertyPath: groupSpawnSpeed.m_Curve.Array.data[0].time
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9f2748c9970246447a6f9858cb324dd9, type: 2}
