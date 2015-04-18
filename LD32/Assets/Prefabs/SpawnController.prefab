@@ -39,9 +39,123 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67e89da119ba015458002cafd4c5ce4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnSpeed: 1
-  speed: 3
+  hazardCountCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 5
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 6
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 2
+      value: 7
+      inSlope: .00476837158
+      outSlope: .00476837158
+      tangentMode: 0
+    - time: 3
+      value: 8
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 4
+      value: 9
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 5
+      value: 10
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  spawnSpeedCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 3.01002645
+      inSlope: .0915498361
+      outSlope: .0915498361
+      tangentMode: 0
+    - time: 10
+      value: 1
+      inSlope: .00302935834
+      outSlope: .00302935834
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  moveSpeedCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: -.0594796501
+      value: 2.39918613
+      inSlope: 1.39261258
+      outSlope: 1.39261258
+      tangentMode: 0
+    - time: 4.98513651
+      value: 5.47779179
+      inSlope: .302968174
+      outSlope: .302968174
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  typeCountCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 3
+      inSlope: .992227376
+      outSlope: .992227376
+      tangentMode: 0
+    - time: 1
+      value: 3
+      inSlope: .510528266
+      outSlope: .510528266
+      tangentMode: 10
+    - time: 1.97937775
+      value: 4
+      inSlope: .510528266
+      outSlope: .510528266
+      tangentMode: 10
+    - time: 3
+      value: 4
+      inSlope: .5
+      outSlope: .5
+      tangentMode: 10
+    - time: 4
+      value: 5
+      inSlope: .5
+      outSlope: .5
+      tangentMode: 10
+    - time: 5
+      value: 5
+      inSlope: 1
+      outSlope: 1
+      tangentMode: 10
+    - time: 6
+      value: 7
+      inSlope: 1
+      outSlope: 1
+      tangentMode: 10
+    - time: 7
+      value: 7
+      inSlope: .5
+      outSlope: .5
+      tangentMode: 10
+    - time: 8
+      value: 8
+      inSlope: 1
+      outSlope: 1
+      tangentMode: 10
+    m_PreInfinity: 2
+    m_PostInfinity: 2
   hazard: {fileID: 166184, guid: ae006763fce14234db9b73ed10393554, type: 2}
+  playerGO: {fileID: 0}
   colors:
   - {r: 1, g: 0, b: 0, a: 0}
   - {r: 0, g: 1, b: 0, a: 0}
@@ -50,10 +164,9 @@ MonoBehaviour:
   - {r: 0, g: 1, b: 1, a: 0}
   - {r: 1, g: 0, b: 1, a: 0}
   initColors: 1
-  SpawnPos: {x: 6, y: 0, z: 25}
+  SpawnPos: {x: 6, y: .100000001, z: 25}
   hazardCount: 0
-  remainToSpawn: 10
-  numHazardTypes: 3
+  currentWaveID: 1
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

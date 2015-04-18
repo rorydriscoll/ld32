@@ -3,9 +3,10 @@ using System.Collections;
 
 public class EnemyBehavior : MonoBehaviour {
 
+	public AnimationCurve speedDecay;
 	public Color identity;
 	private SpawnController spawner_;
-	private float speed = 1.0f;
+	private float initialSpeed;
 	~EnemyBehavior()
 	{
 		--spawner_.hazardCount;
@@ -14,17 +15,24 @@ public class EnemyBehavior : MonoBehaviour {
 	{
 		identity = color;
 		GetComponent<Renderer>().material.color = color;
-		Debug.Log ("Speed = " + speed);
+		//Debug.Log ("Speed = " + speed);
 		GetComponent<Rigidbody> ().velocity = -transform.forward * speed; // Random.Range(speedMin, speedMax);
+		initialSpeed = speed;
 		spawner_ =  spawner;
 	}
-	// Use this for initialization
-	void Start () {
-	
+	void OnCollisionEnter(Collision other)
+	{
+		//if (other.gameObject.tag == "Player")
+		//	spawner_.SetPlayerDead();
 	}
-	
-	// Update is called once per frame
-	void Update () {
-	
+	void FixedUpdate()
+	{
+		Vector3 toPlayerVec = spawner_.playerGO.transform.position - transform.position;
+		float dist = toPlayerVec.magnitude;
+		float decay = speedDecay.Evaluate(dist);
+		//Debug.Log("Dist " + dist + " decay = " + decay);
+		GetComponent<Rigidbody> ().velocity = -transform.forward * initialSpeed * decay; // Random.Range(speedMin, speedMax);
+		//if (spawner_.IsPlayerDead())
+		//	DestroyObject(gameObject);
 	}
 }

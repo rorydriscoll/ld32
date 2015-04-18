@@ -4,22 +4,47 @@ using System.Collections;
 public class GameController : MonoBehaviour {
 
 	public SpawnController spawnController;
-
-	public fade fadeScript;
+	public GameObject screenFader;
 	public GUIText scoreText;
 	public GUIText restartText;
 	public GUIText gameoverText;
 	public float fadeTime;
-	public float musicVolume;
-	public bool gameover;
+	public float waitBetweenWaves;
+
 	// private 
 	private int score;
-	private bool restart;
+	private int curWave;
+	enum GameState
+	{
+		kStartGame,
+		kPlaying,
+		kGameOver,
+		kFadeOut,
+	};
+	GameState curState;
 
+	public void SetGameOver()
+	{
+		SetGameState(GameState.kGameOver);
+		if (gameoverText!=null)
+			gameoverText.text = "Game Over!";
+		if (restartText != null)
+			restartText.text = "Press 'R' to Restart";
+		if (GetComponent<AudioSource> () != null)
+			GetComponent<AudioSource> ().volume = 0;
+	}
+	public bool IsGameOver()
+	{
+		return curState == GameState.kGameOver;
+	}
 	public void AddScore(int newScore)
 	{
 		score += newScore;
-		UpdateScore ();
+		UpdateScore();
+	}
+	void SetGameState(GameState state)
+	{
+		curState= state;
 	}
 	void UpdateScore()
 	{
@@ -28,15 +53,7 @@ public class GameController : MonoBehaviour {
 	} 
 	void Start()
 	{
-		gameover = false;
-		restart = false;
-		if (restartText != null)
-		{
-			restartText.text = "";
-			gameoverText.text = "";
-		}
-		score = 0;
-
+		InitGame ();
 	}
 	void Awake()
 	{
@@ -45,53 +62,69 @@ public class GameController : MonoBehaviour {
 			spawnController = spawnControllerObj.GetComponent<SpawnController> ();
 		else 
 			Debug.Log ("Error: Game controller cannot find spawnController!");
-		UpdateScore ();
 		StartCoroutine (GameLoop ());
-	}
-	public void GameOver()
-	{
-		gameoverText.text = "Game Over!";
-		gameover = true;
-		GetComponent<AudioSource> ().volume = 0;
-
 	}
 	void Update()
 	{
-		if (gameover && Input.GetKeyDown (KeyCode.R)) {
+		if (curState==GameState.kGameOver && Input.GetKeyDown(KeyCode.R)) {
 			Application.LoadLevel(Application.loadedLevel);
 		}
 	}
+	void InitGame()
+	{
+		SetGameState(GameState.kStartGame);
+		curWave = -1;
+		score = 0;
+		if (restartText != null)
+			restartText.text = "";
+		if (gameoverText != null)
+			gameoverText.text = "";
+		UpdateScore ();
+
+	}
+
 	// MAIN LOOP
 	IEnumerator GameLoop()
 	{
-		yield return new WaitForSeconds(0.5f);
-		Debug.Log ("Game running");
-		/*
-		 * GAME START Fade in
-		fade fadeInst = Instantiate (fadeScript) as fade;
-		fadeInst.FadeIn (fadeTime);
-		yield return new WaitForSeconds (fadeTime);
-		GetComponent<AudioSource> ().volume = musicVolume;
-		*/
-		gameover = false;
-		while (!gameover) 
+		Debug.Log ("Game Running");
+		for(;;)
 		{
-			spawnController.KickWave(5 /*num to spawn in wave*/ ,4 /*color type count*/,3/*move speed*/, 2 /*spawn speed*/);
-			const float sleepTime = 0.5f;
-			while (spawnController.hazardCount>0)
+			switch (curState)
 			{
-				yield return new WaitForSeconds(sleepTime);
-				if (gameover)
+				case GameState.kStartGame:
+					//yield return FadeIn();
+					GameObject fader = Instantiate (screenFader) as GameObject;
+					Debug.Log ("fader = " + fader);
+					fader.GetComponent<fade>().FadeIn(fadeTime);
+					yield return new WaitForSeconds (fadeTime);
+					InitGame ();
+					SetGameState(GameState.kPlaying);
+					break;
+				case GameState.kPlaying:
+					yield return new WaitForSeconds (waitBetweenWaves);
+					++curWave;
+					spawnController.KickWave(curWave);
+					const float sleepTime = 0.25f;
+					// while wave is in progress
+					while (spawnController.hazardCount>0)
+					{
+						yield return new WaitForSeconds(sleepTime);
+						if (curState == GameState.kGameOver)
+							break; // abort wave
+					}
+					break;
+				case GameState.kGameOver:
+					break;
+				case GameState.kFadeOut:
+					fader = Instantiate (screenFader) as GameObject;
+					fader.GetComponent<fade>().FadeOut(fadeTime);
+					yield return new WaitForSeconds (fadeTime+0.01f);
+					SetGameState(GameState.kStartGame);
 					break;
 			}
 		}
-		/*
-		 * 	GAME OVER - Fade Out
-
-		fadeInst = Instantiate (fadeScript) as fade;
-		fadeInst.FadeOut (fadeTime);
-		yield return new WaitForSeconds (fadeTime);
-		restartText.text = "Press 'R' to Restart";
-		*/
 	}
 }
+
+
+
