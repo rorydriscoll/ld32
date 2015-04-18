@@ -14,6 +14,7 @@ public class EnemyBehavior : MonoBehaviour {
 	{
 		identity = color;
 		GetComponent<Renderer>().material.color = color;
+		Debug.Log ("Speed = " + speed);
 		GetComponent<Rigidbody> ().velocity = -transform.forward * speed; // Random.Range(speedMin, speedMax);
 		spawner_ =  spawner;
 	}
