@@ -44,7 +44,8 @@ public class EnemyBehavior : MonoBehaviour
 
     void DoBeachBallBehavior()
     {
-        m_rigidbody.AddForce(m_rigidbody.mass * -Physics.gravity * 0.1f);
+        m_rigidbody.useGravity = false;
+        m_rigidbody.MovePosition(transform.position + new Vector3(0, 1, 0) * 1 * Time.deltaTime);
     }
 
     void Update()
@@ -63,8 +64,8 @@ public class EnemyBehavior : MonoBehaviour
 
     void OnMergeWithBeachBall()
     {
+        GetComponent<NavMeshAgent>().Stop();
         GetComponent<NavMeshAgent>().enabled = false;
-        m_rigidbody.useGravity = false;
         m_behavior = Behavior.BeachBall;
     }
 }
