@@ -10,8 +10,6 @@ public class WeaponController : MonoBehaviour
     private bool m_firing;
     private Identifier m_identifier;
 
-    public Mesh test;
-
     public void Fire(Identifier identifier)
     {
         if (m_firing)
