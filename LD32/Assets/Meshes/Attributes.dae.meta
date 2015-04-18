@@ -1,23 +1,38 @@
 fileFormatVersion: 2
-guid: b3f3995c18ba2784c8d88db766fb22dc
-timeCreated: 1429345443
+guid: 07cf9c3ef6da34546b88726c62f5ca8f
+timeCreated: 1429395292
 licenseType: Free
 ModelImporter:
   serializedVersion: 18
   fileIDToRecycleName:
-    100000: Camera
-    100002: Directional_Light
-    100004: Mesh
-    100006: //RootNode
-    100008: Render
-    400000: Camera
-    400002: Directional_Light
-    400004: Mesh
-    400006: //RootNode
-    400008: Render
-    2300000: Mesh
-    3300000: Mesh
-    4300000: Mesh
+    100000: Attribute0
+    100002: Attribute1
+    100004: Attribute2
+    100006: Attribute3
+    100008: //RootNode
+    100010: Camera
+    100012: Directional_Light
+    100014: Render
+    400000: Attribute0
+    400002: Attribute1
+    400004: Attribute2
+    400006: Attribute3
+    400008: //RootNode
+    400010: Camera
+    400012: Directional_Light
+    400014: Render
+    2300000: Attribute0
+    2300002: Attribute1
+    2300004: Attribute2
+    2300006: Attribute3
+    3300000: Attribute0
+    3300002: Attribute1
+    3300004: Attribute2
+    3300006: Attribute3
+    4300000: Attribute0
+    4300002: Attribute1
+    4300004: Attribute2
+    4300006: Attribute3
     9500000: //RootNode
   materials:
     importMaterials: 1

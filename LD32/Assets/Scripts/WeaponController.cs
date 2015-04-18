@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 public class WeaponController : MonoBehaviour
 {
-    public List<ParticleSystem> fireFx = new List<ParticleSystem>(4);
+    public List<GameObject> fireFx = new List<GameObject>(4);
 
     private bool m_firing;
     private Identifier m_identifier;
@@ -21,11 +21,16 @@ public class WeaponController : MonoBehaviour
 
     void Update()
     {
-        if (!m_firing)
+        if (!m_firing)  
             return;
 
-        fireFx[m_identifier.l].startColor = m_identifier.GetColor();
-        fireFx[m_identifier.l].Play();
+        GameObject go = fireFx[m_identifier.l];
+        ParticleSystem ps = go.GetComponent<ParticleSystem>();
+
+        ps.startColor = m_identifier.GetColor();
+        ps.Play();
+
+        go.SendMessage("SetIdentifier", m_identifier);
 
         m_firing = false;
     }

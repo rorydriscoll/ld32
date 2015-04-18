@@ -39,4 +39,11 @@ public class EnemyBehavior : MonoBehaviour {
 			DestroyObject(gameObject);
 
 	}
+
+    void TakeDamage(object o)
+    {
+        Identifier projectileIdentifier = (Identifier)o;
+
+        Debug.Log("I GOT HIT BY " + projectileIdentifier.l + " by " + projectileIdentifier.r);
+    }
 }
