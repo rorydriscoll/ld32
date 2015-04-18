@@ -1652,4 +1652,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   chargeDuration: 1
-  fireFx: {fileID: 0}
+  fireFx: {fileID: 1517956617}
+  mainCamera: {fileID: 1891343794}
