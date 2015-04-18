@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-struct Identifier
+public struct Identifier
 {
     public int l;
     public int r;

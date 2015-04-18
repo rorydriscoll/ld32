@@ -4,7 +4,7 @@ using System.Collections;
 public class PlayerBehavior : MonoBehaviour
 {
     public float chargeDuration = 1;
-    public ParticleSystem fireFx;
+    public WeaponController weaponController;
     public GameObject mainCamera;
 
     private bool charging;
@@ -44,10 +44,7 @@ public class PlayerBehavior : MonoBehaviour
 
     void FireShot()
     {
-        // Map identifiers to colors
-        fireFx.startColor = identifier.GetColor();
-        fireFx.transform.position = new Vector3(0, 2, 0);
-        fireFx.Play();
+        weaponController.Fire(identifier);
 
         mainCamera.transform.rotation = Quaternion.Euler(35.56804f, 346.827f, 355.7559f);
     }
