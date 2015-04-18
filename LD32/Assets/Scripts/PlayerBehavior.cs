@@ -4,6 +4,7 @@ using System.Collections;
 public class PlayerBehavior : MonoBehaviour
 {
     public float chargeDuration = 1;
+    public ParticleSystem fireFx;
 
     private bool charging;
     private float charge;
@@ -42,10 +43,9 @@ public class PlayerBehavior : MonoBehaviour
 
     void FireShot()
     {
-        ParticleSystem ps = GetComponent<ParticleSystem>();
-
-        ps.startColor = color;
-        ps.Play();
+        fireFx.startColor = color;
+        fireFx.transform.position = new Vector3(0, 2, 0);
+        fireFx.Play();
     }
 
     private void UpdateColor()
