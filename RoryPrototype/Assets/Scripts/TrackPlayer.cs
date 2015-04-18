@@ -6,13 +6,16 @@ public class TrackPlayer : MonoBehaviour
 {
     public GameObject player;
     public Vector3 offset = new Vector3(-10, 10, -10);
+    public float lookahead = 6.0f;
 
     void Update()
     {
         if (player == null)
             return;
 
-        transform.position = player.transform.position + offset;
-        transform.rotation = Quaternion.LookRotation(player.transform.position - transform.position);
+        Vector3 aimpos = player.transform.position + new Vector3(lookahead, 0, lookahead);
+
+        transform.position = aimpos + offset;
+        transform.rotation = Quaternion.LookRotation(aimpos - transform.position);
     }
 }
