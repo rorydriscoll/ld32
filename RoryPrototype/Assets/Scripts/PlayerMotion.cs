@@ -44,20 +44,28 @@ public class PlayerMotion : MonoBehaviour
 
             if (Input.GetMouseButtonDown(0))
             {
-                GameObject hitobject = hit.rigidbody.gameObject;
+                // Shoot a ray from the player to the hit point to make sure they can see it
 
-                if (hitobject.tag == "BeachBall")
-                {
-                    m_haveball = true;
-                    Destroy(hitobject);
-                }
+                Ray gunray = new Ray(transform.position, (hit.point - transform.position).normalized);
+                RaycastHit gunhit;
 
-                if (hitobject.tag == "Enemy")
+                if (Physics.Raycast(gunray, out gunhit))
                 {
-                    if (m_haveball)
+                    GameObject hitobject = gunhit.rigidbody.gameObject;
+
+                    if (hitobject.tag == "BeachBall")
                     {
-                        hitobject.SendMessage("OnMergeWithBeachBall");
-                        m_haveball = false;
+                        m_haveball = true;
+                        Destroy(hitobject);
+                    }
+
+                    if (hitobject.tag == "Enemy")
+                    {
+                        if (m_haveball)
+                        {
+                            hitobject.SendMessage("OnMergeWithBeachBall");
+                            m_haveball = false;
+                        }
                     }
                 }
             }
