@@ -6,7 +6,6 @@ public class fade : MonoBehaviour {
 	private AnimationCurve easeInOut;
 	private float duration ;
 	private float time;
-	public AnimationCurve testCurve;
 	
 	void SetAlpha(float alpha)
 	{
