@@ -42,6 +42,10 @@ public class PlayerBehavior : MonoBehaviour
 
     void FireShot()
     {
+        ParticleSystem ps = GetComponent<ParticleSystem>();
+
+        ps.startColor = color;
+        ps.Play();
     }
 
     private void UpdateColor()
