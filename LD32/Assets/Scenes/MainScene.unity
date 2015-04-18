@@ -304,6 +304,46 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 6
+--- !u!1 &930101035
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 930101037}
+  - 114: {fileID: 930101036}
+  m_Layer: 0
+  m_Name: WeaponController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &930101036
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 930101035}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa218777a0b1d3042bddbafc974b1679, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fireFx: {fileID: 1517956617}
+--- !u!4 &930101037
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 930101035}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 3.69467926, y: -2.50137711, z: 7.53174305}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
 --- !u!1001 &1314657702
 Prefab:
   m_ObjectHideFlags: 0
@@ -1631,7 +1671,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1891343794}
   m_LocalRotation: {x: .307250023, y: -.0979123712, z: -1.63543446e-05, w: .946578443}
-  m_LocalPosition: {x: 10.25, y: 31.5599995, z: -37.2299995}
+  m_LocalPosition: {x: 10.25, y: 31.5599995, z: -33}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1652,5 +1692,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   chargeDuration: 1
-  fireFx: {fileID: 1517956617}
+  weaponController: {fileID: 930101036}
   mainCamera: {fileID: 1891343794}

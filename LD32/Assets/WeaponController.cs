@@ -1,12 +1,16 @@
 ﻿using UnityEngine;
+using UnityEditor;
 using System.Collections;
+using System.Collections.Generic;
 
 public class WeaponController : MonoBehaviour
 {
-    public ParticleSystem fireFx;
+    public List<ParticleSystem> fireFx = new List<ParticleSystem>(4);
 
     private bool m_firing;
     private Identifier m_identifier;
+
+    public Mesh test;
 
     public void Fire(Identifier identifier)
     {
@@ -22,9 +26,8 @@ public class WeaponController : MonoBehaviour
         if (!m_firing)
             return;
 
-        fireFx.startColor = m_identifier.GetColor();
-        fireFx.transform.position = new Vector3(0, 2, 0);
-        fireFx.Play();
+        fireFx[m_identifier.l].startColor = m_identifier.GetColor();
+        fireFx[m_identifier.l].Play();
 
         m_firing = false;
     }
