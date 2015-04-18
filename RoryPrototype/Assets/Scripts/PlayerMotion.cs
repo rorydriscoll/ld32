@@ -57,6 +57,7 @@ public class PlayerMotion : MonoBehaviour
                     if (m_haveball)
                     {
                         hitobject.SendMessage("OnMergeWithBeachBall");
+                        m_haveball = false;
                     }
                 }
             }
