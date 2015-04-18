@@ -45,7 +45,7 @@ public class PlayerBehavior : MonoBehaviour
     void FireShot()
     {
         // Map identifiers to colors
-        //fireFx.startColor = color;
+        fireFx.startColor = identifier.GetColor();
         fireFx.transform.position = new Vector3(0, 2, 0);
         fireFx.Play();
 
@@ -71,9 +71,9 @@ public class PlayerBehavior : MonoBehaviour
         if (Input.GetButtonDown("L1"))
             identifier.l = 1;
         if (Input.GetButtonDown("L2"))
-            identifier.l = 1;
+            identifier.l = 2;
         if (Input.GetButtonDown("L3"))
-            identifier.l = 1;
+            identifier.l = 3;
 
         if (Input.GetButtonDown("R1"))
             identifier.r = 1;
