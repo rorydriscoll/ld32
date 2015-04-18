@@ -5,70 +5,81 @@ public class PlayerBehavior : MonoBehaviour
 {
     public float chargeDuration = 1;
     public ParticleSystem fireFx;
+    public GameObject mainCamera;
 
     private bool charging;
     private float charge;
-    private Color color;
+    private Identifier identifier;
 
     void Update()
     {
-        UpdateColor();
+        UpdateIdentifier();
 
-        if (Input.GetButtonDown("Fire"))
+        if (!charging && (identifier.l != 0 || identifier.r != 0))
             charging = true;
 
-        if (Input.GetButtonUp("Fire"))
+        if (charging && identifier.l == 0 && identifier.r == 0)
             charging = false;
 
         if (charging)
         {
             charge += Time.deltaTime / chargeDuration;
 
+            float frequency = 100;
+            float amplitude = charge * 5;
+
+            mainCamera.transform.rotation *= Quaternion.AngleAxis(Mathf.Sin(charge * frequency) * amplitude, new Vector3(0, 0, 1));
+
             if (charge >= 1)
             {
                 FireShot();
                 charging = false;
                 charge = 0;
-                color = Color.black;
+                identifier.l = identifier.r = 0;
             }
         }
         else
             charge = 0;
-
-        //float frequency = 50;
-        //float amplitude = charge * 20;
-
-        // Change this to screen shake
-        // transform.rotation = Quaternion.AngleAxis(Mathf.Sin(charge * frequency) * amplitude, new Vector3(0, 0, 1));
     }
 
     void FireShot()
     {
-        fireFx.startColor = color;
+        // Map identifiers to colors
+        //fireFx.startColor = color;
         fireFx.transform.position = new Vector3(0, 2, 0);
         fireFx.Play();
+
+        mainCamera.transform.rotation = Quaternion.Euler(35.56804f, 346.827f, 355.7559f);
     }
 
-    private void UpdateColor()
+    private void UpdateIdentifier()
     {
-        if (Input.GetButtonDown("Red"))
-            color.r = 1.0f;
+        if (identifier.l == 1 && Input.GetButtonUp("L1"))
+            identifier.l = 0;
+        if (identifier.l == 2 && Input.GetButtonUp("L2"))
+            identifier.l = 0;
+        if (identifier.l == 3 && Input.GetButtonUp("L3"))
+            identifier.l = 0;
 
-        if (Input.GetButtonUp("Red"))
-            color.r = 0.0f;
+        if (identifier.r == 1 && Input.GetButtonUp("R1"))
+            identifier.r = 0;
+        if (identifier.r == 2 && Input.GetButtonUp("R2"))
+            identifier.r = 0;
+        if (identifier.r == 3 && Input.GetButtonUp("R3"))
+            identifier.r = 0;
 
-        if (Input.GetButtonDown("Green"))
-            color.g = 1.0f;
+        if (Input.GetButtonDown("L1"))
+            identifier.l = 1;
+        if (Input.GetButtonDown("L2"))
+            identifier.l = 1;
+        if (Input.GetButtonDown("L3"))
+            identifier.l = 1;
 
-        if (Input.GetButtonUp("Green"))
-            color.g = 0.0f;
-
-        if (Input.GetButtonDown("Blue"))
-            color.b = 1.0f;
-
-        if (Input.GetButtonUp("Blue"))
-            color.b = 0.0f;
-
-        //GetComponent<Renderer>().material.color = color;
+        if (Input.GetButtonDown("R1"))
+            identifier.r = 1;
+        if (Input.GetButtonDown("R2"))
+            identifier.r = 2;
+        if (Input.GetButtonDown("R3"))
+            identifier.r = 3;
     }
 }

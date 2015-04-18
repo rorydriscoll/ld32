@@ -27,7 +27,7 @@ public class EnemyBehavior : MonoBehaviour {
 	}
 	void FixedUpdate()
 	{
-        float dist = transform.position.z;
+		float dist = transform.position.z;
 		float decay = speedDecay.Evaluate(dist);
 		//Debug.Log("Dist " + dist + " decay = " + decay);
 		GetComponent<Rigidbody> ().velocity = -transform.forward * initialSpeed * decay; // Random.Range(speedMin, speedMax);
