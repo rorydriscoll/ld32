@@ -23,7 +23,7 @@ public class EnemyBehavior : MonoBehaviour {
 	public void SetTypeSpeedAndController(Identifier ID, float speed, SpawnController spawner)
 	{
 		identity = ID;
-		GetComponent<Renderer>().material.color = ID.GetColor();
+		GetComponent<Renderer>().material.color = ID.Color;
 		//GetComponent<MeshFilter>().mesh = meshes[identity.ID ()];
 		//Debug.Log ("Speed = " + speed);
 		GetComponent<Rigidbody> ().velocity = -transform.forward * speed; // Random.Range(speedMin, speedMax);

@@ -2,30 +2,54 @@
 
 public struct Identifier
 {
+    public const int kNumLeft = 3;
+    public const int kNumRight = 3;
+    public const int kNumTypes = kNumLeft + kNumRight;
+
     public int l;
     public int r;
 
-	public Identifier(int id) { l=r=0; SetID (id); }
-
-	enum Counts
-	{
-		kNumLeft=4,
-		kNumRight=4,
-		kNumTypes=kNumLeft*kNumRight,
-	};
-	public int ID() { return l*(int)Counts.kNumLeft + r; }
-	void SetID(int id) { l = id / (int)Counts.kNumLeft; r = id - (l*(int)Counts.kNumLeft); }
-    public Color GetColor()
+    public bool IsValid
     {
-        Color[] colors =
+        get
         {
-            new Color(1, 0, 0, 1),
-            new Color(0, 1, 0, 1),
-            new Color(0, 0, 1, 1),
-			new Color(1, 1, 0, 1),
-		};
+            return l >= 0 && l < kNumLeft && r >= 0 && r < kNumRight;
+        }
+    }
 
-        return colors[r];
+    public int ID
+    {
+        get
+        {
+            return l * kNumLeft + r;
+        }
+        set
+        {
+            l = value / kNumLeft; r = value - (l * kNumLeft);
+        }
+    }
+
+    public Color Color
+    {
+        get
+        {
+            Color[] colors =
+            {
+                new Color(1, 0, 0, 1),
+                new Color(0, 0, 1, 1),
+			    new Color(1, 1, 0, 1),
+		    };
+
+            return colors[r];
+        }
+    }
+
+    public Identifier(int id) { l = r = -1; ID = id; }
+    public Identifier(int l_, int r_) { l = l_; r = r_; }
+
+    public static Identifier Invalid
+    {
+        get { return new Identifier(-1, -1); }
     }
 }
 
