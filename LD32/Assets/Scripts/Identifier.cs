@@ -9,7 +9,7 @@ public struct Identifier
 
 	enum Counts
 	{
-		kNumLeft=3,
+		kNumLeft=4,
 		kNumRight=4,
 		kNumTypes=kNumLeft*kNumRight,
 	};

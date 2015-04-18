@@ -4,7 +4,8 @@ using System.Collections;
 public class EnemyBehavior : MonoBehaviour {
 
 	public AnimationCurve speedDecay;
-	public MeshFilter meshA, meshB, meshC;
+	public MeshFilter meshA, meshB, meshC, meshD;
+	public MeshFilter[] meshes = new MeshFilter[4];
 	public Identifier identity;
 	private SpawnController spawner_;
 	private float initialSpeed;
@@ -12,11 +13,18 @@ public class EnemyBehavior : MonoBehaviour {
 	{
 		--spawner_.hazardCount;
 	}
+	void Start()
+	{
+		meshes[0] = meshA;
+		meshes[1] = meshB;
+		meshes[2] = meshC;
+		meshes[3] = meshD;
+	}
 	public void SetTypeSpeedAndController(Identifier ID, float speed, SpawnController spawner)
 	{
 		identity = ID;
 		GetComponent<Renderer>().material.color = ID.GetColor();
-		//GetComponent<MeshFilter>()
+		//GetComponent<MeshFilter>().mesh = meshes[identity.ID ()];
 		//Debug.Log ("Speed = " + speed);
 		GetComponent<Rigidbody> ().velocity = -transform.forward * speed; // Random.Range(speedMin, speedMax);
 		initialSpeed = speed;

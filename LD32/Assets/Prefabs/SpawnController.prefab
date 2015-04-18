@@ -92,8 +92,8 @@ MonoBehaviour:
   moveSpeedCurve:
     serializedVersion: 2
     m_Curve:
-    - time: .179568484
-      value: 5.94252443
+    - time: .0583443791
+      value: 7.99213982
       inSlope: -.088470608
       outSlope: -.088470608
       tangentMode: 0
@@ -171,7 +171,17 @@ MonoBehaviour:
     m_PostInfinity: 2
   groupSpawnSpeed:
     serializedVersion: 2
-    m_Curve: []
+    m_Curve:
+    - time: 0
+      value: 6.5
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 19.7350006
+      value: 2.07214808
+      inSlope: .0578417666
+      outSlope: .0578417666
+      tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
   hazard: {fileID: 166184, guid: ae006763fce14234db9b73ed10393554, type: 2}
