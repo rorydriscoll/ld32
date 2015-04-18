@@ -1298,6 +1298,14 @@ Prefab:
       propertyPath: m_RootOrder
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 11415294, guid: 8945ea85475926344a67295f933f4894, type: 2}
+      propertyPath: weaponController
+      value: 
+      objectReference: {fileID: 930101036}
+    - target: {fileID: 11415294, guid: 8945ea85475926344a67295f933f4894, type: 2}
+      propertyPath: mainCamera
+      value: 
+      objectReference: {fileID: 1891343794}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8945ea85475926344a67295f933f4894, type: 2}
   m_IsPrefabParent: 0
@@ -3806,7 +3814,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 489432, guid: 9f2748c9970246447a6f9858cb324dd9, type: 2}
       propertyPath: m_RootOrder
-      value: 6
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9f2748c9970246447a6f9858cb324dd9, type: 2}
@@ -6231,21 +6239,3 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
---- !u!1 &2029337024 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 186940, guid: 8945ea85475926344a67295f933f4894, type: 2}
-  m_PrefabInternal: {fileID: 420975017}
---- !u!114 &2029337027
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2029337024}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b3af5a593d1cac84c9711318cb06d188, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  chargeDuration: 1
-  weaponController: {fileID: 930101036}
-  mainCamera: {fileID: 1891343794}
