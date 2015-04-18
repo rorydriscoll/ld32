@@ -51,20 +51,23 @@ public class PlayerMotion : MonoBehaviour
 
                 if (Physics.Raycast(gunray, out gunhit))
                 {
-                    GameObject hitobject = gunhit.rigidbody.gameObject;
-
-                    if (hitobject.tag == "BeachBall")
+                    if (gunhit.rigidbody)
                     {
-                        m_haveball = true;
-                        Destroy(hitobject);
-                    }
+                        GameObject hitobject = gunhit.rigidbody.gameObject;
 
-                    if (hitobject.tag == "Enemy")
-                    {
-                        if (m_haveball)
+                        if (hitobject.tag == "BeachBall")
                         {
-                            hitobject.SendMessage("OnMergeWithBeachBall");
-                            m_haveball = false;
+                            m_haveball = true;
+                            Destroy(hitobject);
+                        }
+
+                        if (hitobject.tag == "Enemy")
+                        {
+                            if (m_haveball)
+                            {
+                                hitobject.SendMessage("OnMergeWithBeachBall");
+                                m_haveball = false;
+                            }
                         }
                     }
                 }

@@ -9,6 +9,9 @@ public class TrackPlayer : MonoBehaviour
 
     void Update()
     {
+        if (player == null)
+            return;
+
         transform.position = player.transform.position + offset;
         transform.rotation = Quaternion.LookRotation(player.transform.position - transform.position);
     }
