@@ -25,7 +25,10 @@ public class SmiteBehavior : MonoBehaviour
         Collider[] hitColliders = Physics.OverlapSphere(position, radius);
 
         for (int i = 0; i < hitColliders.Length; ++i)
-            hitColliders[i].SendMessage("TakeDamage", m_identifier);
+        {
+            if (hitColliders[i].tag == "Enemy")
+                hitColliders[i].SendMessage("TakeDamage", m_identifier);
+        }
     }
 
     void SetIdentifier(object o)
