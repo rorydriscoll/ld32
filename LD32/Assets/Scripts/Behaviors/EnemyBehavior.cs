@@ -10,6 +10,7 @@ public class EnemyBehavior : MonoBehaviour
     public Identifier identity;
     public Material transparent;
     private float initialSpeed;
+    private float yBase;
 
     private float timeOffset;
     private float lf;
@@ -45,6 +46,7 @@ public class EnemyBehavior : MonoBehaviour
         //Debug.Log ("Speed = " + speed);
         //GetComponent<Rigidbody> ().velocity = transform.forward * speed; // Random.Range(speedMin, speedMax);
         initialSpeed = speed;
+        yBase = spawner.transform.position.y;
         gameController = gc;
         transform.rotation = Quaternion.AngleAxis(180, Vector3.up);
     }
@@ -55,7 +57,7 @@ public class EnemyBehavior : MonoBehaviour
         //Debug.Log("Dist " + dist + " decay = " + decay);
 
         float z = transform.position.z - (initialSpeed * decay * Time.deltaTime);
-        float y = Mathf.Abs(Mathf.Sin((Time.time + timeOffset) * lf) * la * decay);
+        float y = yBase + Mathf.Abs(Mathf.Sin((Time.time + timeOffset) * lf) * la * decay);
 
         transform.position = new Vector3(transform.position.x, y, z);
 

@@ -27,11 +27,13 @@ public class PlayerBehavior : MonoBehaviour
     private float m_heat;
     private float m_timer;
     private Identifier m_identifier = Identifier.Invalid;
+    private Vector3 m_cameraPosition;
     private Quaternion m_cameraRotation;
 	private GameController gameController;
     void Start()
     {
 		Debug.Log ("Player Behavior start");
+        m_cameraPosition = mainCamera.transform.position;
 		m_cameraRotation = mainCamera.transform.rotation;
 		GameObject gameControllerObj = GameObject.FindWithTag ("GameController");
 		if (gameControllerObj != null) 
@@ -98,9 +100,9 @@ public class PlayerBehavior : MonoBehaviour
         }
 		Debug.Log ("Charging weapon");
         float frequency = 100;
-        float amplitude = m_timer * 5;
 
-        mainCamera.transform.rotation *= Quaternion.AngleAxis(Mathf.Sin(m_timer * frequency) * amplitude, new Vector3(0, 0, 1));
+        mainCamera.transform.rotation *= Quaternion.AngleAxis(Mathf.Sin(m_timer * frequency) * m_timer, new Vector3(0, 0, 1));
+        mainCamera.transform.position += Random.onUnitSphere * m_timer * 0.15f;
 
         if (m_timer >= m_chargeTime)
         {
@@ -114,6 +116,7 @@ public class PlayerBehavior : MonoBehaviour
                 EnterState(State.Reloading);
 
             mainCamera.transform.rotation = m_cameraRotation;
+            mainCamera.transform.position = m_cameraPosition;
         }
     }
 

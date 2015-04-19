@@ -6,6 +6,7 @@ public class FriendlyBehavior : MonoBehaviour
     public Mesh[] Meshes = new Mesh[Identifier.kNumCreatures];
     public Identifier identity;
     private float initialSpeed;
+    private float yBase;
 
     private float timeOffset;
     private float lf;
@@ -27,13 +28,14 @@ public class FriendlyBehavior : MonoBehaviour
         GetComponent<MeshFilter>().mesh = Meshes[identity.MeshID];
 
         initialSpeed = speed;
+        yBase = spawner.transform.position.y;
     }
 
     void Update()
     {
         Vector3 position = transform.position + transform.forward * initialSpeed * Time.deltaTime;
 
-        float y = Mathf.Abs(Mathf.Sin((Time.time + timeOffset) * lf) * la);
+        float y = yBase + Mathf.Abs(Mathf.Sin((Time.time + timeOffset) * lf) * la);
 
         transform.position = new Vector3(position.x, y, position.z);
         transform.rotation = Quaternion.AngleAxis(Mathf.Sin((Time.time + timeOffset) * lf) * la * 5, transform.forward);
