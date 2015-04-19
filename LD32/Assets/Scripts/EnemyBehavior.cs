@@ -56,11 +56,7 @@ public class EnemyBehavior : MonoBehaviour {
 		if (killed)
 		{
 			DestroyObject(gameObject);
-<<<<<<< HEAD
 			gameController.EnemyKilled(identity);
 		}
     }
-=======
-	}
->>>>>>> 6fa579509feae3da21fd01e8110cfce663ccd775
 }
