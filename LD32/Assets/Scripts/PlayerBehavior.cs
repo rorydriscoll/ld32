@@ -27,6 +27,12 @@ public class PlayerBehavior : MonoBehaviour
     private float m_heat;
     private float m_timer;
     private Identifier m_identifier = Identifier.Invalid;
+    private Quaternion m_cameraRotation;
+
+    void Start()
+    {
+        m_cameraRotation = mainCamera.transform.rotation;
+    }
 
     void Update()
     {
@@ -91,7 +97,7 @@ public class PlayerBehavior : MonoBehaviour
             else
                 EnterState(State.Reloading);
 
-            mainCamera.transform.rotation = Quaternion.Euler(35.56804f, 346.827f, 355.7559f);
+            mainCamera.transform.rotation = m_cameraRotation;
         }
     }
 
