@@ -3,6 +3,8 @@ using System.Collections;
 
 public class SmiteBehavior : MonoBehaviour 
 {
+    public float damageRadius = 5.0f;
+
     Identifier m_identifier;
 
     void OnParticleCollision(GameObject other)
@@ -20,9 +22,7 @@ public class SmiteBehavior : MonoBehaviour
 
     void ApplySplashDamage(Vector3 position)
     {
-        float radius = 3.0f;
-
-        Collider[] hitColliders = Physics.OverlapSphere(position, radius);
+        Collider[] hitColliders = Physics.OverlapSphere(position, damageRadius);
 
         for (int i = 0; i < hitColliders.Length; ++i)
         {
