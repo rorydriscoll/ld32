@@ -4,15 +4,31 @@ using System.Collections;
 public class EnemyBehavior : MonoBehaviour {
 
 	public AnimationCurve speedDecay;
-	public Mesh[] AttributeMesh = new Mesh[4];
+	public Mesh[] AttributeMesh = new Mesh[3];
 	public Identifier identity;
     public Material transparent;
 	private SpawnController spawner_;
 	private float initialSpeed;
+
+    private float timeOffset;
+    private float lf;
+    private float la;
+    private float af;
+    private float aa;
+
 	~EnemyBehavior()
 	{
 		--spawner_.hazardCount;
 	}
+    void Start()
+    {
+        timeOffset = Random.Range(0.0f, 1.0f);
+        lf = Random.Range(5.0f, 15.0f);
+        la = Random.Range(1.0f, 3.0f);
+        af = Random.Range(5.0f, 15.0f);
+        aa = Random.Range(0.5f, 3.0f);
+    }
+
 	public void SetTypeSpeedAndController(Identifier ID, float speed, SpawnController spawner)
 	{
 		identity = ID;
@@ -40,7 +56,17 @@ public class EnemyBehavior : MonoBehaviour {
 		float dist = transform.position.z;
 		float decay = speedDecay.Evaluate(dist);
 		//Debug.Log("Dist " + dist + " decay = " + decay);
-		GetComponent<Rigidbody> ().velocity = transform.forward * initialSpeed * decay; // Random.Range(speedMin, speedMax);
+
+        Vector3 velocity = transform.forward * initialSpeed * decay; // Random.Range(speedMin, speedMax);
+
+        velocity += transform.up * Mathf.Sin((Time.time + timeOffset) * lf) * la * decay;
+
+        GetComponent<Rigidbody>().velocity = velocity;
+
+        Quaternion av = Quaternion.AngleAxis(180, Vector3.up) * Quaternion.AngleAxis(Mathf.Sin((Time.time + timeOffset) * af) * aa, transform.forward);
+
+        GetComponent<Rigidbody>().MoveRotation(av);
+
 		//if (spawner_.IsPlayerDead())
 		//	DestroyObject(gameObject);
 		if (transform.position.z < -20.0f)
