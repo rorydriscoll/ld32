@@ -106,9 +106,9 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
   AttributeMesh:
-  - {fileID: 4300000, guid: df3458b44bb6973429f57070cf2607bf, type: 3}
-  - {fileID: 4300000, guid: 23839373b94007e4cb198d9872b88bd2, type: 3}
-  - {fileID: 4300000, guid: e7fd1da92fd039e478d9ea91ab0cd9c5, type: 3}
+  - {fileID: 4300000, guid: a2a5186177d797845a6279377cf466a3, type: 3}
+  - {fileID: 4300000, guid: c6b2f30345e898a42a125ccb23290dd7, type: 3}
+  - {fileID: 0}
   transparent: {fileID: 2100000, guid: 172bcd37c6419e745ad34e18dd810a31, type: 2}
 --- !u!136 &13614056
 CapsuleCollider:
