@@ -113,8 +113,6 @@ public class PlayerBehavior : MonoBehaviour
     private void UpdateHeat()
     {
         m_heat = Mathf.Max(0.0f, m_heat - Time.deltaTime * m_heatDissipationRate);
-
-        Debug.Log(m_heat);
     }
 
     private void UpdateIdentifier()

@@ -22,7 +22,7 @@ public class EnemyBehavior : MonoBehaviour {
 		GetComponent<Rigidbody> ().velocity = transform.forward * speed; // Random.Range(speedMin, speedMax);
 		initialSpeed = speed;
 		spawner_ =  spawner;
-        transform.rotation = Quaternion.AngleAxis(180, Vector3.up);
+		transform.rotation = Quaternion.AngleAxis(180, Vector3.up);
 	}
 	void OnCollisionEnter(Collision other)
 	{
@@ -42,12 +42,12 @@ public class EnemyBehavior : MonoBehaviour {
 
 	}
 
-    void TakeDamage(object o)
-    {
-        Identifier projectileIdentifier = (Identifier)o;
+	void TakeDamage(object o)
+	{
+		Identifier projectileIdentifier = (Identifier)o;
 		bool killed = projectileIdentifier.r == identity.r && projectileIdentifier.l == identity.l;
 		Debug.Log("I GOT HIT BY " + projectileIdentifier.l + ", " + projectileIdentifier.r + " (" + projectileIdentifier.ID + ") killed=" + killed);
 		if (killed)
 			DestroyObject(gameObject);
-    }
+	}
 }
