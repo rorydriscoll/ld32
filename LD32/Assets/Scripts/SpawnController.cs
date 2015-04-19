@@ -12,7 +12,7 @@ public class SpawnController : MonoBehaviour {
 	public AnimationCurve groupSpawnSpeed;
 	public GameObject hazard;
 	public Vector3 SpawnPos;
-	public  int hazardCount;
+	public  int hazardCount=0;
 	public int currentWaveID = 1;
 	public bool isActive = false;
 	// private
@@ -59,7 +59,6 @@ public class SpawnController : MonoBehaviour {
 	{
         if (numTypes > Identifier.kNumPermutations)
             numTypes = Identifier.kNumPermutations;
-		hazardCount = 0;
 		numPerGroup = count;
 		numHazardTypes = numTypes;
 		speed = moveSpeed;
@@ -91,6 +90,7 @@ public class SpawnController : MonoBehaviour {
 	{
 		return gameController.IsGameOver();
 	}
+
 	IEnumerator SpawnMain()
 	{
 		Debug.Log ("***** Spawn started, num groups=" + groupCount + " num per group = " + numPerGroup + " total to spawn this wave = " + groupCount * numPerGroup);

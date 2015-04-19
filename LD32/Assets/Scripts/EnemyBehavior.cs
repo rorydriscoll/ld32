@@ -19,11 +19,7 @@ public class EnemyBehavior : MonoBehaviour {
 	public float destroyGOPos = -11f;
 	private GameController gameController;
 
-	~EnemyBehavior()
-	{
-		--spawner_.hazardCount;
-	}
-    void Start()
+	void Start()
     {
         timeOffset = Random.Range(0.0f, 1.0f);
         lf = Random.Range(8.0f, 13.0f);
@@ -52,7 +48,7 @@ public class EnemyBehavior : MonoBehaviour {
 		gameController = gc;
 		transform.rotation = Quaternion.AngleAxis(180, Vector3.up);
 	}
-	void FixedUpdate()
+	void Update()
 	{
 		float dist = transform.position.z;
 		float decay = speedDecay.Evaluate(dist);

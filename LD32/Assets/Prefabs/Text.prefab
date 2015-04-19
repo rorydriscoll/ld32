@@ -122,10 +122,10 @@ GUIText:
   m_GameObject: {fileID: 104550}
   m_Enabled: 1
   serializedVersion: 3
-  m_Text: 
+  m_Text: Game Over!
   m_Anchor: 6
   m_Alignment: 0
-  m_PixelOffset: {x: 6, y: 10}
+  m_PixelOffset: {x: 123, y: 10}
   m_LineSpacing: 1
   m_TabSize: 4
   m_Font: {fileID: 0}
@@ -145,10 +145,10 @@ GUIText:
   m_GameObject: {fileID: 164768}
   m_Enabled: 1
   serializedVersion: 3
-  m_Text: 
+  m_Text: Press 'R' to Restart
   m_Anchor: 6
   m_Alignment: 0
-  m_PixelOffset: {x: -10, y: -32}
+  m_PixelOffset: {x: 114, y: -32}
   m_LineSpacing: 1
   m_TabSize: 4
   m_Font: {fileID: 0}
@@ -171,7 +171,7 @@ GUIText:
   m_Text: 'Score: 0'
   m_Anchor: 6
   m_Alignment: 0
-  m_PixelOffset: {x: 10, y: 32}
+  m_PixelOffset: {x: 10, y: 22}
   m_LineSpacing: 1
   m_TabSize: 4
   m_Font: {fileID: 0}

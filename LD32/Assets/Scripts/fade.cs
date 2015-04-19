@@ -4,8 +4,8 @@ using System.Collections;
 public class fade : MonoBehaviour {
 	
 	private AnimationCurve easeInOut;
-	private float duration ;
-	private float time;
+	private float duration=0f ;
+	private float time=0f;
 	
 	void SetAlpha(float alpha)
 	{
@@ -15,26 +15,31 @@ public class fade : MonoBehaviour {
 	}
 	void Update()
 	{
-		if (Time.deltaTime > 0.08f)
+		if (duration == 0f || Time.deltaTime > 0.08f)
 			return; // missed a frame
 		float alpha = easeInOut.Evaluate(time); 
 		SetAlpha (alpha);
+		Debug.Log ("time = " + time + " delta Time = " + Time.deltaTime + " alpha = " + alpha);
 		// GetComponent<GUITexture> ().color.a = alpha; Can't do this
-		//Debug.Log ("time = " + time + " delta Time = " + Time.deltaTime + " alpha = " + alpha);
 		if (time > duration  ) 
 		{
 			if (alpha <= 0.01f)
+			{
+				gameObject.SetActive(false);
 				Debug.Log ("FADE IN SCRIPT DONE @ t=" + Time.time + " elapsed = " + time);
+			}
 			else
 				Debug.Log ("FADE OUT SCRIPT DONE @ t=" + Time.time + " elapsed = " + time);
 			transform.parent.gameObject.GetComponent<GameController>().FadeDone();
-			Destroy (gameObject);
+			duration = 0f;
+			time = 0f;
 		}
 		else
 		 	time += Time.deltaTime;
 	}
 	void Activate(float fadeTime)
 	{
+		gameObject.SetActive(true);
 		time = 0.0f;
 		duration = fadeTime;
 		GetComponent<GUITexture>().pixelInset = new Rect(0f, 0f, Screen.width, Screen.height);

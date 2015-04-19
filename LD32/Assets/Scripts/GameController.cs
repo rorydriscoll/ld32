@@ -11,6 +11,7 @@ public class GameController : MonoBehaviour {
 	public float fadeTime;
 	public float waitBetweenWaves;
 	public int pointsPerKill = 1;
+	public int enemyGoalMax = 1;
 	public int Override_WaveID = -1;
 	
 	// private 
@@ -25,17 +26,22 @@ public class GameController : MonoBehaviour {
 		kWait,
 		kGameOver,
 		kFadeOut,
+		kReset,
 	};
 	GameState curState = GameState.kWait, lastState;
 	public void SetGameOver()
 	{
-		SetGameState(GameState.kGameOver);
-		if (gameoverText!=null)
-			gameoverText.text = "Game Over!";
-		if (restartText != null)
-			restartText.text = "Press 'R' to Restart";
-		if (GetComponent<AudioSource> () != null)
-			GetComponent<AudioSource> ().volume = 0;
+		if (curState != GameState.kGameOver)
+		{
+			Debug.Log ("----- GAME OVER ----");
+			SetGameState(GameState.kGameOver);
+			if (gameoverText!=null)
+				gameoverText.text = "City Destroyed!";
+			if (restartText != null)
+				restartText.text = "'R' Resurrects";
+			if (GetComponent<AudioSource> () != null)
+				GetComponent<AudioSource> ().volume = 0;
+		}
 	}
 	public void SetKickWave()
 	{
@@ -46,12 +52,16 @@ public class GameController : MonoBehaviour {
 	{
 		if (lastState == GameState.kFadeIn)
 			SetGameState(GameState.kStartGame);
-		else
+		else if (curState != GameState.kReset)
 			RestartGame();
 	}
 	public bool IsGameOver()
 	{
 		return curState == GameState.kGameOver;
+	}
+	public bool IsReseting()
+	{
+		return curState == GameState.kReset;
 	}
 	public void AddScore(int pts)
 	{
@@ -60,7 +70,8 @@ public class GameController : MonoBehaviour {
 	}
 	public void EnemyReachedGoal()
 	{
-		++enemyGoalCount;
+		if ( ++enemyGoalCount > enemyGoalMax )
+			SetGameOver();
 	}
 	public void EnemyKilled(Identifier id /* who was killed*/)
 	{
@@ -90,17 +101,23 @@ public class GameController : MonoBehaviour {
 	{
 		// we should be faded out to black
 		// clean up and fade in
-		Debug.Log ("Print restarting game");
-		SetGameState(GameState.kFadeIn);
+		Debug.Log ("Restarting game");
+		GameObject[] gos;
+		gos = GameObject.FindGameObjectsWithTag("Enemy");
+		foreach (GameObject go in gos) 
+			DestroyObject(go);
+		spawnController.hazardCount = 0;
+		SetGameState(GameState.kReset);
 	}
 	void Awake()
 	{
+		Debug.Log ("Game Controller is AWAKE");
+		screenFader.transform.parent = transform;
 		GameObject spawnControllerObj = GameObject.FindWithTag ("SpawnController");
 		if (spawnControllerObj != null) 
 			spawnController = spawnControllerObj.GetComponent<SpawnController> ();
 		else 
 			Debug.Log ("Error: Game controller cannot find spawnController!");
-		Debug.Log ("Game Controller is AWAKE");
 		SetGameState(GameState.kFadeIn);
 		StartCoroutine (GameLoop ());
 	}
@@ -132,13 +149,11 @@ public class GameController : MonoBehaviour {
 				case GameState.kWait:
 					break;
 				case GameState.kFadeIn:
-					GameObject fader = Instantiate (screenFader) as GameObject;
-					fader.GetComponent<fade>().FadeIn(fadeTime);
-					fader.transform.parent = transform;
+					InitGame ();
+					screenFader.GetComponent<fade>().FadeIn(fadeTime);
 					SetGameState(GameState.kWait);
 					break;
 				case GameState.kStartGame:
-					InitGame ();
 					SetGameState(GameState.kKickWave);
 					break;
 				case GameState.kKickWave:
@@ -156,10 +171,11 @@ public class GameController : MonoBehaviour {
 				case GameState.kGameOver:
 					break;
 				case GameState.kFadeOut:
-					fader = Instantiate (screenFader) as GameObject;
-					fader.GetComponent<fade>().FadeOut(fadeTime);
-					fader.transform.parent = transform;
+					screenFader.GetComponent<fade>().FadeOut(fadeTime);
 					SetGameState(GameState.kWait);
+					break;
+				case GameState.kReset:
+					SetGameState (GameState.kFadeIn);
 					break;
 			}
 			const float sleepTime = 0.15f;
