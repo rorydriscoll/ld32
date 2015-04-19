@@ -1396,7 +1396,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 2
 --- !u!1 &500768460
 GameObject:
   m_ObjectHideFlags: 0
@@ -1426,13 +1426,13 @@ Transform:
   - {fileID: 1437869650}
   - {fileID: 197642052}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 3
 --- !u!1001 &567488852
 Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 1741827293}
     m_Modifications:
     - target: {fileID: 400000, guid: a9038af46d1453043a1628482bd9a59f, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1464,7 +1464,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: a9038af46d1453043a1628482bd9a59f, type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: a9038af46d1453043a1628482bd9a59f, type: 3}
       propertyPath: m_LocalScale.x
@@ -2899,6 +2899,10 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1526743974}
   m_RootOrder: 2
+--- !u!4 &1073846325 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 400000, guid: a9038af46d1453043a1628482bd9a59f, type: 3}
+  m_PrefabInternal: {fileID: 1471447180}
 --- !u!4 &1129091945 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400002, guid: b262e7cb2d112964d80461f3a3559481, type: 3}
@@ -4157,7 +4161,7 @@ Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 1741827293}
     m_Modifications:
     - target: {fileID: 400000, guid: a9038af46d1453043a1628482bd9a59f, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4189,7 +4193,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: a9038af46d1453043a1628482bd9a59f, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: a9038af46d1453043a1628482bd9a59f, type: 3}
       propertyPath: m_LocalScale.x
@@ -4247,13 +4251,13 @@ Transform:
   - {fileID: 454060794}
   - {fileID: 930101037}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 4
 --- !u!1001 &1599751161
 Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 1741827293}
     m_Modifications:
     - target: {fileID: 400000, guid: a9038af46d1453043a1628482bd9a59f, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4306,6 +4310,10 @@ Prefab:
     - target: {fileID: 100000, guid: a9038af46d1453043a1628482bd9a59f, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: a9038af46d1453043a1628482bd9a59f, type: 3}
+      propertyPath: m_Name
+      value: Buildings 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a9038af46d1453043a1628482bd9a59f, type: 3}
@@ -4388,6 +4396,10 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b262e7cb2d112964d80461f3a3559481, type: 3}
   m_IsPrefabParent: 0
+--- !u!4 &1716770772 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 400000, guid: a9038af46d1453043a1628482bd9a59f, type: 3}
+  m_PrefabInternal: {fileID: 567488852}
 --- !u!1 &1741827292
 GameObject:
   m_ObjectHideFlags: 0
@@ -4418,8 +4430,15 @@ Transform:
   - {fileID: 676975545}
   - {fileID: 1129091945}
   - {fileID: 174350121}
+  - {fileID: 1716770772}
+  - {fileID: 1073846325}
+  - {fileID: 1796936899}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 5
+--- !u!4 &1796936899 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 400000, guid: a9038af46d1453043a1628482bd9a59f, type: 3}
+  m_PrefabInternal: {fileID: 1599751161}
 --- !u!1 &1891343794
 GameObject:
   m_ObjectHideFlags: 0
@@ -4503,4 +4522,4 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 0
