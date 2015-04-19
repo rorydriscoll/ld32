@@ -9,16 +9,16 @@ public class PlayerBehavior : MonoBehaviour
 
     private bool charging;
     private float charge;
-    private Identifier identifier;
+    private Identifier identifier = Identifier.Invalid;
 
     void Update()
     {
         UpdateIdentifier();
 
-        if (!charging && (identifier.l != 0 || identifier.r != 0))
+        if (!charging && identifier.IsValid)
             charging = true;
 
-        if (charging && identifier.l == 0 && identifier.r == 0)
+        if (charging && !identifier.IsValid)
             charging = false;
 
         if (charging)
@@ -51,32 +51,24 @@ public class PlayerBehavior : MonoBehaviour
 
     private void UpdateIdentifier()
     {
-        if (identifier.l == 1 && Input.GetButtonUp("L1"))
-            identifier.l = 0;
-        if (identifier.l == 2 && Input.GetButtonUp("L2"))
-            identifier.l = 0;
-        if (identifier.l == 3 && Input.GetButtonUp("L3"))
-            identifier.l = 0;
+        if (!Input.GetButton("L1") && !Input.GetButton("L2") && !Input.GetButton("L3"))
+            identifier.l = -1;
 
-        if (identifier.r == 1 && Input.GetButtonUp("R1"))
-            identifier.r = 0;
-        if (identifier.r == 2 && Input.GetButtonUp("R2"))
-            identifier.r = 0;
-        if (identifier.r == 3 && Input.GetButtonUp("R3"))
-            identifier.r = 0;
+        if (!Input.GetButton("R1") && !Input.GetButton("R2") && !Input.GetButton("R3"))
+            identifier.r = -1;
 
         if (Input.GetButtonDown("L1"))
-            identifier.l = 1;
+            identifier.l = 0;
         if (Input.GetButtonDown("L2"))
-            identifier.l = 2;
+            identifier.l = 1;
         if (Input.GetButtonDown("L3"))
-            identifier.l = 3;
+            identifier.l = 2;
 
         if (Input.GetButtonDown("R1"))
-            identifier.r = 1;
+            identifier.r = 0;
         if (Input.GetButtonDown("R2"))
-            identifier.r = 2;
+            identifier.r = 1;
         if (Input.GetButtonDown("R3"))
-            identifier.r = 3;
+            identifier.r = 2;
     }
 }

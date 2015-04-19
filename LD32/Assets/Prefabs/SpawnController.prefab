@@ -77,10 +77,10 @@ MonoBehaviour:
   spawnSpeedCurve:
     serializedVersion: 2
     m_Curve:
-    - time: 0
-      value: 5
-      inSlope: .0915498361
-      outSlope: .0915498361
+    - time: -.0367008671
+      value: .941756904
+      inSlope: -.142503023
+      outSlope: -.142503023
       tangentMode: 0
     - time: 15.9679995
       value: .542512655
@@ -186,7 +186,7 @@ MonoBehaviour:
     m_PostInfinity: 2
   hazard: {fileID: 166184, guid: ae006763fce14234db9b73ed10393554, type: 2}
   playerGO: {fileID: 0}
-  SpawnPos: {x: 6, y: .100000001, z: 50}
+  SpawnPos: {x: 8, y: .200000003, z: 50}
   hazardCount: 0
   currentWaveID: 1
 --- !u!1001 &100100000

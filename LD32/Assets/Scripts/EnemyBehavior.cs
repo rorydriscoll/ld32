@@ -15,7 +15,8 @@ public class EnemyBehavior : MonoBehaviour {
 	public void SetTypeSpeedAndController(Identifier ID, float speed, SpawnController spawner)
 	{
 		identity = ID;
-		GetComponent<Renderer>().material.color = ID.GetColor();
+		Debug.Log ("id = " + ID.ID + " meshid = " + identity.GetMeshID() + " colorid = " + identity.GetColorID());
+		GetComponent<Renderer>().material.color = ID.Color;
 		GetComponent<MeshFilter>().mesh = AttributeMesh[identity.GetMeshID()];
 		//Debug.Log ("Speed = " + speed);
 		GetComponent<Rigidbody> ().velocity = -transform.forward * speed; // Random.Range(speedMin, speedMax);
@@ -44,7 +45,7 @@ public class EnemyBehavior : MonoBehaviour {
     {
         Identifier projectileIdentifier = (Identifier)o;
 		bool killed = projectileIdentifier.r == identity.r && projectileIdentifier.l == identity.l;
-		Debug.Log("I GOT HIT BY " + projectileIdentifier.l + ", " + projectileIdentifier.r + " (" + projectileIdentifier.ID () + ") killed=" + killed);
+		Debug.Log("I GOT HIT BY " + projectileIdentifier.l + ", " + projectileIdentifier.r + " (" + projectileIdentifier.ID + ") killed=" + killed);
 		if (killed)
 			DestroyObject(gameObject);
     }

@@ -109,7 +109,7 @@ MonoBehaviour:
   - {fileID: 4300000, guid: 07cf9c3ef6da34546b88726c62f5ca8f, type: 3}
   - {fileID: 4300002, guid: 07cf9c3ef6da34546b88726c62f5ca8f, type: 3}
   - {fileID: 4300004, guid: 07cf9c3ef6da34546b88726c62f5ca8f, type: 3}
-  - {fileID: 4300006, guid: 07cf9c3ef6da34546b88726c62f5ca8f, type: 3}
+  - {fileID: 0}
 --- !u!136 &13614056
 CapsuleCollider:
   m_ObjectHideFlags: 1
@@ -120,9 +120,9 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: .5
-  m_Height: 1.92168629
+  m_Height: 1
   m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: .5, z: 0}
 --- !u!136 &13626454
 CapsuleCollider:
   m_ObjectHideFlags: 1
@@ -133,9 +133,9 @@ CapsuleCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   m_Radius: .5
-  m_Height: 1.92168629
+  m_Height: 1
   m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: .5, z: 0}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
