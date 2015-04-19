@@ -3699,9 +3699,6 @@ Prefab:
       propertyPath: typeCountCurve.m_Curve.Array.data[7].time
       value: 7
       objectReference: {fileID: 0}
-      propertyPath: zombieHazard
-      value: 
-      objectReference: {fileID: 166184, guid: ae006763fce14234db9b73ed10393554, type: 2}
     - target: {fileID: 11469282, guid: 9f2748c9970246447a6f9858cb324dd9, type: 2}
       propertyPath: ghostHazard
       value: 

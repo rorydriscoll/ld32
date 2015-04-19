@@ -10,7 +10,6 @@ GameObject:
   - 4: {fileID: 468318}
   - 33: {fileID: 3383408}
   - 23: {fileID: 2300822}
-  - 54: {fileID: 5427174}
   - 114: {fileID: 11424032}
   - 136: {fileID: 13626454}
   - 136: {fileID: 13614056}
@@ -64,21 +63,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 166184}
   m_Mesh: {fileID: 4300000, guid: 585b5de3ff492b94aa2aa1910291556b, type: 3}
---- !u!54 &5427174
-Rigidbody:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 166184}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 112
-  m_CollisionDetection: 0
 --- !u!114 &11424032
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -105,11 +89,17 @@ MonoBehaviour:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-  AttributeMesh:
+  PlainMeshes:
   - {fileID: 4300000, guid: a2a5186177d797845a6279377cf466a3, type: 3}
+  - {fileID: 4300000, guid: bd476b592d6a5314198dce0f53cf8f24, type: 3}
+  - {fileID: 4300000, guid: df3458b44bb6973429f57070cf2607bf, type: 3}
+  ZombieMeshes:
   - {fileID: 4300000, guid: c6b2f30345e898a42a125ccb23290dd7, type: 3}
-  - {fileID: 0}
+  - {fileID: 4300000, guid: 8da3f8fb70e6c6e4a993d851a34a5612, type: 3}
+  - {fileID: 4300000, guid: 585b5de3ff492b94aa2aa1910291556b, type: 3}
   transparent: {fileID: 2100000, guid: 172bcd37c6419e745ad34e18dd810a31, type: 2}
+  goalPos: 0
+  destroyGOPos: -11
 --- !u!136 &13614056
 CapsuleCollider:
   m_ObjectHideFlags: 1
