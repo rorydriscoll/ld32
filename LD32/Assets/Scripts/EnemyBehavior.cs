@@ -16,6 +16,10 @@ public class EnemyBehavior : MonoBehaviour {
     private float af;
     private float aa;
 
+	public float goalPos = 0f;
+	public float destroyGOPos = -11f;
+	private GameController gameController;
+
 	~EnemyBehavior()
 	{
 		--spawner_.hazardCount;
@@ -29,7 +33,7 @@ public class EnemyBehavior : MonoBehaviour {
         aa = Random.Range(0.5f, 3.0f);
     }
 
-	public void SetTypeSpeedAndController(Identifier ID, float speed, SpawnController spawner)
+	public void SetTypeSpeedAndController(Identifier ID, float speed, SpawnController spawner, GameController gc)
 	{
 		identity = ID;
 		Debug.Log ("id = " + ID.ID + " meshid = " + identity.GetMeshID() + " colorid = " + identity.GetColorID());
@@ -44,12 +48,8 @@ public class EnemyBehavior : MonoBehaviour {
 		GetComponent<Rigidbody> ().velocity = transform.forward * speed; // Random.Range(speedMin, speedMax);
 		initialSpeed = speed;
 		spawner_ =  spawner;
+		gameController = gc;
 		transform.rotation = Quaternion.AngleAxis(180, Vector3.up);
-	}
-	void OnCollisionEnter(Collision other)
-	{
-		//if (other.gameObject.tag == "Player")
-		//	spawner_.SetPlayerDead();
 	}
 	void FixedUpdate()
 	{
@@ -69,9 +69,10 @@ public class EnemyBehavior : MonoBehaviour {
 
 		//if (spawner_.IsPlayerDead())
 		//	DestroyObject(gameObject);
-		if (transform.position.z < -20.0f)
+		if (transform.position.z < destroyGOPos)
 			DestroyObject(gameObject);
-
+		if (transform.position.z < 0f)
+			gameController.EnemyReachedGoal();
 	}
 
 	void TakeDamage(object o)
@@ -80,6 +81,9 @@ public class EnemyBehavior : MonoBehaviour {
 		bool killed = projectileIdentifier.r == identity.r && projectileIdentifier.l == identity.l;
 		Debug.Log("I GOT HIT BY " + projectileIdentifier.l + ", " + projectileIdentifier.r + " (" + projectileIdentifier.ID + ") killed=" + killed);
 		if (killed)
+		{
 			DestroyObject(gameObject);
-	}
+			gameController.EnemyKilled(identity);
+		}
+    }
 }
