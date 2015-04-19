@@ -3,7 +3,7 @@ using System.Collections;
 
 public class GameController : MonoBehaviour {
 
-	public SpawnController spawnController;
+	public SpawnController enemySpawner;
 	public GameObject screenFader;
 	public GUIText scoreText;
 	public GUIText restartText;
@@ -106,18 +106,13 @@ public class GameController : MonoBehaviour {
 		gos = GameObject.FindGameObjectsWithTag("Enemy");
 		foreach (GameObject go in gos) 
 			DestroyObject(go);
-		spawnController.hazardCount = 0;
+		enemySpawner.spawnCount = 0;
 		SetGameState(GameState.kReset);
 	}
 	void Awake()
 	{
 		Debug.Log ("Game Controller is AWAKE");
 		screenFader.transform.parent = transform;
-		GameObject spawnControllerObj = GameObject.FindWithTag ("SpawnController");
-		if (spawnControllerObj != null) 
-			spawnController = spawnControllerObj.GetComponent<SpawnController> ();
-		else 
-			Debug.Log ("Error: Game controller cannot find spawnController!");
 		SetGameState(GameState.kFadeIn);
 		StartCoroutine (GameLoop ());
 	}
@@ -157,14 +152,14 @@ public class GameController : MonoBehaviour {
 					SetGameState(GameState.kKickWave);
 					break;
 				case GameState.kKickWave:
-					if (!spawnController.isActive)
+					if (!enemySpawner.isActive)
 					{
-						if (spawnController.hazardCount != 0)
+						if (enemySpawner.spawnCount != 0)
 							yield return new WaitForSeconds (waitBetweenWaves);
 						++curWave;
 						if ( Override_WaveID > -1)
 							curWave = Override_WaveID;
-						spawnController.KickWave(curWave);
+						enemySpawner.KickWave(curWave);
 						SetGameState(GameState.kWait);
 					}
 				    break;

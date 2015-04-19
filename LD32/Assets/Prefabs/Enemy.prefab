@@ -89,7 +89,7 @@ MonoBehaviour:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-  PlainMeshes:
+  GhostMeshes:
   - {fileID: 4300000, guid: a2a5186177d797845a6279377cf466a3, type: 3}
   - {fileID: 4300000, guid: bd476b592d6a5314198dce0f53cf8f24, type: 3}
   - {fileID: 4300000, guid: a2f5d9018d453f5478d7187f15316dd3, type: 3}
