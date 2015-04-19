@@ -4,11 +4,10 @@ using System.Collections;
 public class EnemyBehavior : MonoBehaviour {
 
 	public AnimationCurve speedDecay;
-	public Mesh[] PlainMeshes = new Mesh[3];
-    public Mesh[] ZombieMeshes = new Mesh[3];
+	public Mesh[] GhostMeshes = new Mesh[Identifier.kNumCreatures];
+    public Mesh[] ZombieMeshes = new Mesh[Identifier.kNumCreatures];
 	public Identifier identity;
     public Material transparent;
-	private SpawnController spawner_;
 	private float initialSpeed;
 
     private float timeOffset;
@@ -28,23 +27,23 @@ public class EnemyBehavior : MonoBehaviour {
 
 	public void SetTypeSpeedAndController(Identifier ID, float speed, SpawnController spawner, GameController gc)
 	{
+        if (!ID.IsValid)
+            Debug.Log("INVALID!");
+
 		identity = ID;
-		Debug.Log ("id = " + ID.ID + " meshid = " + identity.GetMeshID() + " colorid = " + identity.GetColorID());
-        if (identity.GetColorID() == 2)
+		Debug.Log ("id = " + ID.ID + " meshid = " + identity.MeshID + " colorid = " + identity.ColorID);
+        if (identity.ColorID == 1)
         {
             GetComponent<Renderer>().material.color = new Color(1, 1, 1, 0.2f);
             GetComponent<Renderer>().material = transparent;
+            GetComponent<MeshFilter>().mesh = GhostMeshes[identity.MeshID];
         }
-
-        if (identity.GetColorID() == 1)
-            GetComponent<MeshFilter>().mesh = ZombieMeshes[identity.GetMeshID()];
         else
-            GetComponent<MeshFilter>().mesh = PlainMeshes[identity.GetMeshID()];
+            GetComponent<MeshFilter>().mesh = ZombieMeshes[identity.MeshID];
             
 		//Debug.Log ("Speed = " + speed);
 		//GetComponent<Rigidbody> ().velocity = transform.forward * speed; // Random.Range(speedMin, speedMax);
 		initialSpeed = speed;
-		spawner_ =  spawner;
 		gameController = gc;
 		transform.rotation = Quaternion.AngleAxis(180, Vector3.up);
 	}
@@ -61,8 +60,6 @@ public class EnemyBehavior : MonoBehaviour {
 
         transform.rotation = Quaternion.AngleAxis(180, Vector3.up) * Quaternion.AngleAxis(Mathf.Sin((Time.time + timeOffset) * lf) * la * decay * 5, transform.forward);
 
-		//if (spawner_.IsPlayerDead())
-		//	DestroyObject(gameObject);
 		if (transform.position.z < destroyGOPos)
 			DestroyObject(gameObject);
 		if (!reachedGoal && transform.position.z < 0f)

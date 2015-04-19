@@ -89,14 +89,14 @@ MonoBehaviour:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-  PlainMeshes:
+  GhostMeshes:
   - {fileID: 4300000, guid: a2a5186177d797845a6279377cf466a3, type: 3}
   - {fileID: 4300000, guid: bd476b592d6a5314198dce0f53cf8f24, type: 3}
-  - {fileID: 4300000, guid: df3458b44bb6973429f57070cf2607bf, type: 3}
+  - {fileID: 4300000, guid: a2f5d9018d453f5478d7187f15316dd3, type: 3}
   ZombieMeshes:
   - {fileID: 4300000, guid: c6b2f30345e898a42a125ccb23290dd7, type: 3}
   - {fileID: 4300000, guid: 8da3f8fb70e6c6e4a993d851a34a5612, type: 3}
-  - {fileID: 4300000, guid: 585b5de3ff492b94aa2aa1910291556b, type: 3}
+  - {fileID: 4300000, guid: 3f1ee90dd82bdb542a6416a37ee1b38c, type: 3}
   transparent: {fileID: 2100000, guid: 172bcd37c6419e745ad34e18dd810a31, type: 2}
   goalPos: -15
   destroyGOPos: -20

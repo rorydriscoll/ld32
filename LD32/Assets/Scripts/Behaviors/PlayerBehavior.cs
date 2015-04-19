@@ -31,7 +31,8 @@ public class PlayerBehavior : MonoBehaviour
 	private GameController gameController;
     void Start()
     {
-        m_cameraRotation = mainCamera.transform.rotation;
+		Debug.Log ("Player Behavior start");
+		m_cameraRotation = mainCamera.transform.rotation;
 		GameObject gameControllerObj = GameObject.FindWithTag ("GameController");
 		if (gameControllerObj != null) 
 			gameController = gameControllerObj.GetComponent<GameController> ();
@@ -43,6 +44,7 @@ public class PlayerBehavior : MonoBehaviour
     {
 		if (!gameController.CanFireWeapon())
 		{
+			Debug.Log ("Weapons disabled");
 			m_timer = 0f;
 			return;
 		}
@@ -51,7 +53,7 @@ public class PlayerBehavior : MonoBehaviour
 
         UpdateHeat();
         UpdateIdentifier();
-
+		Debug.Log ("mode = " + m_mode);
         switch (m_mode)
         {
             case State.Idle:
@@ -82,16 +84,19 @@ public class PlayerBehavior : MonoBehaviour
     {
         if (m_identifier.IsValid)
             EnterState(State.Charging);
+		else
+			Debug.Log("id not valid id=" +m_identifier.ID);
     }
 
     void UpdateCharging()
     {
         if (!m_identifier.IsValid)
         {
-            EnterState(State.Idle);
+			Debug.Log ("identifier not valid? ");
+			EnterState(State.Idle);
             return;
         }
-
+		Debug.Log ("Charging weapon");
         float frequency = 100;
         float amplitude = m_timer * 5;
 
@@ -153,5 +158,6 @@ public class PlayerBehavior : MonoBehaviour
             m_identifier.r = 1;
         if (Input.GetButtonDown("R3"))
             m_identifier.r = 2;
+		Debug.Log ("Update ident = " + m_identifier.ID);
     }
 }

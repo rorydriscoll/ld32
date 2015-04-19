@@ -2,64 +2,47 @@
 
 public struct Identifier
 {
-    public const int kNumLeft = 3;
-    public const int kNumRight = 3;
-    public const int kNumTypes = kNumLeft + kNumRight;
-    public const int kNumPermutations = kNumLeft * kNumRight;
+	public const int kNumCreatures = 3;
+	public const int kNumUndead = 2;
+	public const int kNumTypes = kNumCreatures + kNumUndead;
+	public const int kNumPermutations = kNumCreatures * kNumUndead;
 
-    public int l;
-    public int r;
+	public int l;
+	public int r;
 
-	enum Counts
+	public int ColorID
 	{
-		kNumLeft=4,
-		kNumRight=4,
-		kNumTypes=kNumLeft*kNumRight,
-	};
-	public int GetColorID() { return r; }
-	public int GetMeshID() { return l; }
+		get { return r; }
+	}
 
-    public bool IsValid
-    {
-        get
-        {
-            return l >= 0 && l < kNumLeft && r >= 0 && r < kNumRight;
-        }
-    }
+	public int MeshID
+	{
+		get { return l; }
+	}
 
-    public int ID
-    {
-        get
-        {
-            return l * kNumLeft + r;
-        }
-        set
-        {
-            l = value / kNumLeft; r = value - (l * kNumLeft);
-        }
-    }
+	public bool IsValid
+	{
+		get { return l >= 0 && l < kNumCreatures && r >= 0 && r < kNumUndead; }
+	}
 
-	public Color Color
-    {
-        get
-        {
-			Color[] colors =
-			{
-				new Color(1, 0, 0, 1),
-            	new Color(0, 1, 0, 1),
-            	new Color(0, 0, 1, 1),
-				new Color(1, 1, 0, 1),
-			};
-			return colors[r];
+	public int ID
+	{
+		get
+		{
+			return l * kNumCreatures + r;
 		}
-    }
+		set
+		{
+            l = value / kNumUndead; r = value % kNumUndead;
+		}
+	}
 
-    public Identifier(int id) { l = r = -1; ID = id; }
-    public Identifier(int l_, int r_) { l = l_; r = r_; }
+	public Identifier(int id) { l = r = -1; ID = id; }
+	public Identifier(int l_, int r_) { l = l_; r = r_; }
 
-    public static Identifier Invalid
-    {
-        get { return new Identifier(-1, -1); }
-    }
+	public static Identifier Invalid
+	{
+		get { return new Identifier(-1, -1); }
+	}
 }
 

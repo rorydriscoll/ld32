@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 public class WeaponController : MonoBehaviour
 {
-    public GameObject[] fireFx = new GameObject[Identifier.kNumLeft];
+    public GameObject[] fireFx = new GameObject[Identifier.kNumCreatures];
 
     private bool m_firing;
     private Identifier m_identifier;
@@ -36,7 +36,6 @@ public class WeaponController : MonoBehaviour
         GameObject go = fireFx[m_identifier.l];
         ParticleSystem ps = go.GetComponent<ParticleSystem>();
 
-        ps.startColor = m_identifier.Color;
         ps.Play();
 
         go.SendMessage("SetIdentifier", m_identifier);

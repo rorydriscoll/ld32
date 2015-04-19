@@ -10,11 +10,11 @@ public class SpawnController : MonoBehaviour {
 	public AnimationCurve typeCountCurve;
 	public AnimationCurve groupCountCurve;
 	public AnimationCurve groupSpawnSpeed;
-	public GameObject hazard;
-	public Vector3 SpawnPos;
-	public  int hazardCount=0;
+	public GameObject enemy;
+	public int spawnCount=0;
 	public int currentWaveID = 1;
 	public bool isActive = false;
+
 	// private
 	private int numPerGroup ;
 	private int numHazardTypes; 
@@ -23,6 +23,12 @@ public class SpawnController : MonoBehaviour {
 	private float spawnSpeed_;
 	private int groupCount;
 	private float groupSpawnWait;
+
+	void OnDrawGizmos()
+	{
+		Gizmos.color = Color.yellow;
+        Gizmos.DrawCube(transform.position + transform.rotation * new Vector3(0, 1, 5), new Vector3(transform.localScale.x, 2, 10));
+	}
 
 	// Use this for initialization
 	void Start () 
@@ -37,18 +43,18 @@ public class SpawnController : MonoBehaviour {
 	{
 		/*
 		 * 	XXX - Temporary WIP
-	 	 */
+		 */
 		int typeID = Random.Range(0,numHazardTypes);
 		return new Identifier(typeID); 
 	}
 	void SpawnHazard(GameObject obj)
 	{
-		Vector3 spawnPos = new Vector3 (Random.Range (-SpawnPos.x, SpawnPos.x), SpawnPos.y, SpawnPos.z);
-		GameObject enemyObject = Instantiate (obj, spawnPos, Quaternion.identity) as GameObject;
+        Vector3 spawnPos = transform.position + new Vector3(Random.Range(-transform.localScale.x * 0.5f, transform.localScale.x * 0.5f), 0, 0);
+		GameObject enemyObject = Instantiate (obj, spawnPos, transform.rotation) as GameObject;
 		enemyObject.GetComponent<EnemyBehavior>().SetTypeSpeedAndController(PickType(), speed,  this, gameController);
 		//Debug.Log ("enemyObject = " + enemyObject.transform.position);
-		++hazardCount;
-		Debug.Log ("Active spawn enemey count=" + hazardCount);
+		++spawnCount;
+		Debug.Log ("Active spawn enemy count=" + spawnCount);
 	}
 	// Update is called once per frame
 	void Update() {
@@ -57,8 +63,8 @@ public class SpawnController : MonoBehaviour {
 	// count to spawn in the wave and the number of enemey types
 	public void KickWave(int count, int numTypes, float moveSpeed, float spawnSpeed)
 	{
-        if (numTypes > Identifier.kNumPermutations)
-            numTypes = Identifier.kNumPermutations;
+		if (numTypes > Identifier.kNumPermutations)
+			numTypes = Identifier.kNumPermutations;
 		numPerGroup = count;
 		numHazardTypes = numTypes;
 		speed = moveSpeed;
@@ -77,7 +83,7 @@ public class SpawnController : MonoBehaviour {
 		groupCount = (int)groupCountCurve.Evaluate(waveID);
 		groupSpawnWait = groupSpawnSpeed.Evaluate(waveID);
 		Debug.Log ("Kick Wave #" + waveID + " Enemies= " + numHazards + " typePerGroup=" + numTypes + " speed = " 
-		           + speed + " spawnSpeed = " + spawnSpeed + " groupCount=" + groupCount + " GroupDelay=" + groupSpawnWait);
+				   + speed + " spawnSpeed = " + spawnSpeed + " groupCount=" + groupCount + " GroupDelay=" + groupSpawnWait);
 
 		KickWave(numHazards,numTypes, speed, spawnSpeed);
 	}
@@ -103,7 +109,7 @@ public class SpawnController : MonoBehaviour {
 			Debug.Log ("Wave " + currentWaveID + " Spawn Group idx " + i + " count=" + groupCount);
 			for (int j=0;j<numPerGroup && !gameController.IsGameOver();j++)
 			{
-				SpawnHazard(hazard);
+				SpawnHazard(enemy);
 				yield return new WaitForSeconds (spawnSpeed_);
 			}
 			Debug.Log ("Wave " + currentWaveID + " Done Spawn Group idx " + i + " count=" + groupCount);
