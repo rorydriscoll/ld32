@@ -42,35 +42,40 @@ MonoBehaviour:
   hazardCountCurve:
     serializedVersion: 2
     m_Curve:
-    - time: 0
-      value: 35.2430649
+    - time: .0576580018
+      value: 1.62275124
       inSlope: 0
       outSlope: 0
       tangentMode: 0
     - time: 2.22492743
-      value: 36.3819542
+      value: 2.864151
       inSlope: 0
       outSlope: 0
       tangentMode: 0
     - time: 3.55598879
-      value: 40.715332
+      value: 7.19752884
       inSlope: -1.03355432
       outSlope: -1.03355432
       tangentMode: 0
     - time: 5.48296118
-      value: 43.7986908
+      value: 10.2808876
       inSlope: -.866508126
       outSlope: -.866508126
       tangentMode: 0
     - time: 8.76728535
-      value: 49.7987595
+      value: 16.2809563
       inSlope: -.889240444
       outSlope: -.889240444
       tangentMode: 0
     - time: 14.9240732
-      value: 79.9502029
+      value: 46.4323997
       inSlope: .69178623
       outSlope: .69178623
+      tangentMode: 0
+    - time: 15.2186298
+      value: 46.5228119
+      inSlope: -1.3020314
+      outSlope: -1.3020314
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
@@ -78,14 +83,14 @@ MonoBehaviour:
     serializedVersion: 2
     m_Curve:
     - time: -.0367008671
-      value: .941756904
+      value: 1.01301956
       inSlope: -.142503023
       outSlope: -.142503023
       tangentMode: 0
     - time: 15.9679995
-      value: .542512655
-      inSlope: .00302935834
-      outSlope: .00302935834
+      value: .613775253
+      inSlope: -.0895392969
+      outSlope: -.0895392969
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
@@ -158,12 +163,12 @@ MonoBehaviour:
     serializedVersion: 2
     m_Curve:
     - time: .0314685293
-      value: 4.2662487
+      value: .617419004
       inSlope: 0
       outSlope: 0
       tangentMode: 0
-    - time: 13.5
-      value: 34.0309563
+    - time: 14.9657526
+      value: 9.82953739
       inSlope: 2
       outSlope: 2
       tangentMode: 0
@@ -173,7 +178,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Curve:
     - time: 0
-      value: 6.5
+      value: 3.64165831
       inSlope: 0
       outSlope: 0
       tangentMode: 0

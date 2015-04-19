@@ -20,18 +20,15 @@ public class fade : MonoBehaviour {
 		float alpha = easeInOut.Evaluate(time); 
 		SetAlpha (alpha);
 		// GetComponent<GUITexture> ().color.a = alpha; Can't do this
-		Debug.Log ("time = " + time + " delta Time = " + Time.deltaTime + " alpha = " + alpha);
-		if (time > duration  ) {
+		//Debug.Log ("time = " + time + " delta Time = " + Time.deltaTime + " alpha = " + alpha);
+		if (time > duration  ) 
+		{
 			if (alpha <= 0.01f)
-			{
-				Debug.Log ("FADE SCRIPT DONE @ t=" + Time.time + " elapsed = " + time);
-				Destroy (gameObject);
-			}
+				Debug.Log ("FADE IN SCRIPT DONE @ t=" + Time.time + " elapsed = " + time);
 			else
-			{
-				// finished fade out....
-				//FadeIn(duration);
-			}
+				Debug.Log ("FADE OUT SCRIPT DONE @ t=" + Time.time + " elapsed = " + time);
+			transform.parent.gameObject.GetComponent<GameController>().FadeDone();
+			Destroy (gameObject);
 		}
 		else
 		 	time += Time.deltaTime;
