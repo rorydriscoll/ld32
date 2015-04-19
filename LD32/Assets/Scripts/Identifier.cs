@@ -9,6 +9,15 @@ public struct Identifier
     public int l;
     public int r;
 
+	enum Counts
+	{
+		kNumLeft=4,
+		kNumRight=4,
+		kNumTypes=kNumLeft*kNumRight,
+	};
+	public int GetColorID() { return r; }
+	public int GetMeshID() { return l; }
+
     public bool IsValid
     {
         get
@@ -29,19 +38,19 @@ public struct Identifier
         }
     }
 
-    public Color Color
+	public Color Color
     {
         get
         {
-            Color[] colors =
-            {
-                new Color(1, 0, 0, 1),
-                new Color(0, 0, 1, 1),
-			    new Color(1, 1, 0, 1),
-		    };
-
-            return colors[r];
-        }
+			Color[] colors =
+			{
+				new Color(1, 0, 0, 1),
+            	new Color(0, 1, 0, 1),
+            	new Color(0, 0, 1, 1),
+				new Color(1, 1, 0, 1),
+			};
+			return colors[r];
+		}
     }
 
     public Identifier(int id) { l = r = -1; ID = id; }

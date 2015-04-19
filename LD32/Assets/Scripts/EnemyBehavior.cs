@@ -4,8 +4,7 @@ using System.Collections;
 public class EnemyBehavior : MonoBehaviour {
 
 	public AnimationCurve speedDecay;
-	public MeshFilter meshA, meshB, meshC, meshD;
-	public MeshFilter[] meshes = new MeshFilter[4];
+	public Mesh[] AttributeMesh = new Mesh[4];
 	public Identifier identity;
 	private SpawnController spawner_;
 	private float initialSpeed;
@@ -13,18 +12,12 @@ public class EnemyBehavior : MonoBehaviour {
 	{
 		--spawner_.hazardCount;
 	}
-	void Start()
-	{
-		meshes[0] = meshA;
-		meshes[1] = meshB;
-		meshes[2] = meshC;
-		meshes[3] = meshD;
-	}
 	public void SetTypeSpeedAndController(Identifier ID, float speed, SpawnController spawner)
 	{
 		identity = ID;
+		Debug.Log ("id = " + ID.ID + " meshid = " + identity.GetMeshID() + " colorid = " + identity.GetColorID());
 		GetComponent<Renderer>().material.color = ID.Color;
-		//GetComponent<MeshFilter>().mesh = meshes[identity.ID ()];
+		GetComponent<MeshFilter>().mesh = AttributeMesh[identity.GetMeshID()];
 		//Debug.Log ("Speed = " + speed);
 		GetComponent<Rigidbody> ().velocity = -transform.forward * speed; // Random.Range(speedMin, speedMax);
 		initialSpeed = speed;
@@ -51,7 +44,9 @@ public class EnemyBehavior : MonoBehaviour {
     void TakeDamage(object o)
     {
         Identifier projectileIdentifier = (Identifier)o;
-
-        Debug.Log("I GOT HIT BY " + projectileIdentifier.l + " by " + projectileIdentifier.r);
+		bool killed = projectileIdentifier.r == identity.r && projectileIdentifier.l == identity.l;
+		Debug.Log("I GOT HIT BY " + projectileIdentifier.l + ", " + projectileIdentifier.r + " (" + projectileIdentifier.ID + ") killed=" + killed);
+		if (killed)
+			DestroyObject(gameObject);
     }
 }
