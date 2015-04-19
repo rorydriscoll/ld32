@@ -21,8 +21,8 @@ public class EnemyBehavior : MonoBehaviour {
 	void Start()
     {
         timeOffset = Random.Range(0.0f, 1.0f);
-        lf = Random.Range(8.0f, 13.0f);
-        la = Random.Range(0.2f, 1.0f);
+        lf = Random.Range(8.0f, 10.0f);
+        la = Random.Range(0.4f, 0.8f);
     }
 
 	public void SetTypeSpeedAndController(Identifier ID, float speed, SpawnController spawner, GameController gc)
