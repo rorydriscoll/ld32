@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 166184}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2, y: 1, z: 2}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -105,7 +105,11 @@ MonoBehaviour:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-  identity: {r: 0, g: 0, b: 0, a: 0}
+  AttributeMesh:
+  - {fileID: 4300000, guid: 07cf9c3ef6da34546b88726c62f5ca8f, type: 3}
+  - {fileID: 4300002, guid: 07cf9c3ef6da34546b88726c62f5ca8f, type: 3}
+  - {fileID: 4300004, guid: 07cf9c3ef6da34546b88726c62f5ca8f, type: 3}
+  - {fileID: 4300006, guid: 07cf9c3ef6da34546b88726c62f5ca8f, type: 3}
 --- !u!136 &13614056
 CapsuleCollider:
   m_ObjectHideFlags: 1

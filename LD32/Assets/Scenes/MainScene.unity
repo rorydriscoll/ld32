@@ -3816,6 +3816,14 @@ Prefab:
       propertyPath: m_RootOrder
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 11469282, guid: 9f2748c9970246447a6f9858cb324dd9, type: 2}
+      propertyPath: spawnSpeedCurve.m_Curve.Array.data[0].value
+      value: .844106674
+      objectReference: {fileID: 0}
+    - target: {fileID: 11469282, guid: 9f2748c9970246447a6f9858cb324dd9, type: 2}
+      propertyPath: spawnSpeedCurve.m_Curve.Array.data[0].time
+      value: .0186107215
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9f2748c9970246447a6f9858cb324dd9, type: 2}
   m_IsPrefabParent: 0

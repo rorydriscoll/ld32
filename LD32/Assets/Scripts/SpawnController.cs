@@ -12,8 +12,6 @@ public class SpawnController : MonoBehaviour {
 	public AnimationCurve groupSpawnSpeed;
 	public GameObject hazard;
 	public GameObject playerGO;
-	public Color[] colors = new Color[8];
-	public bool initColors = true;
 	public Vector3 SpawnPos;
 	public  int hazardCount;
 	public int currentWaveID = 1;
@@ -39,18 +37,6 @@ public class SpawnController : MonoBehaviour {
 		playerGO = GameObject.FindWithTag("Player");
 		if (playerGO == null)
 			Debug.Log ("ERROR could not find player game object");
-
-		if (initColors)
-		{
-			colors[0]= Color.black;
-			colors[1] = Color.red;
-			colors[2] = Color.green;
-			colors[3] = Color.blue;
-			colors[4] = new Color(255,255,0);
-			colors[5] = new Color(255,0,255);
-			//colors[6] = new Color(0,255,255);
-			//colors[7] = new Color(255,255,255);
-		}
 	}
 	Identifier PickType()
 	{
@@ -97,7 +83,7 @@ public class SpawnController : MonoBehaviour {
 		float spawnSpeed = spawnSpeedCurve.Evaluate(waveID);
 		groupCount = (int)groupCountCurve.Evaluate(waveID);
 		groupSpawnWait = groupSpawnSpeed.Evaluate(waveID);
-		Debug.Log ("Kick Wave #" + waveID + " Enemies= " + numHazards + " typePerGroup=" + numTypes + " speed = " + speed + " spawnSpeed = " + spawnSpeed + "groupCount=" + groupCount + "GroupDelay=" + groupSpawnWait);
+		Debug.Log ("Kick Wave #" + waveID + " Enemies= " + numHazards + " typePerGroup=" + numTypes + " speed = " + speed + " spawnSpeed = " + spawnSpeed + " groupCount=" + groupCount + " GroupDelay=" + groupSpawnWait);
 
 		KickWave(numHazards,numTypes, speed, spawnSpeed);
 	}
@@ -113,13 +99,15 @@ public class SpawnController : MonoBehaviour {
 	IEnumerator SpawnMain()
 	{
 		Debug.Log ("Spawne started");
-		while (!gameController.IsGameOver() && remainToSpawn > 0) 
+		for (int i=0;i<groupCount;i++)
 		{
-			for (int i=0;i<groupCount;i++)
+			// spawn group
+			while (!gameController.IsGameOver() && remainToSpawn > 0) 
 			{
 				SpawnHazard(hazard);
 				yield return new WaitForSeconds (spawnSpeed_);
 			}
+			// group delay
 			yield return new WaitForSeconds(groupSpawnWait);
 		}
 		Debug.Log ("Spawner done");

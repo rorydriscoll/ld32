@@ -43,32 +43,32 @@ MonoBehaviour:
     serializedVersion: 2
     m_Curve:
     - time: 0
-      value: 5
+      value: 35.2430649
       inSlope: 0
       outSlope: 0
       tangentMode: 0
     - time: 2.22492743
-      value: 6.13889074
+      value: 36.3819542
       inSlope: 0
       outSlope: 0
       tangentMode: 0
     - time: 3.55598879
-      value: 10.4722681
+      value: 40.715332
       inSlope: -1.03355432
       outSlope: -1.03355432
       tangentMode: 0
     - time: 5.48296118
-      value: 13.5556288
+      value: 43.7986908
       inSlope: -.866508126
       outSlope: -.866508126
       tangentMode: 0
     - time: 8.76728535
-      value: 19.5556946
+      value: 49.7987595
       inSlope: -.889240444
       outSlope: -.889240444
       tangentMode: 0
     - time: 14.9240732
-      value: 49.7071419
+      value: 79.9502029
       inSlope: .69178623
       outSlope: .69178623
       tangentMode: 0
@@ -93,12 +93,12 @@ MonoBehaviour:
     serializedVersion: 2
     m_Curve:
     - time: .0583443791
-      value: 7.99213982
+      value: 9.9622221
       inSlope: -.088470608
       outSlope: -.088470608
       tangentMode: 0
     - time: 15.0381813
-      value: 12.9866123
+      value: 14.9566946
       inSlope: -.0383409709
       outSlope: -.0383409709
       tangentMode: 0
@@ -107,63 +107,63 @@ MonoBehaviour:
   typeCountCurve:
     serializedVersion: 2
     m_Curve:
-    - time: 0
-      value: 1
+    - time: -.0279476773
+      value: 4.98403454
       inSlope: .992227376
       outSlope: .992227376
       tangentMode: 0
-    - time: 1
-      value: 2
-      inSlope: 1
-      outSlope: 1
+    - time: 1.1863178
+      value: 6.51708364
+      inSlope: -.228030324
+      outSlope: -.228030324
       tangentMode: 10
-    - time: 2
-      value: 3
-      inSlope: 1
-      outSlope: 1
+    - time: 2.00931597
+      value: 5.10268497
+      inSlope: -.38624531
+      outSlope: -.38624531
       tangentMode: 10
     - time: 3
-      value: 4
-      inSlope: 1
-      outSlope: 1
+      value: 6.03997326
+      inSlope: 1.79504669
+      outSlope: 1.79504669
       tangentMode: 10
-    - time: 4
-      value: 5
-      inSlope: .996352315
-      outSlope: .996352315
+    - time: 4.08384323
+      value: 8.90564537
+      inSlope: .855367184
+      outSlope: .855367184
       tangentMode: 10
     - time: 5.00932407
-      value: 6.00196075
-      inSlope: 1.00006866
-      outSlope: 1.00006866
+      value: 8.04193401
+      inSlope: 1.0885644
+      outSlope: 1.0885644
       tangentMode: 10
-    - time: 6
-      value: 7
-      inSlope: 1.01247358
-      outSlope: 1.01247358
+    - time: 6.17700195
+      value: 11.6738625
+      inSlope: .0806258917
+      outSlope: .0806258917
       tangentMode: 10
-    - time: 6.98735619
-      value: 8.00464916
-      inSlope: 1.00150216
-      outSlope: 1.00150216
+    - time: 6.93146086
+      value: 9.44886208
+      inSlope: -.466562748
+      outSlope: -.466562748
       tangentMode: 10
-    - time: 7.99303579
-      value: 8.99573612
-      inSlope: .985489786
-      outSlope: .985489786
+    - time: 8.40293503
+      value: 12.4153662
+      inSlope: 2.01600838
+      outSlope: 2.01600838
       tangentMode: 10
     m_PreInfinity: 2
     m_PostInfinity: 2
   groupCountCurve:
     serializedVersion: 2
     m_Curve:
-    - time: 0
-      value: 4
+    - time: .0314685293
+      value: 4.2662487
       inSlope: 0
       outSlope: 0
       tangentMode: 0
     - time: 13.5
-      value: 50
+      value: 34.0309563
       inSlope: 2
       outSlope: 2
       tangentMode: 0
@@ -186,14 +186,6 @@ MonoBehaviour:
     m_PostInfinity: 2
   hazard: {fileID: 166184, guid: ae006763fce14234db9b73ed10393554, type: 2}
   playerGO: {fileID: 0}
-  colors:
-  - {r: 1, g: 0, b: 0, a: 0}
-  - {r: 0, g: 1, b: 0, a: 0}
-  - {r: 0, g: 0, b: 1, a: 0}
-  - {r: 1, g: 1, b: 0, a: 0}
-  - {r: 0, g: 1, b: 1, a: 0}
-  - {r: 1, g: 0, b: 1, a: 0}
-  initColors: 1
   SpawnPos: {x: 6, y: .100000001, z: 50}
   hazardCount: 0
   currentWaveID: 1

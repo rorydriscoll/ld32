@@ -13,8 +13,12 @@ public struct Identifier
 		kNumRight=4,
 		kNumTypes=kNumLeft*kNumRight,
 	};
-	public int ID() { return l*(int)Counts.kNumLeft + r; }
-	void SetID(int id) { l = id / (int)Counts.kNumLeft; r = id - (l*(int)Counts.kNumLeft); }
+
+	public int ID() { return r*(int)Counts.kNumLeft + l; }
+	void SetID(int id) { r = id / (int)Counts.kNumRight; l = id - (r*(int)Counts.kNumRight); }
+	public int GetColorID() { return r; }
+	public int GetMeshID() { return l; }
+
     public Color GetColor()
     {
         Color[] colors =
@@ -24,7 +28,6 @@ public struct Identifier
             new Color(0, 0, 1, 1),
 			new Color(1, 1, 0, 1),
 		};
-
         return colors[r];
     }
 }
