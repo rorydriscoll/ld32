@@ -38,7 +38,7 @@ public class FriendlyBehavior : MonoBehaviour
         transform.position = new Vector3(position.x, y, position.z);
         transform.rotation = Quaternion.AngleAxis(Mathf.Sin((Time.time + timeOffset) * lf) * la * 5, transform.forward);
 
-        if (transform.position.z > destroyGOPos)
+        if (transform.position.z > destroyGOPos && !GetComponent<Renderer>().isVisible)
             DestroyObject(gameObject);
     }
 }

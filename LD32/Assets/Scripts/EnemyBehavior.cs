@@ -60,7 +60,7 @@ public class EnemyBehavior : MonoBehaviour {
 
         transform.rotation = Quaternion.AngleAxis(180, Vector3.up) * Quaternion.AngleAxis(Mathf.Sin((Time.time + timeOffset) * lf) * la * decay * 5, transform.forward);
 
-		if (transform.position.z < destroyGOPos)
+		if (transform.position.z < destroyGOPos && !GetComponent<Renderer>().isVisible)
 			DestroyObject(gameObject);
 		if (transform.position.z < 0f)
 			gameController.EnemyReachedGoal();
