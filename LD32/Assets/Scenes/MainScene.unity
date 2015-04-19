@@ -148,6 +148,200 @@ GUITexture:
   m_RightBorder: 0
   m_TopBorder: 0
   m_BottomBorder: 0
+--- !u!1 &190283808
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 114518, guid: 9f2748c9970246447a6f9858cb324dd9, type: 2}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 190283810}
+  - 114: {fileID: 190283809}
+  m_Layer: 0
+  m_Name: FriendlySpawner
+  m_TagString: SpawnController
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &190283809
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11469282, guid: 9f2748c9970246447a6f9858cb324dd9,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 190283808}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67e89da119ba015458002cafd4c5ce4c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hazardCountCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: .0576580018
+      value: 1.62275124
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 2.22492743
+      value: 2.864151
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 3.55598879
+      value: 7.19752884
+      inSlope: -1.03355432
+      outSlope: -1.03355432
+      tangentMode: 0
+    - time: 5.48296118
+      value: 10.2808876
+      inSlope: -.866508126
+      outSlope: -.866508126
+      tangentMode: 0
+    - time: 8.76728535
+      value: 16.2809563
+      inSlope: -.889240444
+      outSlope: -.889240444
+      tangentMode: 0
+    - time: 14.9240732
+      value: 46.4323997
+      inSlope: .69178623
+      outSlope: .69178623
+      tangentMode: 0
+    - time: 15.2186298
+      value: 46.5228119
+      inSlope: -1.3020314
+      outSlope: -1.3020314
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  spawnSpeedCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: .0696427599
+      value: .601283908
+      inSlope: -.142503023
+      outSlope: -.142503023
+      tangentMode: 0
+    - time: 15.9679995
+      value: .344285339
+      inSlope: -.0895392969
+      outSlope: -.0895392969
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  moveSpeedCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: .0583443791
+      value: 9.9622221
+      inSlope: -.088470608
+      outSlope: -.088470608
+      tangentMode: 0
+    - time: 15.0381813
+      value: 14.9566946
+      inSlope: -.0383409709
+      outSlope: -.0383409709
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  typeCountCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: .992227376
+      outSlope: .992227376
+      tangentMode: 0
+    - time: 1
+      value: 2
+      inSlope: 1
+      outSlope: 1
+      tangentMode: 10
+    - time: 2
+      value: 3
+      inSlope: .5
+      outSlope: .5
+      tangentMode: 10
+    - time: 2.95000005
+      value: 3
+      inSlope: .476190507
+      outSlope: .476190507
+      tangentMode: 10
+    - time: 4
+      value: 4
+      inSlope: .976190507
+      outSlope: .976190507
+      tangentMode: 10
+    - time: 5
+      value: 5
+      inSlope: 1
+      outSlope: 1
+      tangentMode: 10
+    - time: 6
+      value: 6
+      inSlope: 1
+      outSlope: 1
+      tangentMode: 10
+    - time: 7
+      value: 7
+      inSlope: 1
+      outSlope: 1
+      tangentMode: 10
+    - time: 9
+      value: 9
+      inSlope: 1
+      outSlope: 1
+      tangentMode: 10
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  groupCountCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 5.5
+      inSlope: 1.94881475
+      outSlope: 1.94881475
+      tangentMode: 0
+    - time: 15
+      value: 10
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  groupSpawnSpeed:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 3.64165831
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 19.7350006
+      value: 2.07214808
+      inSlope: .0578417666
+      outSlope: .0578417666
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  spawnObject: {fileID: 138510, guid: 6bc29f38bb7c6d94a8587158047ad9bc, type: 2}
+  spawnCount: 0
+  currentWaveID: 1
+  isActive: 0
+--- !u!4 &190283810
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 489432, guid: 9f2748c9970246447a6f9858cb324dd9, type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 190283808}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 21.5, y: 0, z: -15.6999998}
+  m_LocalScale: {x: 13.0900002, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1526743974}
+  m_RootOrder: 4
 --- !u!1 &197642051
 GameObject:
   m_ObjectHideFlags: 0
@@ -3287,6 +3481,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemySpawner: {fileID: 1407218301}
+  friendlySpawner: {fileID: 190283809}
   screenFader: {fileID: 32622508}
   scoreText: {fileID: 727826504}
   restartText: {fileID: 436768047}
@@ -3306,7 +3501,7 @@ GameObject:
   - 4: {fileID: 1308067236}
   - 114: {fileID: 1407218301}
   m_Layer: 0
-  m_Name: SpawnController
+  m_Name: EnemySpawner
   m_TagString: SpawnController
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3474,7 +3669,7 @@ MonoBehaviour:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-  enemy: {fileID: 166184, guid: ae006763fce14234db9b73ed10393554, type: 2}
+  spawnObject: {fileID: 166184, guid: ae006763fce14234db9b73ed10393554, type: 2}
   spawnCount: 0
   currentWaveID: 1
   isActive: 0
@@ -4803,6 +4998,7 @@ Transform:
   - {fileID: 454060794}
   - {fileID: 930101037}
   - {fileID: 32622509}
+  - {fileID: 190283810}
   m_Father: {fileID: 0}
   m_RootOrder: 4
 --- !u!4 &1615181338 stripped

@@ -10,7 +10,7 @@ public class SpawnController : MonoBehaviour {
 	public AnimationCurve typeCountCurve;
 	public AnimationCurve groupCountCurve;
 	public AnimationCurve groupSpawnSpeed;
-	public GameObject enemy;
+	public GameObject spawnObject;
 	public int spawnCount=0;
 	public int currentWaveID = 1;
 	public bool isActive = false;
@@ -51,8 +51,12 @@ public class SpawnController : MonoBehaviour {
 	{
         Vector3 spawnPos = transform.position + new Vector3(Random.Range(-transform.localScale.x * 0.5f, transform.localScale.x * 0.5f), 0, 0);
 		GameObject enemyObject = Instantiate (obj, spawnPos, transform.rotation) as GameObject;
-		enemyObject.GetComponent<EnemyBehavior>().SetTypeSpeedAndController(PickType(), speed,  this, gameController);
-		//Debug.Log ("enemyObject = " + enemyObject.transform.position);
+
+        if (enemyObject.GetComponent<EnemyBehavior>())
+		    enemyObject.GetComponent<EnemyBehavior>().SetTypeSpeedAndController(PickType(), speed,  this, gameController);
+        if (enemyObject.GetComponent<FriendlyBehavior>())
+            enemyObject.GetComponent<FriendlyBehavior>().SetTypeSpeedAndController(PickType(), speed, this, gameController);
+        //Debug.Log ("enemyObject = " + enemyObject.transform.position);
 		++spawnCount;
 		Debug.Log ("Active spawn enemy count=" + spawnCount);
 	}
@@ -109,7 +113,7 @@ public class SpawnController : MonoBehaviour {
 			Debug.Log ("Wave " + currentWaveID + " Spawn Group idx " + i + " count=" + groupCount);
 			for (int j=0;j<numPerGroup && !gameController.IsGameOver();j++)
 			{
-				SpawnHazard(enemy);
+				SpawnHazard(spawnObject);
 				yield return new WaitForSeconds (spawnSpeed_);
 			}
 			Debug.Log ("Wave " + currentWaveID + " Done Spawn Group idx " + i + " count=" + groupCount);

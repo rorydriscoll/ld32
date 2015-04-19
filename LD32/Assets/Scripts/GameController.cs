@@ -4,6 +4,7 @@ using System.Collections;
 public class GameController : MonoBehaviour {
 
 	public SpawnController enemySpawner;
+    public SpawnController friendlySpawner;
 	public GameObject screenFader;
 	public GUIText scoreText;
 	public GUIText restartText;
@@ -107,6 +108,7 @@ public class GameController : MonoBehaviour {
 		foreach (GameObject go in gos) 
 			DestroyObject(go);
 		enemySpawner.spawnCount = 0;
+        friendlySpawner.spawnCount = 0;
 		SetGameState(GameState.kReset);
 	}
 	void Awake()
@@ -160,6 +162,7 @@ public class GameController : MonoBehaviour {
 						if ( Override_WaveID > -1)
 							curWave = Override_WaveID;
 						enemySpawner.KickWave(curWave);
+                        friendlySpawner.KickWave(curWave);
 						SetGameState(GameState.kWait);
 					}
 				    break;
