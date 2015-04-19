@@ -10,7 +10,11 @@ public class SpawnController : MonoBehaviour {
 	public AnimationCurve typeCountCurve;
 	public AnimationCurve groupCountCurve;
 	public AnimationCurve groupSpawnSpeed;
+<<<<<<< HEAD:LD32/Assets/Scripts/Controllers/SpawnController.cs
+	public GameObject enemy;
+=======
 	public GameObject spawnObject;
+>>>>>>> 2f9cea0a7cff94577d19ddc976bd83aa39048d31:LD32/Assets/Scripts/SpawnController.cs
 	public int spawnCount=0;
 	public int currentWaveID = 1;
 	public bool isActive = false;
@@ -51,12 +55,17 @@ public class SpawnController : MonoBehaviour {
 	{
         Vector3 spawnPos = transform.position + new Vector3(Random.Range(-transform.localScale.x * 0.5f, transform.localScale.x * 0.5f), 0, 0);
 		GameObject enemyObject = Instantiate (obj, spawnPos, transform.rotation) as GameObject;
+<<<<<<< HEAD:LD32/Assets/Scripts/Controllers/SpawnController.cs
+		enemyObject.GetComponent<EnemyBehavior>().SetTypeSpeedAndController(PickType(), speed,  this, gameController);
+		//Debug.Log ("enemyObject = " + enemyObject.transform.position);
+=======
 
         if (enemyObject.GetComponent<EnemyBehavior>())
 		    enemyObject.GetComponent<EnemyBehavior>().SetTypeSpeedAndController(PickType(), speed,  this, gameController);
         if (enemyObject.GetComponent<FriendlyBehavior>())
             enemyObject.GetComponent<FriendlyBehavior>().SetTypeSpeedAndController(PickType(), speed, this, gameController);
         //Debug.Log ("enemyObject = " + enemyObject.transform.position);
+>>>>>>> 2f9cea0a7cff94577d19ddc976bd83aa39048d31:LD32/Assets/Scripts/SpawnController.cs
 		++spawnCount;
 		Debug.Log ("Active spawn enemy count=" + spawnCount);
 	}
@@ -113,7 +122,11 @@ public class SpawnController : MonoBehaviour {
 			Debug.Log ("Wave " + currentWaveID + " Spawn Group idx " + i + " count=" + groupCount);
 			for (int j=0;j<numPerGroup && !gameController.IsGameOver();j++)
 			{
+<<<<<<< HEAD:LD32/Assets/Scripts/Controllers/SpawnController.cs
+				SpawnHazard(enemy);
+=======
 				SpawnHazard(spawnObject);
+>>>>>>> 2f9cea0a7cff94577d19ddc976bd83aa39048d31:LD32/Assets/Scripts/SpawnController.cs
 				yield return new WaitForSeconds (spawnSpeed_);
 			}
 			Debug.Log ("Wave " + currentWaveID + " Done Spawn Group idx " + i + " count=" + groupCount);

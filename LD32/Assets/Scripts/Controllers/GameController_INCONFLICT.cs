@@ -1,24 +1,28 @@
 ﻿using UnityEngine;
 using System.Collections;
-
+/*
+ * 	NOTE Enemy Goal pos, and offscreen pos is set on a property of the EnemyBehavior script
+ */
 public class GameController : MonoBehaviour {
 
 	public SpawnController enemySpawner;
+<<<<<<< HEAD:LD32/Assets/Scripts/Controllers/GameController.cs
+=======
     public SpawnController friendlySpawner;
+>>>>>>> 2f9cea0a7cff94577d19ddc976bd83aa39048d31:LD32/Assets/Scripts/GameController.cs
 	public GameObject screenFader;
-	public GUIText scoreText;
-	public GUIText restartText;
-	public GUIText gameoverText;
 	public float fadeTime;
 	public float waitBetweenWaves;
+	public float timeForOnePuff = 0.15f;
 	public int pointsPerKill = 1;
 	public int enemyGoalMax = 1;
 	public int Override_WaveID = -1;
-	
+	GameObject[] puffySmokes;
 	// private 
 	private int score;
 	private int enemyGoalCount;
 	private int curWave;
+	private float smokeTimeRemain = 0;
 	enum GameState
 	{
 		kFadeIn,
@@ -36,10 +40,7 @@ public class GameController : MonoBehaviour {
 		{
 			Debug.Log ("----- GAME OVER ----");
 			SetGameState(GameState.kGameOver);
-			if (gameoverText!=null)
-				gameoverText.text = "City Destroyed!";
-			if (restartText != null)
-				restartText.text = "'R' Resurrects";
+			EnableGameOverText(true);
 			if (GetComponent<AudioSource> () != null)
 				GetComponent<AudioSource> ().volume = 0;
 		}
@@ -64,6 +65,11 @@ public class GameController : MonoBehaviour {
 	{
 		return curState == GameState.kReset;
 	}
+	public bool CanFireWeapon()
+	{
+		Debug.Log ("Spawn COUNT = " + enemySpawner.spawnCount);
+		return !IsReseting () && !IsGameOver () && enemySpawner.spawnCount > 0;
+	}
 	public void AddScore(int pts)
 	{
 		score += pts;
@@ -71,6 +77,7 @@ public class GameController : MonoBehaviour {
 	}
 	public void EnemyReachedGoal()
 	{
+		smokeTimeRemain += timeForOnePuff;
 		if ( ++enemyGoalCount > enemyGoalMax )
 			SetGameOver();
 	}
@@ -78,6 +85,13 @@ public class GameController : MonoBehaviour {
 	{
 		score += pointsPerKill;
 		UpdateScore ();
+	}
+	void EnableGameOverText(bool enabled)
+	{
+		GameObject[] gos;
+		gos = GameObject.FindGameObjectsWithTag("GameOverText");
+		foreach (GameObject go in gos)
+			go.GetComponent<GUIText>().enabled = enabled; 
 	}
 	void PrintState(string prefix, GameState state)
 	{
@@ -92,8 +106,10 @@ public class GameController : MonoBehaviour {
 	}
 	void UpdateScore()
 	{
-		if (scoreText != null)
-			scoreText.text = "Score: " + score;
+		GameObject[] gos;
+		gos = GameObject.FindGameObjectsWithTag("ScoreText");
+		foreach (GameObject go in gos)
+			go.GetComponent<GUIText>().text = "Score: " + score;
 	} 
 	void Start()
 	{
@@ -108,13 +124,30 @@ public class GameController : MonoBehaviour {
 		foreach (GameObject go in gos) 
 			DestroyObject(go);
 		enemySpawner.spawnCount = 0;
+<<<<<<< HEAD:LD32/Assets/Scripts/Controllers/GameController.cs
+=======
         friendlySpawner.spawnCount = 0;
+>>>>>>> 2f9cea0a7cff94577d19ddc976bd83aa39048d31:LD32/Assets/Scripts/GameController.cs
 		SetGameState(GameState.kReset);
 	}
 	void Awake()
 	{
 		Debug.Log ("Game Controller is AWAKE");
 		screenFader.transform.parent = transform;
+<<<<<<< HEAD:LD32/Assets/Scripts/Controllers/GameController.cs
+		GameObject spawnControllerObj = GameObject.FindWithTag ("SpawnController");
+		if (spawnControllerObj != null) 
+			enemySpawner = spawnControllerObj.GetComponent<SpawnController> ();
+		else 
+			Debug.Log ("Error: Game controller cannot find spawnController!");
+
+		puffySmokes = GameObject.FindGameObjectsWithTag("PuffySmoke");
+		if (puffySmokes.Length==0) 
+			Debug.Log ("Error: Game controller cannot find it's puffy smoke!");
+		else
+			StartCoroutine (MakePuffySmoke());
+=======
+>>>>>>> 2f9cea0a7cff94577d19ddc976bd83aa39048d31:LD32/Assets/Scripts/GameController.cs
 		SetGameState(GameState.kFadeIn);
 		StartCoroutine (GameLoop ());
 	}
@@ -128,12 +161,26 @@ public class GameController : MonoBehaviour {
 		curWave = -1;
 		score = 0;
 		enemyGoalCount = 0;
-		if (restartText != null)
-			restartText.text = "";
-		if (gameoverText != null)
-			gameoverText.text = "";
+		smokeTimeRemain = 0.0f;
 		UpdateScore ();
-
+	}
+	IEnumerator MakePuffySmoke()
+	{
+		if (timeForOnePuff <= 0f)
+			timeForOnePuff = 0.1f;
+		int numEmitters = puffySmokes.Length;
+		for (;;)
+		{
+			if (smokeTimeRemain >= timeForOnePuff)
+			{
+				for (int i=0;i<numEmitters;i++)
+					puffySmokes[i].GetComponent<EllipsoidParticleEmitter>().emit = true;
+				smokeTimeRemain -= timeForOnePuff;
+			}
+			yield return new WaitForSeconds(timeForOnePuff);
+			for (int i=0;i<numEmitters;i++)
+				puffySmokes[i].GetComponent<EllipsoidParticleEmitter>().emit = false;
+		}
 	}
 	// MAIN LOOP
 	IEnumerator GameLoop()
@@ -146,11 +193,12 @@ public class GameController : MonoBehaviour {
 				case GameState.kWait:
 					break;
 				case GameState.kFadeIn:
-					InitGame ();
+					EnableGameOverText(false);
 					screenFader.GetComponent<fade>().FadeIn(fadeTime);
 					SetGameState(GameState.kWait);
 					break;
 				case GameState.kStartGame:
+					InitGame ();
 					SetGameState(GameState.kKickWave);
 					break;
 				case GameState.kKickWave:
@@ -162,17 +210,24 @@ public class GameController : MonoBehaviour {
 						if ( Override_WaveID > -1)
 							curWave = Override_WaveID;
 						enemySpawner.KickWave(curWave);
+<<<<<<< HEAD:LD32/Assets/Scripts/Controllers/GameController.cs
+=======
                         friendlySpawner.KickWave(curWave);
+>>>>>>> 2f9cea0a7cff94577d19ddc976bd83aa39048d31:LD32/Assets/Scripts/GameController.cs
 						SetGameState(GameState.kWait);
 					}
 				    break;
 				case GameState.kGameOver:
+					smokeTimeRemain = timeForOnePuff;
 					break;
 				case GameState.kFadeOut:
+					EnableGameOverText(false);
+					smokeTimeRemain = 0f;
 					screenFader.GetComponent<fade>().FadeOut(fadeTime);
 					SetGameState(GameState.kWait);
 					break;
 				case GameState.kReset:
+					yield return new WaitForSeconds(3.0f); // wait for smoke to clear
 					SetGameState (GameState.kFadeIn);
 					break;
 			}

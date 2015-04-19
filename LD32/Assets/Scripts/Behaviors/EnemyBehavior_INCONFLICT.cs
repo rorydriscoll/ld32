@@ -17,7 +17,7 @@ public class EnemyBehavior : MonoBehaviour {
 	public float goalPos = 0f;
 	public float destroyGOPos = -11f;
 	private GameController gameController;
-
+	private bool reachedGoal = false;
 	void Start()
     {
         timeOffset = Random.Range(0.0f, 1.0f);
@@ -60,10 +60,17 @@ public class EnemyBehavior : MonoBehaviour {
 
         transform.rotation = Quaternion.AngleAxis(180, Vector3.up) * Quaternion.AngleAxis(Mathf.Sin((Time.time + timeOffset) * lf) * la * decay * 5, transform.forward);
 
+<<<<<<< HEAD:LD32/Assets/Scripts/Behaviors/EnemyBehavior.cs
+		if (transform.position.z < destroyGOPos)
+=======
 		if (transform.position.z < destroyGOPos && !GetComponent<Renderer>().isVisible)
+>>>>>>> 2f9cea0a7cff94577d19ddc976bd83aa39048d31:LD32/Assets/Scripts/EnemyBehavior.cs
 			DestroyObject(gameObject);
-		if (transform.position.z < 0f)
+		if (!reachedGoal && transform.position.z < 0f)
+		{
+			reachedGoal = true;
 			gameController.EnemyReachedGoal();
+		}
 	}
 
 	void TakeDamage(object o)
