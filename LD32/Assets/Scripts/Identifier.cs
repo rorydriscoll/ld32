@@ -5,6 +5,7 @@ public struct Identifier
     public const int kNumLeft = 3;
     public const int kNumRight = 3;
     public const int kNumTypes = kNumLeft + kNumRight;
+    public const int kNumPermutations = kNumLeft * kNumRight;
 
     public int l;
     public int r;

@@ -19,7 +19,6 @@ public class SpawnController : MonoBehaviour {
 	private int numPerGroup ;
 	private int numHazardTypes; 
 	private GameController gameController;
-	private int maxTypes = 6;
 	private float speed;
 	private float spawnSpeed_;
 	private int groupCount;
@@ -58,8 +57,8 @@ public class SpawnController : MonoBehaviour {
 	// count to spawn in the wave and the number of enemey types
 	public void KickWave(int count, int numTypes, float moveSpeed, float spawnSpeed)
 	{
-		if (numTypes > maxTypes)
-			numTypes = maxTypes;
+        if (numTypes > Identifier.kNumPermutations)
+            numTypes = Identifier.kNumPermutations;
 		hazardCount = 0;
 		numPerGroup = count;
 		numHazardTypes = numTypes;
