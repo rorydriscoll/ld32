@@ -98,8 +98,8 @@ MonoBehaviour:
   - {fileID: 4300000, guid: 8da3f8fb70e6c6e4a993d851a34a5612, type: 3}
   - {fileID: 4300000, guid: 585b5de3ff492b94aa2aa1910291556b, type: 3}
   transparent: {fileID: 2100000, guid: 172bcd37c6419e745ad34e18dd810a31, type: 2}
-  goalPos: 0
-  destroyGOPos: -11
+  goalPos: -15
+  destroyGOPos: -20
 --- !u!136 &13614056
 CapsuleCollider:
   m_ObjectHideFlags: 1

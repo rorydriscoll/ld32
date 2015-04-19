@@ -1,23 +1,24 @@
 ﻿using UnityEngine;
 using System.Collections;
-
+/*
+ * 	NOTE Enemy Goal pos, and offscreen pos is set on a property of the EnemyBehavior script
+ */
 public class GameController : MonoBehaviour {
 
 	public SpawnController spawnController;
 	public GameObject screenFader;
-	public GUIText scoreText;
-	public GUIText restartText;
-	public GUIText gameoverText;
 	public float fadeTime;
 	public float waitBetweenWaves;
+	public float timeForOnePuff = 0.15f;
 	public int pointsPerKill = 1;
 	public int enemyGoalMax = 1;
 	public int Override_WaveID = -1;
-	
+	GameObject[] puffySmokes;
 	// private 
 	private int score;
 	private int enemyGoalCount;
 	private int curWave;
+	private float smokeTimeRemain = 0;
 	enum GameState
 	{
 		kFadeIn,
@@ -35,10 +36,7 @@ public class GameController : MonoBehaviour {
 		{
 			Debug.Log ("----- GAME OVER ----");
 			SetGameState(GameState.kGameOver);
-			if (gameoverText!=null)
-				gameoverText.text = "City Destroyed!";
-			if (restartText != null)
-				restartText.text = "'R' Resurrects";
+			EnableGameOverText(true);
 			if (GetComponent<AudioSource> () != null)
 				GetComponent<AudioSource> ().volume = 0;
 		}
@@ -63,6 +61,10 @@ public class GameController : MonoBehaviour {
 	{
 		return curState == GameState.kReset;
 	}
+	public bool CanFireWeapon()
+	{
+		return !IsReseting () && !IsGameOver () && spawnController.hazardCount > 0;
+	}
 	public void AddScore(int pts)
 	{
 		score += pts;
@@ -70,6 +72,7 @@ public class GameController : MonoBehaviour {
 	}
 	public void EnemyReachedGoal()
 	{
+		smokeTimeRemain += timeForOnePuff;
 		if ( ++enemyGoalCount > enemyGoalMax )
 			SetGameOver();
 	}
@@ -77,6 +80,13 @@ public class GameController : MonoBehaviour {
 	{
 		score += pointsPerKill;
 		UpdateScore ();
+	}
+	void EnableGameOverText(bool enabled)
+	{
+		GameObject[] gos;
+		gos = GameObject.FindGameObjectsWithTag("GameOverText");
+		foreach (GameObject go in gos)
+			go.GetComponent<GUIText>().enabled = enabled; 
 	}
 	void PrintState(string prefix, GameState state)
 	{
@@ -91,8 +101,10 @@ public class GameController : MonoBehaviour {
 	}
 	void UpdateScore()
 	{
-		if (scoreText != null)
-			scoreText.text = "Score: " + score;
+		GameObject[] gos;
+		gos = GameObject.FindGameObjectsWithTag("ScoreText");
+		foreach (GameObject go in gos)
+			go.GetComponent<GUIText>().text = "Score: " + score;
 	} 
 	void Start()
 	{
@@ -118,6 +130,12 @@ public class GameController : MonoBehaviour {
 			spawnController = spawnControllerObj.GetComponent<SpawnController> ();
 		else 
 			Debug.Log ("Error: Game controller cannot find spawnController!");
+
+		puffySmokes = GameObject.FindGameObjectsWithTag("PuffySmoke");
+		if (puffySmokes.Length==0) 
+			Debug.Log ("Error: Game controller cannot find it's puffy smoke!");
+		else
+			StartCoroutine (MakePuffySmoke());
 		SetGameState(GameState.kFadeIn);
 		StartCoroutine (GameLoop ());
 	}
@@ -131,12 +149,26 @@ public class GameController : MonoBehaviour {
 		curWave = -1;
 		score = 0;
 		enemyGoalCount = 0;
-		if (restartText != null)
-			restartText.text = "";
-		if (gameoverText != null)
-			gameoverText.text = "";
+		smokeTimeRemain = 0.0f;
 		UpdateScore ();
-
+	}
+	IEnumerator MakePuffySmoke()
+	{
+		if (timeForOnePuff <= 0f)
+			timeForOnePuff = 0.1f;
+		int numEmitters = puffySmokes.Length;
+		for (;;)
+		{
+			if (smokeTimeRemain >= timeForOnePuff)
+			{
+				for (int i=0;i<numEmitters;i++)
+					puffySmokes[i].GetComponent<EllipsoidParticleEmitter>().emit = true;
+				smokeTimeRemain -= timeForOnePuff;
+			}
+			yield return new WaitForSeconds(timeForOnePuff);
+			for (int i=0;i<numEmitters;i++)
+				puffySmokes[i].GetComponent<EllipsoidParticleEmitter>().emit = false;
+		}
 	}
 	// MAIN LOOP
 	IEnumerator GameLoop()
@@ -149,11 +181,12 @@ public class GameController : MonoBehaviour {
 				case GameState.kWait:
 					break;
 				case GameState.kFadeIn:
-					InitGame ();
+					EnableGameOverText(false);
 					screenFader.GetComponent<fade>().FadeIn(fadeTime);
 					SetGameState(GameState.kWait);
 					break;
 				case GameState.kStartGame:
+					InitGame ();
 					SetGameState(GameState.kKickWave);
 					break;
 				case GameState.kKickWave:
@@ -169,12 +202,16 @@ public class GameController : MonoBehaviour {
 					}
 				    break;
 				case GameState.kGameOver:
+					smokeTimeRemain = timeForOnePuff;
 					break;
 				case GameState.kFadeOut:
+					EnableGameOverText(false);
+					smokeTimeRemain = 0f;
 					screenFader.GetComponent<fade>().FadeOut(fadeTime);
 					SetGameState(GameState.kWait);
 					break;
 				case GameState.kReset:
+					yield return new WaitForSeconds(3.0f); // wait for smoke to clear
 					SetGameState (GameState.kFadeIn);
 					break;
 			}

@@ -18,7 +18,7 @@ public class EnemyBehavior : MonoBehaviour {
 	public float goalPos = 0f;
 	public float destroyGOPos = -11f;
 	private GameController gameController;
-
+	private bool reachedGoal = false;
 	void Start()
     {
         timeOffset = Random.Range(0.0f, 1.0f);
@@ -65,8 +65,11 @@ public class EnemyBehavior : MonoBehaviour {
 		//	DestroyObject(gameObject);
 		if (transform.position.z < destroyGOPos)
 			DestroyObject(gameObject);
-		if (transform.position.z < 0f)
+		if (!reachedGoal && transform.position.z < 0f)
+		{
+			reachedGoal = true;
 			gameController.EnemyReachedGoal();
+		}
 	}
 
 	void TakeDamage(object o)

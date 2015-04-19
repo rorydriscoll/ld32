@@ -7,6 +7,9 @@ TagManager:
   - ground
   - SpawnController
   - Enemy
+  - GameOverText
+  - ScoreText
+  - PuffySmoke
   layers:
   - Default
   - TransparentFX

@@ -28,14 +28,25 @@ public class PlayerBehavior : MonoBehaviour
     private float m_timer;
     private Identifier m_identifier = Identifier.Invalid;
     private Quaternion m_cameraRotation;
-
+	private GameController gameController;
     void Start()
     {
         m_cameraRotation = mainCamera.transform.rotation;
+		GameObject gameControllerObj = GameObject.FindWithTag ("GameController");
+		if (gameControllerObj != null) 
+			gameController = gameControllerObj.GetComponent<GameController> ();
+		else 
+			Debug.Log ("weapon controller cannot find GameController!");
     }
 
     void Update()
     {
+		if (!gameController.CanFireWeapon())
+		{
+			m_timer = 0f;
+			return;
+		}
+
         m_timer += Time.deltaTime;
 
         UpdateHeat();
