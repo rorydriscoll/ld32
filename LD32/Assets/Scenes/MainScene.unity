@@ -1328,7 +1328,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 441160, guid: c923a50a2ebd18e479c267721a3192b0, type: 2}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c923a50a2ebd18e479c267721a3192b0, type: 2}
@@ -3539,6 +3539,14 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 11469282, guid: 9f2748c9970246447a6f9858cb324dd9, type: 2}
+      propertyPath: zombieHazard
+      value: 
+      objectReference: {fileID: 166184, guid: ae006763fce14234db9b73ed10393554, type: 2}
+    - target: {fileID: 11469282, guid: 9f2748c9970246447a6f9858cb324dd9, type: 2}
+      propertyPath: ghostHazard
+      value: 
+      objectReference: {fileID: 131754, guid: 280b6c643e546404e9e80e0774b1aaae, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9f2748c9970246447a6f9858cb324dd9, type: 2}
   m_IsPrefabParent: 0

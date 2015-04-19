@@ -6,6 +6,7 @@ public class EnemyBehavior : MonoBehaviour {
 	public AnimationCurve speedDecay;
 	public Mesh[] AttributeMesh = new Mesh[4];
 	public Identifier identity;
+    public Material transparent;
 	private SpawnController spawner_;
 	private float initialSpeed;
 	~EnemyBehavior()
@@ -16,7 +17,12 @@ public class EnemyBehavior : MonoBehaviour {
 	{
 		identity = ID;
 		Debug.Log ("id = " + ID.ID + " meshid = " + identity.GetMeshID() + " colorid = " + identity.GetColorID());
-		//GetComponent<Renderer>().material.color = ID.Color;
+        if (identity.GetColorID() == 2)
+        {
+            GetComponent<Renderer>().material.color = new Color(1, 1, 1, 0.2f);
+            GetComponent<Renderer>().material = transparent;
+        }
+
 		GetComponent<MeshFilter>().mesh = AttributeMesh[identity.GetMeshID()];
 		//Debug.Log ("Speed = " + speed);
 		GetComponent<Rigidbody> ().velocity = transform.forward * speed; // Random.Range(speedMin, speedMax);
