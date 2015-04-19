@@ -2280,7 +2280,7 @@ ParticleSystem:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 773200113}
-  lengthInSec: 1
+  lengthInSec: .5
   startDelay: 0
   speed: 1
   randomSeed: 0
@@ -2537,7 +2537,7 @@ ParticleSystem:
     enabled: 1
     m_Type: 0
     rate:
-      scalar: 50
+      scalar: 200
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -3682,7 +3682,7 @@ MonoBehaviour:
   fadeTime: .800000012
   waitBetweenWaves: 5
   pointsPerKill: 1
-  enemyGoalMax: 1
+  enemyGoalMax: 1000000
   Override_WaveID: -1
 --- !u!1 &1407218300
 GameObject:
@@ -3888,7 +3888,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!23 &1427530981
 MeshRenderer:
   m_ObjectHideFlags: 0
