@@ -85,7 +85,6 @@ public class PlayerBehavior : MonoBehaviour
             weaponController.Fire(m_identifier);
 
             m_heat = Mathf.Min(m_heatThreshold, m_heat + m_heatPerShot);
-            //m_identifier = Identifier.Invalid;
 
             if (m_heat >= m_heatThreshold)
                 EnterState(State.Overheating);
