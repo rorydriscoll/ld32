@@ -3,72 +3,141 @@ using System.Collections;
 
 public class PlayerBehavior : MonoBehaviour
 {
-    public float chargeDuration = 1;
+    enum State
+    {
+        Idle,
+        Charging,
+        Reloading,
+        Overheating
+    }
+
+    public float m_chargeTime = 1;              // Time it takes to charge a shot
+
+    public float m_heatDissipationRate = 0.1f;  // Heat lost per second
+    public float m_heatPerShot = 1.0f;          // Heat added per shot
+    public float m_heatThreshold = 10.0f;       // Threshold at which the weapon will be overheated
+
+    public float m_reloadTime = 0.5f;           // Time it takes to reload the weapon
+    public float m_overheatTime = 3.0f;         // Time it takes for the weapon to cool down after overheat
+
     public WeaponController weaponController;
     public GameObject mainCamera;
 
-    private bool charging;
-    private float charge;
-    private Identifier identifier = Identifier.Invalid;
+    private State m_mode = State.Idle;
+    private float m_heat;
+    private float m_timer;
+    private Identifier m_identifier = Identifier.Invalid;
 
     void Update()
     {
+        m_timer += Time.deltaTime;
+
+        UpdateHeat();
         UpdateIdentifier();
 
-        if (!charging && identifier.IsValid)
-            charging = true;
-
-        if (charging && !identifier.IsValid)
-            charging = false;
-
-        if (charging)
+        switch (m_mode)
         {
-            charge += Time.deltaTime / chargeDuration;
+            case State.Idle:
+                UpdateIdle();
+                break;
 
-            float frequency = 100;
-            float amplitude = charge * 5;
+            case State.Charging:
+                UpdateCharging();
+                break;
 
-            mainCamera.transform.rotation *= Quaternion.AngleAxis(Mathf.Sin(charge * frequency) * amplitude, new Vector3(0, 0, 1));
+            case State.Reloading:
+                UpdateReloading();
+                break;
 
-            if (charge >= 1)
-            {
-                FireShot();
-                charging = false;
-                charge = 0;
-                identifier.l = identifier.r = 0;
-            }
+            case State.Overheating:
+                UpdateOverheating();
+                break;
         }
-        else
-            charge = 0;
     }
 
-    void FireShot()
+    void EnterState(State mode)
     {
-        weaponController.Fire(identifier);
+        m_timer = 0;
+        m_mode = mode;
+    }
 
-        mainCamera.transform.rotation = Quaternion.Euler(35.56804f, 346.827f, 355.7559f);
+    void UpdateIdle()
+    {
+        if (m_identifier.IsValid)
+            EnterState(State.Charging);
+    }
+
+    void UpdateCharging()
+    {
+        if (!m_identifier.IsValid)
+        {
+            EnterState(State.Idle);
+            return;
+        }
+
+        float frequency = 100;
+        float amplitude = m_timer * 5;
+
+        mainCamera.transform.rotation *= Quaternion.AngleAxis(Mathf.Sin(m_timer * frequency) * amplitude, new Vector3(0, 0, 1));
+
+        if (m_timer >= m_chargeTime)
+        {
+            weaponController.Fire(m_identifier);
+
+            m_heat = Mathf.Min(m_heatThreshold, m_heat + m_heatPerShot);
+            //m_identifier = Identifier.Invalid;
+
+            if (m_heat >= m_heatThreshold)
+                EnterState(State.Overheating);
+            else
+                EnterState(State.Reloading);
+
+            mainCamera.transform.rotation = Quaternion.Euler(35.56804f, 346.827f, 355.7559f);
+        }
+    }
+
+    void UpdateReloading()
+    {
+        if (m_timer >= m_reloadTime)
+            EnterState(State.Idle);
+    }
+
+    void UpdateOverheating()
+    {
+        if (m_timer >= m_overheatTime)
+        {
+            m_heat = m_heatThreshold * 0.5f;
+            EnterState(State.Reloading);
+        }
+    }
+
+    private void UpdateHeat()
+    {
+        m_heat = Mathf.Max(0.0f, m_heat - Time.deltaTime * m_heatDissipationRate);
+
+        Debug.Log(m_heat);
     }
 
     private void UpdateIdentifier()
     {
         if (!Input.GetButton("L1") && !Input.GetButton("L2") && !Input.GetButton("L3"))
-            identifier.l = -1;
+            m_identifier.l = -1;
 
         if (!Input.GetButton("R1") && !Input.GetButton("R2") && !Input.GetButton("R3"))
-            identifier.r = -1;
+            m_identifier.r = -1;
 
         if (Input.GetButtonDown("L1"))
-            identifier.l = 0;
+            m_identifier.l = 0;
         if (Input.GetButtonDown("L2"))
-            identifier.l = 1;
+            m_identifier.l = 1;
         if (Input.GetButtonDown("L3"))
-            identifier.l = 2;
+            m_identifier.l = 2;
 
         if (Input.GetButtonDown("R1"))
-            identifier.r = 0;
+            m_identifier.r = 0;
         if (Input.GetButtonDown("R2"))
-            identifier.r = 1;
+            m_identifier.r = 1;
         if (Input.GetButtonDown("R3"))
-            identifier.r = 2;
+            m_identifier.r = 2;
     }
 }

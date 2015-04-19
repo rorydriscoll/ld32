@@ -1306,6 +1306,26 @@ Prefab:
       propertyPath: mainCamera
       value: 
       objectReference: {fileID: 1891343794}
+    - target: {fileID: 11415294, guid: 8945ea85475926344a67295f933f4894, type: 2}
+      propertyPath: m_recoveryTimeDecayRate
+      value: .200000003
+      objectReference: {fileID: 0}
+    - target: {fileID: 11415294, guid: 8945ea85475926344a67295f933f4894, type: 2}
+      propertyPath: m_heatPerShot
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11415294, guid: 8945ea85475926344a67295f933f4894, type: 2}
+      propertyPath: m_overheatTime
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 11415294, guid: 8945ea85475926344a67295f933f4894, type: 2}
+      propertyPath: m_heatThreshold
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 11415294, guid: 8945ea85475926344a67295f933f4894, type: 2}
+      propertyPath: m_heatDissipationRate
+      value: .5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8945ea85475926344a67295f933f4894, type: 2}
   m_IsPrefabParent: 0
