@@ -1251,7 +1251,7 @@ Transform:
   m_GameObject: {fileID: 930101035}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 30, z: 4.48999977}
-  m_LocalScale: {x: 8, y: 1, z: 19.9599991}
+  m_LocalScale: {x: 8, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1526743974}
   m_RootOrder: 2
@@ -1339,7 +1339,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1063789613}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: .0299999993, y: -.0599999987, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 727826503}
@@ -1555,14 +1555,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_chargeTime: 0
-  m_heatDissipationRate: 1
+  m_heatDissipationRate: 1.5
   m_heatPerShot: 1
   m_heatThreshold: 3
   m_reloadTime: 0
   m_overheatTime: 2
   weaponController: {fileID: 930101036}
   mainCamera: {fileID: 1891343794}
-  chargeSound: {fileID: 8300000, guid: 58775f598f9d2064a904707741e51ab9, type: 3}
+  chargeSounds:
+  - {fileID: 8300000, guid: 523baa8a57c771840889898ef7703023, type: 3}
+  - {fileID: 8300000, guid: a1533af643159d44592a2a228f9081c8, type: 3}
+  - {fileID: 8300000, guid: 1ce4ab76eb54721458f1298dde51647e, type: 3}
+  - {fileID: 8300000, guid: 610dae200365fb4459bac65d3ac85170, type: 3}
+  - {fileID: 8300000, guid: c36b96cab556201429cfef6bfe90308e, type: 3}
+  - {fileID: 8300000, guid: 6b02443057f4c514cae5dd88c4fea223, type: 3}
 --- !u!114 &1388726845
 MonoBehaviour:
   m_ObjectHideFlags: 0

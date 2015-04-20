@@ -57,7 +57,6 @@ public class PlayerBehavior : MonoBehaviour
 
         UpdateHeat();
         UpdateIdentifier();
-		Debug.Log ("mode = " + m_mode);
         switch (m_mode)
         {
             case State.Idle:
@@ -170,6 +169,5 @@ public class PlayerBehavior : MonoBehaviour
             m_identifier.r = 1;
         if (Input.GetButtonDown("R3"))
             m_identifier.r = 2;
-		Debug.Log ("Update ident = " + m_identifier.ID);
     }
 }
