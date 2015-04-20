@@ -15,7 +15,7 @@ public class BombBehavior : MonoBehaviour
 
     void Start()
     {
-        m_ttl = Random.Range(1.0f, 3.0f);
+        m_ttl = 10;
 
         if (deploySound)
         {
@@ -86,6 +86,8 @@ public class BombBehavior : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
+        m_ttl = Random.Range(0.1f, 0.5f);
+
         if (hitSounds.Length > 0)
         {
             GetComponent<AudioSource>().pitch = Random.Range(0.8f, 1.2f);
