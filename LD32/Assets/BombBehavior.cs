@@ -4,6 +4,7 @@ using System.Collections;
 public class BombBehavior : MonoBehaviour
 {
     public float radius = 10.0f;
+    public Mesh[] variations;
 
     private float m_ttl;
     private Identifier m_identifier;
@@ -11,6 +12,9 @@ public class BombBehavior : MonoBehaviour
     void Start()
     {
         m_ttl = Random.Range(1.0f, 2.0f);
+
+        if (variations.Length > 0)
+            GetComponent<MeshFilter>().mesh = variations[Random.Range(0, variations.Length - 1)];
     }
 
     void SetIdentifier(object o)
