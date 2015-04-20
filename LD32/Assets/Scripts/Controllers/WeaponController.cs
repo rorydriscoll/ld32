@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using UnityEditor;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -29,6 +28,9 @@ public class WeaponController : MonoBehaviour
     
     public void Fire(Identifier identifier)
 	{
+        if (!gameController.CanFireWeapon())
+            return;
+
         float dx = Random.Range(-transform.localScale.x, transform.localScale.x) * 0.5f;
 
         GameObject go = GameObject.Instantiate<GameObject>(bomb);
