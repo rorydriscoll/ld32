@@ -71,7 +71,7 @@ Rigidbody:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 172194}
   serializedVersion: 2
-  m_Mass: 1
+  m_Mass: 8
   m_Drag: 0
   m_AngularDrag: .0500000007
   m_UseGravity: 1
@@ -171,7 +171,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77d7b88f2a0bace4d85cf68e27a7cf84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radius: 13
+  radius: 15
   variations:
   - {fileID: 4300000, guid: dc480b0644d892d4bb64e53e58888805, type: 3}
   - {fileID: 4300000, guid: 81ac70c7a11e97746844230a6a82565d, type: 3}
