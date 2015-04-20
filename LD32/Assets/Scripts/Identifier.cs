@@ -38,7 +38,7 @@ public struct Identifier
 	{
 		get
 		{
-			return l * kNumCreatures + r;
+            return l * kNumUndead + r;
 		}
 		set
 		{

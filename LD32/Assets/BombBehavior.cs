@@ -13,14 +13,12 @@ public class BombBehavior : MonoBehaviour
     void Start()
     {
         m_ttl = Random.Range(1.0f, 2.0f);
-
-        if (variations.Length > 0)
-            GetComponent<MeshFilter>().mesh = variations[Random.Range(0, variations.Length - 1)];
     }
 
     void SetIdentifier(object o)
     {
         m_identifier = (Identifier)o;
+        GetComponent<MeshFilter>().mesh = variations[m_identifier.ID];
     }
 
     void Update()
