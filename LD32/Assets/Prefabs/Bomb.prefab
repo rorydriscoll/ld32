@@ -171,7 +171,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77d7b88f2a0bace4d85cf68e27a7cf84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radius: 10
+  radius: 13
   variations:
   - {fileID: 4300000, guid: dc480b0644d892d4bb64e53e58888805, type: 3}
   - {fileID: 4300000, guid: 81ac70c7a11e97746844230a6a82565d, type: 3}
@@ -191,7 +191,10 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 482766579c53848469201f229d355611, type: 3}
   - {fileID: 8300000, guid: e38e70304210a90458f7ca55964b8ffd, type: 3}
   explodeSounds:
-  - {fileID: 8300000, guid: abea77a7848c5a7488bf7c40d26b0d49, type: 3}
+  - {fileID: 8300000, guid: addfbd5300524b648b9cfd9606e66423, type: 3}
+  - {fileID: 8300000, guid: 8b65febde39845b43bd2df7cf55527fc, type: 3}
+  - {fileID: 8300000, guid: 13f5a3750af26be49bc8724e8f3a3d3e, type: 3}
+  - {fileID: 8300000, guid: 796c56ac027f5d745ac353fd6ac8879c, type: 3}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

@@ -22,7 +22,7 @@ public class PlayerBehavior : MonoBehaviour
 
     public WeaponController weaponController;
     public GameObject mainCamera;
-    public AudioClip chargeSound;
+    public AudioClip[] chargeSounds;
 
     private State m_mode = State.Idle;
     private float m_heat;
@@ -31,6 +31,7 @@ public class PlayerBehavior : MonoBehaviour
     private Vector3 m_cameraPosition;
     private Quaternion m_cameraRotation;
 	private GameController gameController;
+
     void Start()
     {
 		Debug.Log ("Player Behavior start");
@@ -56,7 +57,6 @@ public class PlayerBehavior : MonoBehaviour
 
         UpdateHeat();
         UpdateIdentifier();
-		Debug.Log ("mode = " + m_mode);
         switch (m_mode)
         {
             case State.Idle:
@@ -87,8 +87,11 @@ public class PlayerBehavior : MonoBehaviour
     {
         if (m_identifier.IsValid)
         {
-            GetComponent<AudioSource>().pitch = 0.9f + m_identifier.ID * 0.03f;
-            GetComponent<AudioSource>().PlayOneShot(chargeSound);
+            if (chargeSounds.Length > 0)
+            {
+                //GetComponent<AudioSource>().PlayOneShot(chargeSounds[Random.Range(0, chargeSounds.Length - 1)]);
+                GetComponent<AudioSource>().PlayOneShot(chargeSounds[m_identifier.ID]);
+            }
 
             EnterState(State.Charging);
         }
@@ -120,6 +123,8 @@ public class PlayerBehavior : MonoBehaviour
 
             mainCamera.transform.rotation = m_cameraRotation;
             mainCamera.transform.position = m_cameraPosition;
+
+            m_identifier = Identifier.Invalid;
         }
     }
 
@@ -164,6 +169,5 @@ public class PlayerBehavior : MonoBehaviour
             m_identifier.r = 1;
         if (Input.GetButtonDown("R3"))
             m_identifier.r = 2;
-		Debug.Log ("Update ident = " + m_identifier.ID);
     }
 }
