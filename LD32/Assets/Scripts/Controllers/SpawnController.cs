@@ -3,31 +3,49 @@ using System.Collections;
 using System.Collections.Generic;
 
 [System.Serializable]
-public class WaveTypes
+public struct RandomInRange
+{
+    // Inclusive!
+
+    public int min;
+    public int max;
+
+    public int Value
+    {
+        get { return Random.Range(min, max + 1); }
+    }
+}
+
+[System.Serializable]
+public class Wave
 {
     public int[] types;
+
+    public RandomInRange groupsPerWave;
+    public RandomInRange enemiesPerGroup;
 }
 
 public class SpawnController : MonoBehaviour
 {
-    public AnimationCurve hazardCountCurve;
-    public AnimationCurve spawnSpeedCurve;
+    public AnimationCurve spawnDelayCurve;
+    public AnimationCurve groupDelayCurve;
     public AnimationCurve moveSpeedCurve;
-    public WaveTypes[] waveTypes;
-    public AnimationCurve groupCountCurve;
-    public AnimationCurve groupSpawnSpeed;
+    public Wave[] waves;
     public GameObject spawnObject;
     public int spawnCount = 0;
     public int currentWaveID = 1;
     public bool isActive = false;
 
     // private
-    private int numPerGroup;
     private GameController gameController;
-    private float speed;
-    private float spawnSpeed_;
-    private int groupCount;
-    private float groupSpawnWait;
+    private float moveSpeed;
+    private float spawnDelay;
+    private float groupDelay;
+
+    private Wave CurrentWave
+    {
+        get { return waves[Mathf.Min(currentWaveID, waves.Length - 1)]; }
+    }
 
     void OnDrawGizmos()
     {
@@ -44,23 +62,23 @@ public class SpawnController : MonoBehaviour
         else
             Debug.Log("Spawn controller cannot find GameController!");
     }
+
     Identifier PickType()
     {
-        WaveTypes available = waveTypes[Mathf.Min(currentWaveID, waveTypes.Length - 1)];
-
-        int typeID = Mathf.Clamp(available.types[Random.Range(0, available.types.Length)], 0, Identifier.kNumPermutations - 1);
+        int typeID = Mathf.Clamp(CurrentWave.types[Random.Range(0, CurrentWave.types.Length)], 0, Identifier.kNumPermutations - 1);
 
         return new Identifier(typeID);
     }
+
     void SpawnHazard(GameObject obj)
     {
         Vector3 spawnPos = transform.position + new Vector3(Random.Range(-transform.localScale.x * 0.5f, transform.localScale.x * 0.5f), 0, 0);
         GameObject enemyObject = Instantiate(obj, spawnPos, transform.rotation) as GameObject;
 
         if (enemyObject.GetComponent<EnemyBehavior>())
-            enemyObject.GetComponent<EnemyBehavior>().SetTypeSpeedAndController(PickType(), speed, this, gameController);
+            enemyObject.GetComponent<EnemyBehavior>().SetTypeSpeedAndController(PickType(), moveSpeed, this, gameController);
         if (enemyObject.GetComponent<FriendlyBehavior>())
-            enemyObject.GetComponent<FriendlyBehavior>().SetTypeSpeedAndController(PickType(), speed, this, gameController);
+            enemyObject.GetComponent<FriendlyBehavior>().SetTypeSpeedAndController(PickType(), moveSpeed, this, gameController);
         //Debug.Log ("enemyObject = " + enemyObject.transform.position);
         ++spawnCount;
         Debug.Log("Active spawn enemy count=" + spawnCount);
@@ -71,33 +89,26 @@ public class SpawnController : MonoBehaviour
 
     }
     // count to spawn in the wave and the number of enemey types
-    public void KickWave(int count, float moveSpeed, float spawnSpeed)
+    private void KickWave(float moveSpeed, float spawnSpeed)
     {
-        numPerGroup = count;
-        speed = moveSpeed;
-        spawnSpeed_ = spawnSpeed;
 
-        StartCoroutine(SpawnMain());
     }
     public void KickWave(int waveID)
     {
         isActive = true;
         currentWaveID = waveID;
-        int numHazards = (int)hazardCountCurve.Evaluate(waveID);
-        float speed = moveSpeedCurve.Evaluate(waveID);
-        float spawnSpeed = spawnSpeedCurve.Evaluate(waveID);
-        groupCount = (int)groupCountCurve.Evaluate(waveID);
-        groupSpawnWait = groupSpawnSpeed.Evaluate(waveID);
-        Debug.Log("Kick Wave #" + waveID + " Enemies= " + numHazards + " speed = "
-                   + speed + " spawnSpeed = " + spawnSpeed + " groupCount=" + groupCount + " GroupDelay=" + groupSpawnWait);
+        groupDelay = groupDelayCurve.Evaluate(waveID);
+        spawnDelay = spawnDelayCurve.Evaluate(waveID);
+        moveSpeed = moveSpeedCurve.Evaluate(waveID);
 
-        KickWave(numHazards, speed, spawnSpeed);
+        StartCoroutine(SpawnMain());
     }
     public void SetPlayerDead()
     {
         if (!gameController.IsGameOver())
             gameController.SetGameOver();
     }
+
     public bool IsPlayerDead()
     {
         return gameController.IsGameOver();
@@ -105,20 +116,24 @@ public class SpawnController : MonoBehaviour
 
     IEnumerator SpawnMain()
     {
-        Debug.Log("***** Spawn started, num groups=" + groupCount + " num per group = " + numPerGroup + " total to spawn this wave = " + groupCount * numPerGroup);
-        for (int i = 0; i < groupCount && !gameController.IsGameOver(); i++)
+        int groupsPerWave = CurrentWave.groupsPerWave.Value;
+        int enemiesPerGroup = CurrentWave.enemiesPerGroup.Value;
+
+        Debug.Log("Wave " + currentWaveID + ": " + groupsPerWave + " groups with " + enemiesPerGroup + " enemies per group");
+
+        for (int i = 0; i < groupsPerWave && !gameController.IsGameOver(); i++)
         {
             // group delay
             if (i != 0)
-                yield return new WaitForSeconds(groupSpawnWait);
+                yield return new WaitForSeconds(Random.Range(groupDelay * 0.8f, groupDelay * 1.2f));
             // spawn group
-            Debug.Log("Wave " + currentWaveID + " Spawn Group idx " + i + " count=" + groupCount);
-            for (int j = 0; j < numPerGroup && !gameController.IsGameOver(); j++)
+            Debug.Log("Wave " + currentWaveID + " Spawn Group idx " + i + " count=" + groupsPerWave);
+            for (int j = 0; j < enemiesPerGroup && !gameController.IsGameOver(); j++)
             {
                 SpawnHazard(spawnObject);
-                yield return new WaitForSeconds(spawnSpeed_);
+                yield return new WaitForSeconds(Random.Range(spawnDelay * 0.8f, spawnDelay * 1.2f));
             }
-            Debug.Log("Wave " + currentWaveID + " Done Spawn Group idx " + i + " count=" + groupCount);
+            Debug.Log("Wave " + currentWaveID + " Done Spawn Group idx " + i + " count=" + groupsPerWave);
         }
         Debug.Log("***** Wave " + currentWaveID + " DONE *****");
         isActive = false;
