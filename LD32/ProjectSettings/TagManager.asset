@@ -10,6 +10,8 @@ TagManager:
   - GameOverText
   - ScoreText
   - PuffySmoke
+  - GameOverTextDropShad
+  - ScoreTextDropShadow
   layers:
   - Default
   - TransparentFX
