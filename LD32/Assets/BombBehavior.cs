@@ -15,7 +15,7 @@ public class BombBehavior : MonoBehaviour
 
     void Start()
     {
-        m_ttl = Random.Range(1.0f, 2.0f);
+        m_ttl = Random.Range(1.0f, 3.0f);
 
         if (deploySound)
         {
