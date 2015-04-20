@@ -1,14 +1,19 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
+[System.Serializable]
+public class WaveTypes
+{
+    public int[] types;
+}
 
 public class SpawnController : MonoBehaviour
 {
-
     public AnimationCurve hazardCountCurve;
     public AnimationCurve spawnSpeedCurve;
     public AnimationCurve moveSpeedCurve;
-    public AnimationCurve typeCountCurve;
+    public WaveTypes[] waveTypes;
     public AnimationCurve groupCountCurve;
     public AnimationCurve groupSpawnSpeed;
     public GameObject spawnObject;
@@ -18,7 +23,6 @@ public class SpawnController : MonoBehaviour
 
     // private
     private int numPerGroup;
-    private int numHazardTypes;
     private GameController gameController;
     private float speed;
     private float spawnSpeed_;
@@ -42,10 +46,10 @@ public class SpawnController : MonoBehaviour
     }
     Identifier PickType()
     {
-        /*
-         * 	XXX - Temporary WIP
-         */
-        int typeID = Random.Range(0, numHazardTypes);
+        WaveTypes available = waveTypes[Mathf.Min(currentWaveID, waveTypes.Length - 1)];
+
+        int typeID = Mathf.Clamp(available.types[Random.Range(0, available.types.Length)], 0, Identifier.kNumPermutations - 1);
+
         return new Identifier(typeID);
     }
     void SpawnHazard(GameObject obj)
@@ -67,12 +71,9 @@ public class SpawnController : MonoBehaviour
 
     }
     // count to spawn in the wave and the number of enemey types
-    public void KickWave(int count, int numTypes, float moveSpeed, float spawnSpeed)
+    public void KickWave(int count, float moveSpeed, float spawnSpeed)
     {
-        if (numTypes > Identifier.kNumPermutations)
-            numTypes = Identifier.kNumPermutations;
         numPerGroup = count;
-        numHazardTypes = numTypes;
         speed = moveSpeed;
         spawnSpeed_ = spawnSpeed;
 
@@ -83,15 +84,14 @@ public class SpawnController : MonoBehaviour
         isActive = true;
         currentWaveID = waveID;
         int numHazards = (int)hazardCountCurve.Evaluate(waveID);
-        int numTypes = (int)typeCountCurve.Evaluate(waveID);
         float speed = moveSpeedCurve.Evaluate(waveID);
         float spawnSpeed = spawnSpeedCurve.Evaluate(waveID);
         groupCount = (int)groupCountCurve.Evaluate(waveID);
         groupSpawnWait = groupSpawnSpeed.Evaluate(waveID);
-        Debug.Log("Kick Wave #" + waveID + " Enemies= " + numHazards + " typePerGroup=" + numTypes + " speed = "
+        Debug.Log("Kick Wave #" + waveID + " Enemies= " + numHazards + " speed = "
                    + speed + " spawnSpeed = " + spawnSpeed + " groupCount=" + groupCount + " GroupDelay=" + groupSpawnWait);
 
-        KickWave(numHazards, numTypes, speed, spawnSpeed);
+        KickWave(numHazards, speed, spawnSpeed);
     }
     public void SetPlayerDead()
     {
