@@ -64,7 +64,6 @@ public class BombBehavior : MonoBehaviour
             {
                 fragment.GetComponent<AudioSource>().pitch = Random.Range(0.9f, 1.1f);
                 int index = Random.Range(0, explodeSounds.Length);
-                Debug.Log("Explode " + index);
                 fragment.GetComponent<AudioSource>().PlayOneShot(explodeSounds[index]);
             }
 
@@ -88,7 +87,8 @@ public class BombBehavior : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
-        m_ttl = Random.Range(0.5f, 1.0f);
+        if (m_ttl > 1.0f)
+            m_ttl = Random.Range(0.5f, 1.0f);
 
         if (hitSounds.Length > 0)
         {

@@ -100,7 +100,7 @@ public class EnemyBehavior : MonoBehaviour
 
         Identifier projectileIdentifier = damage.identifier;
         bool killed = projectileIdentifier.r == identity.r && projectileIdentifier.l == identity.l;
-        Debug.Log("I GOT HIT BY " + projectileIdentifier.l + ", " + projectileIdentifier.r + " (" + projectileIdentifier.ID + ") killed=" + killed);
+
         if (killed)
         {
             dead = true;

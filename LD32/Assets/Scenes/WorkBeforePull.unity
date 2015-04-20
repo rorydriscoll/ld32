@@ -787,110 +787,59 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67e89da119ba015458002cafd4c5ce4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hazardCountCurve:
+  spawnDelayCurve:
     serializedVersion: 2
     m_Curve:
-    - time: .0576580018
-      value: 1.62275124
+    - time: 0
+      value: .997910798
       inSlope: 0
       outSlope: 0
       tangentMode: 0
-    - time: 2.22492743
-      value: 2.864151
+    - time: 1
+      value: .997910798
       inSlope: 0
       outSlope: 0
-      tangentMode: 0
-    - time: 3.55598879
-      value: 7.19752884
-      inSlope: -1.03355432
-      outSlope: -1.03355432
-      tangentMode: 0
-    - time: 5.48296118
-      value: 10.2808876
-      inSlope: -.866508126
-      outSlope: -.866508126
-      tangentMode: 0
-    - time: 8.76728535
-      value: 16.2809563
-      inSlope: -.889240444
-      outSlope: -.889240444
-      tangentMode: 0
-    - time: 14.9240732
-      value: 46.4323997
-      inSlope: .69178623
-      outSlope: .69178623
-      tangentMode: 0
-    - time: 15.2186298
-      value: 46.5228119
-      inSlope: -1.3020314
-      outSlope: -1.3020314
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-  spawnSpeedCurve:
+  groupDelayCurve:
     serializedVersion: 2
     m_Curve:
-    - time: -.0367008671
-      value: 1.01301956
-      inSlope: -.142503023
-      outSlope: -.142503023
+    - time: 0
+      value: 4.92771387
+      inSlope: 0
+      outSlope: 0
       tangentMode: 0
-    - time: 15.9679995
-      value: .613775253
-      inSlope: -.0895392969
-      outSlope: -.0895392969
+    - time: 1
+      value: 4.92771387
+      inSlope: 0
+      outSlope: 0
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
   moveSpeedCurve:
     serializedVersion: 2
     m_Curve:
-    - time: .0583443791
-      value: 9.9622221
-      inSlope: -.088470608
-      outSlope: -.088470608
-      tangentMode: 0
-    - time: 15.0381813
-      value: 14.9566946
-      inSlope: -.0383409709
-      outSlope: -.0383409709
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-  waveTypes:
-  - types: 00000000
-  - types: 0200000000000000
-  - types: 040000000200000000000000
-  groupCountCurve:
-    serializedVersion: 2
-    m_Curve:
     - time: 0
-      value: 5.5
-      inSlope: 1.94881475
-      outSlope: 1.94881475
-      tangentMode: 0
-    - time: 15
-      value: 10
-      inSlope: 2
-      outSlope: 2
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-  groupSpawnSpeed:
-    serializedVersion: 2
-    m_Curve:
-    - time: 0
-      value: 3.64165831
+      value: 10.0464325
       inSlope: 0
       outSlope: 0
       tangentMode: 0
-    - time: 19.7350006
-      value: 2.07214808
-      inSlope: .0578417666
-      outSlope: .0578417666
+    - time: 1
+      value: 10.0464325
+      inSlope: 0
+      outSlope: 0
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
+  waves:
+  - types: 000000000200000004000000
+    groupsPerWave:
+      min: 3
+      max: 6
+    enemiesPerGroup:
+      min: 1
+      max: 6
   spawnObject: {fileID: 138510, guid: 6bc29f38bb7c6d94a8587158047ad9bc, type: 2}
   spawnCount: 0
   currentWaveID: 1
@@ -1639,58 +1588,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67e89da119ba015458002cafd4c5ce4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hazardCountCurve:
+  spawnDelayCurve:
     serializedVersion: 2
     m_Curve:
-    - time: .0576580018
-      value: 1.62275124
-      inSlope: 0
-      outSlope: 0
+    - time: .0240121782
+      value: 1.00345993
+      inSlope: -.0503595471
+      outSlope: -.0503595471
       tangentMode: 0
-    - time: 2.22492743
-      value: 2.864151
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    - time: 3.55598879
-      value: 7.19752884
-      inSlope: -1.03355432
-      outSlope: -1.03355432
-      tangentMode: 0
-    - time: 5.48296118
-      value: 10.2808876
-      inSlope: -.866508126
-      outSlope: -.866508126
-      tangentMode: 0
-    - time: 8.76728535
-      value: 16.2809563
-      inSlope: -.889240444
-      outSlope: -.889240444
-      tangentMode: 0
-    - time: 14.9240732
-      value: 46.4323997
-      inSlope: .69178623
-      outSlope: .69178623
-      tangentMode: 0
-    - time: 15.2186298
-      value: 46.5228119
-      inSlope: -1.3020314
-      outSlope: -1.3020314
+    - time: 25.0072613
+      value: .200692236
+      inSlope: -.00147820392
+      outSlope: -.00147820392
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-  spawnSpeedCurve:
+  groupDelayCurve:
     serializedVersion: 2
     m_Curve:
-    - time: -.0367008671
-      value: 1.01301956
-      inSlope: -.142503023
-      outSlope: -.142503023
+    - time: .0256624073
+      value: 3.00440955
+      inSlope: -.118157193
+      outSlope: -.118157193
       tangentMode: 0
-    - time: 15.9679995
-      value: .613775253
-      inSlope: -.0895392969
-      outSlope: -.0895392969
+    - time: 25.0200119
+      value: .492296576
+      inSlope: -.0418318436
+      outSlope: -.0418318436
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
@@ -1699,63 +1623,129 @@ MonoBehaviour:
     m_Curve:
     - time: .0583443791
       value: 9.9622221
-      inSlope: -.088470608
-      outSlope: -.088470608
+      inSlope: .170643196
+      outSlope: .170643196
       tangentMode: 0
-    - time: 15.0381813
-      value: 14.9566946
-      inSlope: -.0383409709
-      outSlope: -.0383409709
+    - time: 24.9640026
+      value: 19.9826794
+      inSlope: .51312083
+      outSlope: .51312083
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-  waveTypes:
+  waves:
   - types: 00000000
+    groupsPerWave:
+      min: 1
+      max: 1
+    enemiesPerGroup:
+      min: 1
+      max: 3
   - types: 02000000
+    groupsPerWave:
+      min: 1
+      max: 1
+    enemiesPerGroup:
+      min: 1
+      max: 3
   - types: 04000000
+    groupsPerWave:
+      min: 1
+      max: 1
+    enemiesPerGroup:
+      min: 1
+      max: 3
   - types: 0000000002000000
+    groupsPerWave:
+      min: 1
+      max: 2
+    enemiesPerGroup:
+      min: 2
+      max: 4
   - types: 0200000004000000
+    groupsPerWave:
+      min: 1
+      max: 2
+    enemiesPerGroup:
+      min: 2
+      max: 4
   - types: 0000000004000000
+    groupsPerWave:
+      min: 1
+      max: 2
+    enemiesPerGroup:
+      min: 2
+      max: 4
   - types: 000000000200000004000000
+    groupsPerWave:
+      min: 2
+      max: 4
+    enemiesPerGroup:
+      min: 5
+      max: 10
   - types: 01000000
+    groupsPerWave:
+      min: 1
+      max: 1
+    enemiesPerGroup:
+      min: 3
+      max: 6
   - types: 03000000
+    groupsPerWave:
+      min: 1
+      max: 1
+    enemiesPerGroup:
+      min: 3
+      max: 6
   - types: 05000000
-  - types: 010000000300000004000000
+    groupsPerWave:
+      min: 1
+      max: 1
+    enemiesPerGroup:
+      min: 3
+      max: 6
+  - types: 010000000300000005000000
+    groupsPerWave:
+      min: 2
+      max: 4
+    enemiesPerGroup:
+      min: 5
+      max: 10
   - types: 00000000010000000200000003000000
-  - types: 02000000030000000400000005000000
-  - types: 00000000020000000400000005000000
+    groupsPerWave:
+      min: 1
+      max: 3
+    enemiesPerGroup:
+      min: 4
+      max: 12
+  - types: 00000000030000000400000005000000
+    groupsPerWave:
+      min: 1
+      max: 3
+    enemiesPerGroup:
+      min: 4
+      max: 12
+  - types: 01000000020000000400000005000000
+    groupsPerWave:
+      min: 1
+      max: 3
+    enemiesPerGroup:
+      min: 4
+      max: 12
   - types: 01000000020000000300000005000000
+    groupsPerWave:
+      min: 1
+      max: 3
+    enemiesPerGroup:
+      min: 4
+      max: 12
   - types: 000000000100000002000000030000000400000005000000
-  groupCountCurve:
-    serializedVersion: 2
-    m_Curve:
-    - time: 0
-      value: 5.5
-      inSlope: 1.94881475
-      outSlope: 1.94881475
-      tangentMode: 0
-    - time: 15
-      value: 10
-      inSlope: 2
-      outSlope: 2
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-  groupSpawnSpeed:
-    serializedVersion: 2
-    m_Curve:
-    - time: 0
-      value: 3.64165831
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    - time: 19.7350006
-      value: 2.07214808
-      inSlope: .0578417666
-      outSlope: .0578417666
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
+    groupsPerWave:
+      min: 3
+      max: 6
+    enemiesPerGroup:
+      min: 6
+      max: 20
   spawnObject: {fileID: 166184, guid: ae006763fce14234db9b73ed10393554, type: 2}
   spawnCount: 0
   currentWaveID: 1
