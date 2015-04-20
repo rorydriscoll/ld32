@@ -58,6 +58,7 @@ public class WeaponController : MonoBehaviour
         go.GetComponent<Transform>().position = transform.position + new Vector3(dx, 0, dz);
         go.GetComponent<Transform>().rotation = Random.rotation;
         go.GetComponent<Rigidbody>().velocity = new Vector3(Random.Range(-2.0f, 2.0f), Random.Range(-20.0f, -30.0f), Random.Range(-2.0f, 2.0f));
+        go.GetComponent<Rigidbody>().angularVelocity = Random.insideUnitSphere * 1000;
 
         go.SendMessage("SetIdentifier", m_identifier);
     }

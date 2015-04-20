@@ -5,6 +5,7 @@ public class BombBehavior : MonoBehaviour
 {
     public float radius = 10.0f;
     public Mesh[] variations;
+    public GameObject fragment;
 
     private float m_ttl;
     private Identifier m_identifier;
@@ -41,9 +42,30 @@ public class BombBehavior : MonoBehaviour
                     hitColliders[i].SendMessage("TakeDamage", damage);
             }
 
+            float offset = 0.5f;
+
+            SpawnFragment(transform.position + new Vector3(-offset, 0, -offset));
+            SpawnFragment(transform.position + new Vector3(-offset, 0, offset));
+            SpawnFragment(transform.position + new Vector3(offset, 0, -offset));
+            SpawnFragment(transform.position + new Vector3(offset, 0, offset));
+            SpawnFragment(transform.position + new Vector3(-offset, 1, -offset));
+            SpawnFragment(transform.position + new Vector3(-offset, 1, offset));
+            SpawnFragment(transform.position + new Vector3(offset, 1, -offset));
+            SpawnFragment(transform.position + new Vector3(offset, 1, offset));
+
             DestroyObject(gameObject);
         }
     }
 
+    void SpawnFragment(Vector3 position)
+    {
+        GameObject go = GameObject.Instantiate<GameObject>(fragment);
 
+        go.GetComponent<Transform>().position = position;
+        go.GetComponent<Transform>().rotation = Random.rotation;
+
+        Vector3 direction = (position - transform.position + Vector3.up).normalized;
+
+        go.GetComponent<Rigidbody>().velocity = direction * 70;
+    }
 }

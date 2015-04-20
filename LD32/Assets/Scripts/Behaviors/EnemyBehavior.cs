@@ -78,7 +78,7 @@ public class EnemyBehavior : MonoBehaviour
         if (transform.position.z < destroyGOPos && !GetComponent<Renderer>().isVisible)
             DestroyObject(gameObject);
 
-        if (!reachedGoal && transform.position.z < 0f)
+        if (!reachedGoal && transform.position.z < goalPos)
         {
             reachedGoal = true;
             gameController.EnemyReachedGoal();
@@ -111,8 +111,8 @@ public class EnemyBehavior : MonoBehaviour
             Vector3 direction = (transform.position - damage.origin).normalized;
 
             body.isKinematic = false;
-            body.AddForce((direction + Vector3.up) * 60, ForceMode.Impulse);
-            body.AddTorque(Random.onUnitSphere * 10000, ForceMode.VelocityChange);
+            body.velocity = (direction + Vector3.up) * 60;
+            body.angularVelocity = Random.onUnitSphere * 2000;
         }
     }
 }
