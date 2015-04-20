@@ -1304,7 +1304,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: b262e7cb2d112964d80461f3a3559481, type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: b262e7cb2d112964d80461f3a3559481, type: 3}
       propertyPath: m_LocalScale.x
@@ -1382,7 +1382,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: b262e7cb2d112964d80461f3a3559481, type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: b262e7cb2d112964d80461f3a3559481, type: 3}
       propertyPath: m_LocalScale.x
@@ -2644,7 +2644,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: b262e7cb2d112964d80461f3a3559481, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: b262e7cb2d112964d80461f3a3559481, type: 3}
       propertyPath: m_LocalScale.x
@@ -2722,7 +2722,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: ab72ed5c63ae1fe46a978903f48adea1, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: ab72ed5c63ae1fe46a978903f48adea1, type: 3}
       propertyPath: m_LocalScale.x
@@ -3024,7 +3024,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2933afd2ee551a245a3e114c716b7783, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageRadius: 5
+  damageRadius: 10
+  explosionEffect: {fileID: 0}
 --- !u!199 &611038365
 ParticleSystemRenderer:
   m_ObjectHideFlags: 0
@@ -3304,7 +3305,7 @@ ParticleSystem:
     enabled: 1
     m_Type: 0
     rate:
-      scalar: 49.7000008
+      scalar: 0
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -4059,7 +4060,7 @@ ParticleSystem:
   CollisionModule:
     enabled: 1
     type: 1
-    plane0: {fileID: 1427530984}
+    plane0: {fileID: 0}
     plane1: {fileID: 0}
     plane2: {fileID: 0}
     plane3: {fileID: 0}
@@ -5485,7 +5486,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: b262e7cb2d112964d80461f3a3559481, type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: b262e7cb2d112964d80461f3a3559481, type: 3}
       propertyPath: m_LocalScale.x
@@ -5554,7 +5555,7 @@ ParticleSystemRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 0
   m_Materials:
-  - {fileID: 2100000, guid: 48258419e29633d48b4d953fb3942f18, type: 2}
+  - {fileID: 2100000, guid: 51cdb79f8789aa7468bd2e234b35465b, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 1
@@ -5576,7 +5577,7 @@ ParticleSystemRenderer:
   m_SortingFudge: 0
   m_NormalDirection: 1
   m_SortMode: 0
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 4300000, guid: fb0c869203e732849809a4b3e0f4ff04, type: 3}
   m_Mesh1: {fileID: 0}
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
@@ -5630,7 +5631,7 @@ ParticleSystem:
         m_PostInfinity: 2
       minMaxState: 0
     startSpeed:
-      scalar: 50
+      scalar: 60
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -5645,13 +5646,13 @@ ParticleSystem:
         serializedVersion: 2
         m_Curve:
         - time: 0
-          value: .319488823
+          value: .666666687
           inSlope: 0
           outSlope: 0
           tangentMode: 0
         m_PreInfinity: 2
         m_PostInfinity: 2
-      minMaxState: 0
+      minMaxState: 3
     startColor:
       maxGradient:
         key0:
@@ -5747,7 +5748,7 @@ ParticleSystem:
         rgba: 4294967295
       minMaxState: 0
     startSize:
-      scalar: .569999993
+      scalar: .100000001
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -5780,7 +5781,7 @@ ParticleSystem:
         m_PostInfinity: 2
       minMaxState: 0
     startRotation:
-      scalar: .17453292
+      scalar: 1.57079625
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -5809,7 +5810,7 @@ ParticleSystem:
     serializedVersion: 2
     enabled: 1
     type: 4
-    radius: 15
+    radius: 9
     angle: 0
     length: 5
     boxX: 1
@@ -5823,7 +5824,7 @@ ParticleSystem:
     enabled: 1
     m_Type: 0
     rate:
-      scalar: 49.7000008
+      scalar: 0
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -6578,16 +6579,16 @@ ParticleSystem:
   CollisionModule:
     enabled: 1
     type: 1
-    plane0: {fileID: 1427530984}
+    plane0: {fileID: 0}
     plane1: {fileID: 0}
     plane2: {fileID: 0}
     plane3: {fileID: 0}
     plane4: {fileID: 0}
     plane5: {fileID: 0}
     dampen: .100000001
-    bounce: .449999988
+    bounce: .100000001
     energyLossOnCollision: 0
-    minKillSpeed: 13.8599997
+    minKillSpeed: -1
     particleRadius: .00999999978
     collidesWith:
       serializedVersion: 2
@@ -6610,7 +6611,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 773200113}
   m_LocalRotation: {x: .707106829, y: 0, z: 0, w: .707106709}
-  m_LocalPosition: {x: 0, y: 10, z: 6.88999987}
+  m_LocalPosition: {x: 0, y: 10, z: .0500000007}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 43934757}
@@ -6627,7 +6628,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2933afd2ee551a245a3e114c716b7783, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageRadius: 5
+  damageRadius: 10
+  explosionEffect: {fileID: 144910, guid: c436271fa7aa38f4c97683627792f0db, type: 2}
 --- !u!1001 &787210278
 Prefab:
   m_ObjectHideFlags: 0
@@ -6665,7 +6667,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: b262e7cb2d112964d80461f3a3559481, type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: b262e7cb2d112964d80461f3a3559481, type: 3}
       propertyPath: m_LocalScale.x
@@ -6743,7 +6745,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: ab72ed5c63ae1fe46a978903f48adea1, type: 3}
       propertyPath: m_RootOrder
-      value: 11
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: ab72ed5c63ae1fe46a978903f48adea1, type: 3}
       propertyPath: m_LocalScale.x
@@ -6801,7 +6803,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2933afd2ee551a245a3e114c716b7783, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageRadius: 5
+  damageRadius: 10
+  explosionEffect: {fileID: 0}
 --- !u!199 &799400680
 ParticleSystemRenderer:
   m_ObjectHideFlags: 0
@@ -7081,7 +7084,7 @@ ParticleSystem:
     enabled: 1
     m_Type: 0
     rate:
-      scalar: 49.7000008
+      scalar: 0
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -7836,7 +7839,7 @@ ParticleSystem:
   CollisionModule:
     enabled: 1
     type: 1
-    plane0: {fileID: 1427530984}
+    plane0: {fileID: 0}
     plane1: {fileID: 0}
     plane2: {fileID: 0}
     plane3: {fileID: 0}
@@ -7901,10 +7904,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa218777a0b1d3042bddbafc974b1679, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fireFx:
-  - {fileID: 773200113}
-  - {fileID: 799400678}
-  - {fileID: 611038362}
+  bomb: {fileID: 172194, guid: e8ad978ea3d84ec41a933f2fac3bacda, type: 2}
 --- !u!4 &930101037
 Transform:
   m_ObjectHideFlags: 0
@@ -7912,8 +7912,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 930101035}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.69467926, y: -2.50137711, z: 7.53174305}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 10, z: 4.48999977}
+  m_LocalScale: {x: 12.6700001, y: 1, z: 19.9599991}
   m_Children: []
   m_Father: {fileID: 1526743974}
   m_RootOrder: 2
@@ -7958,7 +7958,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400006, guid: f7c30a0f54e7ad949a64a248fac75114, type: 3}
       propertyPath: m_RootOrder
-      value: 9
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 100006, guid: f7c30a0f54e7ad949a64a248fac75114, type: 3}
       propertyPath: m_Name
@@ -8097,7 +8097,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400006, guid: f7c30a0f54e7ad949a64a248fac75114, type: 3}
       propertyPath: m_RootOrder
-      value: 10
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 100006, guid: f7c30a0f54e7ad949a64a248fac75114, type: 3}
       propertyPath: m_Name
@@ -8215,7 +8215,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3af5a593d1cac84c9711318cb06d188, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_chargeTime: 1
+  m_chargeTime: .5
   m_heatDissipationRate: .5
   m_heatPerShot: 1
   m_heatThreshold: 1.5
@@ -8430,79 +8430,6 @@ MonoBehaviour:
 Transform:
   m_PrefabParentObject: {fileID: 400002, guid: b262e7cb2d112964d80461f3a3559481, type: 3}
   m_PrefabInternal: {fileID: 787210278}
---- !u!1 &1427530980
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 1427530984}
-  - 33: {fileID: 1427530983}
-  - 64: {fileID: 1427530982}
-  - 23: {fileID: 1427530981}
-  m_Layer: 0
-  m_Name: Ground
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4294967295
-  m_IsActive: 0
---- !u!23 &1427530981
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1427530980}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_Materials:
-  - {fileID: 2100000, guid: 6fd48f5c7ae11f24da13277449ea194c, type: 2}
-  m_SubsetIndices: 
-  m_StaticBatchRoot: {fileID: 0}
-  m_UseLightProbes: 1
-  m_ReflectionProbeUsage: 1
-  m_ProbeAnchor: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_PreserveUVs: 1
-  m_ImportantGI: 0
-  m_AutoUVMaxDistance: .5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingOrder: 0
---- !u!64 &1427530982
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1427530980}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Convex: 0
-  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
---- !u!33 &1427530983
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1427530980}
-  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
---- !u!4 &1427530984
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1427530980}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 10, y: 1, z: 10}
-  m_Children: []
-  m_Father: {fileID: 1741827293}
-  m_RootOrder: 0
 --- !u!1 &1465511731
 GameObject:
   m_ObjectHideFlags: 0
@@ -8601,7 +8528,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: b262e7cb2d112964d80461f3a3559481, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: b262e7cb2d112964d80461f3a3559481, type: 3}
       propertyPath: m_LocalScale.x
@@ -8686,8 +8613,10 @@ GameObject:
   m_Component:
   - 4: {fileID: 1692821648}
   - 65: {fileID: 1692821647}
+  - 65: {fileID: 1692821649}
+  - 65: {fileID: 1692821650}
   m_Layer: 0
-  m_Name: GroundCollisionPlane
+  m_Name: Collision
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8703,8 +8632,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 54.059536, y: 1, z: 27.9521599}
-  m_Center: {x: 13.5162029, y: 0, z: -13.4760799}
+  m_Size: {x: 15.0500002, y: 1, z: 140.5}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!4 &1692821648
 Transform:
   m_ObjectHideFlags: 0
@@ -8712,11 +8641,35 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1692821646}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 109.800003}
-  m_LocalScale: {x: 1, y: 1, z: 5.21491289}
+  m_LocalPosition: {x: 0, y: -.129999995, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 6
+--- !u!65 &1692821649
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1692821646}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 5, y: 1, z: 40}
+  m_Center: {x: -9.69999981, y: .930000007, z: 4.48999977}
+--- !u!65 &1692821650
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1692821646}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 5, y: 1, z: 40}
+  m_Center: {x: 10.04, y: .930000007, z: 0}
 --- !u!4 &1705215213 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400002, guid: b262e7cb2d112964d80461f3a3559481, type: 3}
@@ -8746,7 +8699,6 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1427530984}
   - {fileID: 407157870}
   - {fileID: 448205131}
   - {fileID: 163866553}
@@ -9017,7 +8969,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: ab72ed5c63ae1fe46a978903f48adea1, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: ab72ed5c63ae1fe46a978903f48adea1, type: 3}
       propertyPath: m_LocalScale.x

@@ -101,8 +101,8 @@ public class PlayerBehavior : MonoBehaviour
 		Debug.Log ("Charging weapon");
         float frequency = 100;
 
-        mainCamera.transform.rotation *= Quaternion.AngleAxis(Mathf.Sin(m_timer * frequency) * m_timer, new Vector3(0, 0, 1));
-        mainCamera.transform.position += Random.onUnitSphere * m_timer * 0.15f;
+        mainCamera.transform.rotation *= Quaternion.AngleAxis(Mathf.Sin(m_timer * frequency) * m_timer * 0.5f, new Vector3(0, 0, 1));
+        mainCamera.transform.position += Random.onUnitSphere * m_timer * 0.1f;
 
         if (m_timer >= m_chargeTime)
         {
