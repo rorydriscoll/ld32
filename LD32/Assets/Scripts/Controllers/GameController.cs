@@ -65,7 +65,6 @@ public class GameController : MonoBehaviour
     }
     public bool CanFireWeapon()
     {
-        Debug.Log("Spawn COUNT = " + enemySpawner.spawnCount);
         return !IsReseting() && !IsGameOver() && enemySpawner.spawnCount > 0;
     }
     public void AddScore(int pts)
