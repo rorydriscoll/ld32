@@ -1554,20 +1554,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3af5a593d1cac84c9711318cb06d188, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_chargeTime: 0
-  m_heatDissipationRate: 1.5
+  m_heatDissipationRate: 2
   m_heatPerShot: 1
   m_heatThreshold: 3
-  m_reloadTime: 0
   m_overheatTime: 2
   weaponController: {fileID: 930101036}
   mainCamera: {fileID: 1891343794}
   chargeSounds:
   - {fileID: 8300000, guid: 523baa8a57c771840889898ef7703023, type: 3}
-  - {fileID: 8300000, guid: a1533af643159d44592a2a228f9081c8, type: 3}
-  - {fileID: 8300000, guid: 1ce4ab76eb54721458f1298dde51647e, type: 3}
   - {fileID: 8300000, guid: 610dae200365fb4459bac65d3ac85170, type: 3}
+  - {fileID: 8300000, guid: 1ce4ab76eb54721458f1298dde51647e, type: 3}
   - {fileID: 8300000, guid: c36b96cab556201429cfef6bfe90308e, type: 3}
+  - {fileID: 8300000, guid: a1533af643159d44592a2a228f9081c8, type: 3}
   - {fileID: 8300000, guid: 6b02443057f4c514cae5dd88c4fea223, type: 3}
 --- !u!114 &1388726845
 MonoBehaviour:
@@ -2124,7 +2122,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 15.0500002, y: 1, z: 140.5}
+  m_Size: {x: 77.4000015, y: 1, z: 140.5}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!4 &1692821648
 Transform:
@@ -2148,8 +2146,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 5, y: 1, z: 40}
-  m_Center: {x: -9.69999981, y: .930000007, z: 4.48999977}
+  m_Size: {x: 19.4200001, y: 1, z: 40}
+  m_Center: {x: -16.9400005, y: .930000007, z: 4.48999977}
 --- !u!65 &1692821650
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2160,8 +2158,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 5, y: 1, z: 40}
-  m_Center: {x: 10.04, y: .930000007, z: 0}
+  m_Size: {x: 8.77999973, y: 1, z: 40}
+  m_Center: {x: 11.8699999, y: .930000007, z: 0}
 --- !u!4 &1705215213 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400002, guid: b262e7cb2d112964d80461f3a3559481, type: 3}
