@@ -92,15 +92,20 @@ MonoBehaviour:
   speedDecay:
     serializedVersion: 2
     m_Curve:
-    - time: 0
-      value: 1
-      inSlope: -.000706211664
-      outSlope: -.000706211664
+    - time: -.00357732177
+      value: .697535157
+      inSlope: .00598028535
+      outSlope: .00598028535
       tangentMode: 0
-    - time: 34.7110977
-      value: .280710578
-      inSlope: -.00060823356
-      outSlope: -.00060823356
+    - time: 49.7589569
+      value: .999066353
+      inSlope: .000298023224
+      outSlope: .000298023224
+      tangentMode: 0
+    - time: 49.809761
+      value: .999073148
+      inSlope: .000121612131
+      outSlope: .000121612131
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2

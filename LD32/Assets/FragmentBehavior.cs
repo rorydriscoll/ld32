@@ -10,7 +10,7 @@ public class FragmentBehavior : MonoBehaviour
     void Start()
     {
         if (variations.Length > 0)
-            GetComponent<MeshFilter>().mesh = variations[Random.Range(0, variations.Length - 1)];
+            GetComponent<MeshFilter>().mesh = variations[Random.Range(0, variations.Length)];
     }
 
     void Update()

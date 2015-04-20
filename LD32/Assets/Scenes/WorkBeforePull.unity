@@ -857,56 +857,10 @@ MonoBehaviour:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-  typeCountCurve:
-    serializedVersion: 2
-    m_Curve:
-    - time: 0
-      value: 1
-      inSlope: .992227376
-      outSlope: .992227376
-      tangentMode: 0
-    - time: 1
-      value: 2
-      inSlope: 1
-      outSlope: 1
-      tangentMode: 10
-    - time: 2
-      value: 3
-      inSlope: .5
-      outSlope: .5
-      tangentMode: 10
-    - time: 2.95000005
-      value: 3
-      inSlope: .476190507
-      outSlope: .476190507
-      tangentMode: 10
-    - time: 4
-      value: 4
-      inSlope: .976190507
-      outSlope: .976190507
-      tangentMode: 10
-    - time: 5
-      value: 5
-      inSlope: 1
-      outSlope: 1
-      tangentMode: 10
-    - time: 6
-      value: 6
-      inSlope: 1
-      outSlope: 1
-      tangentMode: 10
-    - time: 7
-      value: 7
-      inSlope: 1
-      outSlope: 1
-      tangentMode: 10
-    - time: 9
-      value: 9
-      inSlope: 1
-      outSlope: 1
-      tangentMode: 10
-    m_PreInfinity: 2
-    m_PostInfinity: 2
+  waveTypes:
+  - types: 00000000
+  - types: 0200000000000000
+  - types: 040000000200000000000000
   groupCountCurve:
     serializedVersion: 2
     m_Curve:
@@ -1755,36 +1709,23 @@ MonoBehaviour:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-  typeCountCurve:
-    serializedVersion: 2
-    m_Curve:
-    - time: 0
-      value: 1
-      inSlope: .992227376
-      outSlope: .992227376
-      tangentMode: 0
-    - time: 1.26910305
-      value: 1.73652697
-      inSlope: 1.53824961
-      outSlope: 1.53824961
-      tangentMode: 10
-    - time: 2.1495018
-      value: 3.93413162
-      inSlope: 2.43134141
-      outSlope: 2.43134141
-      tangentMode: 10
-    - time: 3.00980067
-      value: 5.97005987
-      inSlope: 1.16413164
-      outSlope: 1.16413164
-      tangentMode: 10
-    - time: 8.95514965
-      value: 5.74251556
-      inSlope: -.0382726602
-      outSlope: -.0382726602
-      tangentMode: 10
-    m_PreInfinity: 2
-    m_PostInfinity: 2
+  waveTypes:
+  - types: 00000000
+  - types: 02000000
+  - types: 04000000
+  - types: 0000000002000000
+  - types: 0200000004000000
+  - types: 0000000004000000
+  - types: 000000000200000004000000
+  - types: 01000000
+  - types: 03000000
+  - types: 05000000
+  - types: 010000000300000004000000
+  - types: 00000000010000000200000003000000
+  - types: 02000000030000000400000005000000
+  - types: 00000000020000000400000005000000
+  - types: 01000000020000000300000005000000
+  - types: 000000000100000002000000030000000400000005000000
   groupCountCurve:
     serializedVersion: 2
     m_Curve:

@@ -63,7 +63,7 @@ public class BombBehavior : MonoBehaviour
             if (explodeSounds.Length > 0)
             {
                 fragment.GetComponent<AudioSource>().pitch = Random.Range(0.9f, 1.1f);
-                int index = Random.Range(0, explodeSounds.Length - 1);
+                int index = Random.Range(0, explodeSounds.Length);
                 Debug.Log("Explode " + index);
                 fragment.GetComponent<AudioSource>().PlayOneShot(explodeSounds[index]);
             }
@@ -93,7 +93,7 @@ public class BombBehavior : MonoBehaviour
         if (hitSounds.Length > 0)
         {
             GetComponent<AudioSource>().pitch = Random.Range(0.8f, 1.2f);
-            GetComponent<AudioSource>().PlayOneShot(hitSounds[Random.Range(0, hitSounds.Length - 1)], 0.5f);
+            GetComponent<AudioSource>().PlayOneShot(hitSounds[Random.Range(0, hitSounds.Length)], 0.5f);
         }
     }
 }
