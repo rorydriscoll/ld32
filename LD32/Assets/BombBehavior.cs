@@ -88,7 +88,7 @@ public class BombBehavior : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
-        m_ttl = Random.Range(0.1f, 0.5f);
+        m_ttl = Random.Range(0.5f, 1.5f);
 
         if (hitSounds.Length > 0)
         {
