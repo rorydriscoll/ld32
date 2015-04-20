@@ -22,6 +22,7 @@ public class PlayerBehavior : MonoBehaviour
 
     public WeaponController weaponController;
     public GameObject mainCamera;
+    public AudioClip chargeSound;
 
     private State m_mode = State.Idle;
     private float m_heat;
@@ -85,16 +86,18 @@ public class PlayerBehavior : MonoBehaviour
     void UpdateIdle()
     {
         if (m_identifier.IsValid)
+        {
+            GetComponent<AudioSource>().pitch = 0.9f + m_identifier.ID * 0.03f;
+            GetComponent<AudioSource>().PlayOneShot(chargeSound);
+
             EnterState(State.Charging);
-		else
-			Debug.Log("id not valid id=" +m_identifier.ID);
+        }
     }
 
     void UpdateCharging()
     {
         if (!m_identifier.IsValid)
         {
-			Debug.Log ("identifier not valid? ");
 			EnterState(State.Idle);
             return;
         }

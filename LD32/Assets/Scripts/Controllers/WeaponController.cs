@@ -39,7 +39,7 @@ public class WeaponController : MonoBehaviour
 
         for (int i = 0; i < m_spawners.Length; ++i)
         {
-            m_spawners[i].delay = Random.Range(0.0f, 0.5f);
+            m_spawners[i].delay = Random.Range(0.0f, 1.5f);
             m_spawners[i].fired = false;
         }
 	}

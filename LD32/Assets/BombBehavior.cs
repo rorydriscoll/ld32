@@ -7,7 +7,7 @@ public class BombBehavior : MonoBehaviour
     public Mesh[] variations;
     public GameObject fragment;
     public AudioClip deploySound;
-    public AudioClip hitSound;
+    public AudioClip[] hitSounds;
     public AudioClip[] explodeSounds;
 
     private float m_ttl;
@@ -19,7 +19,7 @@ public class BombBehavior : MonoBehaviour
 
         if (deploySound)
         {
-            GetComponent<AudioSource>().pitch = Random.Range(0.9f, 1.1f);
+            GetComponent<AudioSource>().pitch = Random.Range(0.8f, 1.2f);
             GetComponent<AudioSource>().PlayOneShot(deploySound);
         }
     }
@@ -62,7 +62,7 @@ public class BombBehavior : MonoBehaviour
 
             if (explodeSounds.Length > 0)
             {
-                fragment.GetComponent<AudioSource>().pitch = Random.Range(0.8f, 0.9f);
+                fragment.GetComponent<AudioSource>().pitch = Random.Range(0.8f, 1.2f);
                 fragment.GetComponent<AudioSource>().PlayOneShot(explodeSounds[Random.Range(0, explodeSounds.Length - 1)]);
             }
 
@@ -86,10 +86,10 @@ public class BombBehavior : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
-        if (hitSound != null)
+        if (hitSounds.Length > 0)
         {
             GetComponent<AudioSource>().pitch = Random.Range(0.8f, 1.2f);
-            GetComponent<AudioSource>().PlayOneShot(hitSound);
+            GetComponent<AudioSource>().PlayOneShot(hitSounds[Random.Range(0, hitSounds.Length - 1)], 0.5f);
         }
     }
 }

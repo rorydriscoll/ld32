@@ -181,12 +181,17 @@ MonoBehaviour:
   - {fileID: 4300000, guid: 7f2340b23d6755c4ca90e95d92e5b364, type: 3}
   fragment: {fileID: 150534, guid: ac6283c64712a6e419f1e4f7a1a2cf05, type: 2}
   deploySound: {fileID: 8300000, guid: d7dd96716bbac0c4f9c306c32964d0b4, type: 3}
-  hitSound: {fileID: 8300000, guid: 20f1a1e22fa2e514a9d19384bb33a910, type: 3}
+  hitSounds:
+  - {fileID: 8300000, guid: 0ade0d7ec7f311841862c699200cde57, type: 3}
+  - {fileID: 8300000, guid: 6a30a7a0728621f468adea56840a18ce, type: 3}
+  - {fileID: 8300000, guid: b24c5ee389c2ea74089de51be4a071e7, type: 3}
+  - {fileID: 8300000, guid: 89c50f7b9a39bf745bb265e5c91513c5, type: 3}
+  - {fileID: 8300000, guid: 111f95483de1c994590d4c7d0a9fa363, type: 3}
+  - {fileID: 8300000, guid: f20a8a8234a480d49a6b6b988a19d1d2, type: 3}
+  - {fileID: 8300000, guid: 482766579c53848469201f229d355611, type: 3}
+  - {fileID: 8300000, guid: e38e70304210a90458f7ca55964b8ffd, type: 3}
   explodeSounds:
-  - {fileID: 8300000, guid: 561e1c6a37f657845987873602679916, type: 3}
-  - {fileID: 8300000, guid: 8b65febde39845b43bd2df7cf55527fc, type: 3}
-  - {fileID: 8300000, guid: 13f5a3750af26be49bc8724e8f3a3d3e, type: 3}
-  - {fileID: 8300000, guid: 796c56ac027f5d745ac353fd6ac8879c, type: 3}
+  - {fileID: 8300000, guid: abea77a7848c5a7488bf7c40d26b0d49, type: 3}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

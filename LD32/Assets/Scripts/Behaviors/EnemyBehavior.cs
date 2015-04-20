@@ -75,7 +75,7 @@ public class EnemyBehavior : MonoBehaviour
         body.MovePosition(new Vector3(transform.position.x, y, z));
         body.MoveRotation(Quaternion.AngleAxis(180, Vector3.up) * Quaternion.AngleAxis(Mathf.Sin((Time.time + timeOffset) * lf) * la * decay * 5, transform.forward));
 
-        if (transform.position.z < destroyGOPos && !GetComponent<Renderer>().isVisible)
+        if (transform.position.z < destroyGOPos && !RendererExtensions.IsVisibleFrom(GetComponent<Renderer>(), GameObject.FindObjectOfType<Camera>()))
             DestroyObject(gameObject);
 
         if (!reachedGoal && transform.position.z < goalPos)
