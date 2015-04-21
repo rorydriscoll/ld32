@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 /*
  * 	NOTE Enemy Goal pos, and offscreen pos is set on a property of the EnemyBehavior script
@@ -9,6 +10,7 @@ public class GameController : MonoBehaviour
     public SpawnController enemySpawner;
     public SpawnController friendlySpawner;
     public GameObject screenFader;
+    public GameObject gameOverDisplay;
     public float fadeTime;
     public float waitBetweenWaves;
     public float timeForOnePuff = 0.15f;
@@ -85,10 +87,7 @@ public class GameController : MonoBehaviour
     }
     void EnableGameOverText(bool enabled)
     {
-        GameObject[] gos;
-        gos = GameObject.FindGameObjectsWithTag("GameOverText");
-        foreach (GameObject go in gos)
-            go.GetComponent<GUIText>().enabled = enabled;
+        gameOverDisplay.SetActive(enabled);
     }
     void PrintState(string prefix, GameState state)
     {
@@ -103,10 +102,8 @@ public class GameController : MonoBehaviour
     }
     void UpdateScore()
     {
-        GameObject[] gos;
-        gos = GameObject.FindGameObjectsWithTag("ScoreText");
-        foreach (GameObject go in gos)
-            go.GetComponent<GUIText>().text = "Score: " + score;
+        GameObject go = GameObject.FindGameObjectWithTag("ScoreText");
+        go.GetComponent<Text>().text = Mathf.Clamp(score, 0, 999).ToString();
     }
     void Start()
     {
